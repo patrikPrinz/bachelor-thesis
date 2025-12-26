@@ -112,8 +112,8 @@
   thesis text.}
 
 %% Klíčová slova práce, včetně anglických. Oddělená (obvykle) středníkem.
-\keywords{webová aplikace; Bible; PWA; JavaScript; DevOps; CI/CD}
-\keywords[english]{web application; Bible; PWA; JavaScript; DevOps; CI/CD}
+\keywords{webová aplikace; Bible; PWA; TypeScript; DevOps; CI/CD}
+\keywords[english]{web application; Bible; PWA; TypeScript; DevOps; CI/CD}
 
 %% Volitelná specifikace příloh textu práce, i anglicky. Výchozí je
 %% 'elektronická data v systému katedry informatiky / electronic data
@@ -156,19 +156,79 @@
 %   a (značně) neúplná verze!!!}
 
 \section{Úvod}
-Část, která obsahuje stručný popis a motivaci k projektu.
+Cílem této práce je Vytvořit aplikaci pro použití v Řeckokatolické farnosti v Olomouci. Farnost je v současnosti vícenárodnostní a v posledních letech se značně
+rozrůstá. nejpočetněji jsou zde zastoupeni farníci z Ukrajiny. Texty Bible jsou v katolické církvi velmi často využívané při liturgických obřadech, ale také při
+osobní modlitbě a rozjímání.
+
+Pro Apoštolský Exarchát České Republiky, který je nadřazenou organizací Olomoucké farnosti existuje kalendář, který obsahuje i biblické texty pro každý den v roce.
+Biblické texty texty v církevních obřadech jsou často vázány ke svátkům, které jsou buď pevně svázány s datem, nebo jsou pohyblivé a připadají kyždý rok na jiné datum.
+Mnoho textů je také svázáno s konkrétním obřadem, nebo událostí (např. křest, svěcení domu...).
+
+Texty z knihy žalmů jsou často často používány jako samostatné modlitby. Východní církve žalmy rozdělují do 20 skupin zvaných kaftizmy, které obsahují většinou okolo
+4-6 žalmů. Ke kaftizmám jsou přidruženy další texty, které se modlí zároveň s nimi. Farnost má vlastní společenství, které se modlí modlitby žalmů a funguje přibližně od
+roku 2024. Každý člen společenství se modlí jednu z kaftizem během týdne. Kaftizmy se mezi členy společenství pravidelně střídají.
+
+Nenašel jsem dosud žádný projekt, který by poskytoval možnosti práce s biblickými texty v tomto rozsahu. Proto chci vytvořit aplikaci, která by sdružovala by texty více
+jazyků s možností vlastní správy a přidávání dalších překladů a textů pro vlastní četbu a studium. S tímto bude spojena i možnost udržování vlastního kalendáře který
+bude obsahovat zejména úryvky na každý den. Také by zde měla být obsažena možnost vytvářet si a ukládat vlastní úryvky. Proces rozdělení kaftizem v rámci společenství
+žaltáře plánuji zautomatizovat a zároveň poskytnout na stejném místě i texty samotné i spřidruženými modlitbami spolu s možnostíoznačit, že se člen již kaftizmu pomodlil.
+
+Dále bych chtěl, aby platforma byla do budoucna dále rozšiřitelná a bylo možné přidávat další funkcionality a aby mohl projekt i v budoucnu reflektovat požadavky
+společenství, které jej bude využívat.
+
+Dále se chci v této práci zaměřit na průzkum a využití konceptů z oblasti DevOps, které usnadní vývoj samotný, urychlí integraci a nasazení aplikace. Na projektu pracuji sám,
+proto je pro mne výhodné především zautomatizovat proces ověření a nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro
+mne výhodné získat značně větší spolehlivost a rychlost nasazení a také do budoucna usnadní řadu problémů s udržováním potřebné infrastruktury. Také doufám, že nabyté znalosti z
+této oblasti využiji i v budoucnu ve svém profesním životě.
 \section{Podobné projekty}
-Seznam a popis podobných projektů, které již existují. Obsahuje také rozdíly a důvod, proč tento projekt vytvářím.
+V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřeních existuje celá řada.
+Většina je však určena k jiným účelům a předvším pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny
+na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již
+zastaralá a dlouhodobě neudržovaná. Mnou vyvíjená aplikace má řadu velmi specifických požadavků Proto má  jen malý průnik s řadou
+
+\subsection{}
 \section{Struktura projektu}
-Popis struktury projektu.
+Projekt je strukturován do monorepozitáře, který obsahuje několik balíčků (packages), do kterých je funkcionalita rozdělena.
+Kořenový balíček monorepozitáře obsahuje společnou konfiguraci nástrojů a společné balíčky.
+
+Pro správu jsem použil balíčkovací nástroj pnpm pro node.js, který je alternativou k npm. Pro projekty s větším množstvím závislostí poskytuje značně lepší výkon a také
+možnost používat workspaces. Workspaces umožňují mít v rámci projektu více balíčků s vlastní konfigurací a vlastními závislostmi.
+\subsection{Balíčky}
+\subsubsection{Kořenový balíček}
+Kořenový balíček má nastarosti uchovávání konfigurace
 \subsection{Nastavení projektu}
 Popis Základní struktury projektu, konfigurace a popis složek a souborů v kořenovém balíčku.
-\subsection{CI/CD pipeline}
-Popis CI/CD pipeline v GutHub actions
+\subsection{Repozitář a CI/CD pipeline}
+
+
+Pro verzování projektu jsem požil GIT a jako vzdálené úložiště GitHub. Nástroj GIT je velmi populární a v současnosti má velmá málo použitelných alternativ. GitHub jsem zvolil táké pro jeho rozšířenost a Řadu možností, které poskytuje. mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
+
+GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři.
+
+
+
 \subsection{Styl kódu}
-Popis konvencí 
+Popis konvencí
 \subsection{Backend}
-Popis 
+Sdílené soubory
+
+Aplikace na backendu má modulární monolitickou architekturu, která zajišťuje rozdělení funkcionalit do skupin podle jejich domény a tím usnadňuje i kontrolu závislostí a umožňuje snadnější rozšířitelnost.
+
+Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a používají se na více místech napříč aplikací.
+
+Patří sem například middleware, který zajišťuje valitaci dat, ošetření chyb a logování. Dále také sdílené knihovny, jako například databázový adaptér.
+
+Moduly
+\subsubsection{Struktura modulu}
+Moduly sdružují funkcionalitu, která je spojena na úrovni domény projektu.
+Každý modul obsahuje:
+\begin{itemize}
+	\item \textbf{router:} mapuje HTTP požadavky na příslušné metody controlleru
+	\item \textbf{controller:} Validuje a zpracovává data a požadavky. Zajišťuje komunikacis routerem a spouští service
+	\item \textbf{service:} zajišťuje získání a zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi. Uchovává závislosti
+	\item \textbf{repository:} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy pro elasticsearch klienta. Zajišťuje kontrolu a validaci dat. Obstarává konzistentnost dat v databázi.
+\end{itemize}
+
 \subsection{Frontend}
 \subsection{Databáze}
 \section{Použité technologie}
