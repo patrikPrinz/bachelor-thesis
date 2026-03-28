@@ -207,53 +207,75 @@ modlitení skupiny, nebo žaltář a další modlitby. Aplikace na mnoha místec
 Beblia.com je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překlaů a v rámci projektu je k dispozici i databáze různých překladů
 v XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
 
-\section{Návrh a struktura}
-Projekt je strukturován do monorepozitáře, který obsahuje několik balíčků (packages), do kterých je funkcionalita rozdělena.
-Kořenový balíček monorepozitáře obsahuje společnou konfiguraci nástrojů a společné balíčky.
+\section{Komponenty projektu}
+Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent v podobě docker kontejnerů je realizována pomocí docker compose. V rámci práce jsem vytvořil 3 z nich.
 
-Pro správu jsem použil balíčkovací nástroj pnpm pro node.js, který je alternativou k npm. Pro projekty s větším množstvím závislostí poskytuje značně lepší výkon a také
-možnost používat workspaces. Workspaces umožňují mít v rámci projektu více balíčků s vlastní konfigurací a vlastními závislostmi.
-\subsection{Balíčky}
-\subsubsection{Kořenový balíček}
-Kořenový balíček má nastarosti uchovávání konfigurace
-\subsubsection{Backend}
-Sdílené soubory
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/block-diagram.png}
+	\caption{Blokové schéma}
+\end{figure}
 
-Aplikace na backendu má modulární monolitickou architekturu, která zajišťuje rozdělení funkcionalit do skupin podle jejich domény a tím usnadňuje i kontrolu závislostí a umožňuje snadnější rozšířitelnost.
+\subsection{Monorepozitář}
+Kontejnery tvořící projekt se vytvářejí z kódu a konfigurací uložených v monorepozitářové struktuře. Data jednotlivých kontejnerů jsou umístěna v příslušných balíčcích, které jsou reprezentovány podadresáři s příslušnými názky v adresáři packages.
+
+Hlavní výhodou struktury monorepozitáře je přirozené sdružení více balíčků do jednoho projektu. To umožňuje jednodušší build proces a vydávání nových verzí. Dále je výhodná i možnost sdílení konfigurace a některých závislostí. Díky společnému umístění v projektu lze velmi jednoduše spustit celý projekt v testovacím prostředí a ověřit správnou komunikaci balíčků mezi sebou a případné odstranění nalezení chyb. Projekt je také velmi jednoduše přenositelný a pro konfiguraci na novém zařízení vyžaduje naprosto minimální konfiguraci.
+
+\subsubsection{Společná konfigurace}
+Každý balíček má vlastní specifické konfigurace. Společné konfigurace, které jsou globální pro projekt, nebo sdílené více balíčky, jsou umístěny v hlavním adresáři projektu.
+
+S polečná konfigurace zahrnuje především docker compose soubory, konfiguraci nástrojů pro kontrolu kvality a spoelčnou konfiguraci pro TypeScript.
+
+\subsubsection{Použité nástroje pro správu projektu}
+\paragraph{GIT}
+Nástroj GIT je v projektu použit pro správu verzí projektu. V CI/CD je verzování klíčové a řídí procesy kontroly kvality a doručení připravených artefaktů uživateli. Více se budu konvencím verzování v projektu věnovat dále v textu.
+\paragraph{pnpm}
+Pnpm jsem použil pro správu zavislostí projektu a pro implementaci onom skriptů, což jsou příkazy uložené v konfiguračních souborech pnpm. Umožnují jednoduché spouštění často opakovaných příkazů. Tuto možnost jsem využil pro zjednodušení přísrupu k nástrojům pro kontrolu kódu, kompilaci a spuštění docker compose.
+
+Pnpm je správce balíčků pro node js. Pro tento správce balícků jsem se rozhodl, neboť jsem byl z dřívějších projektů zvyklý na použití npm. Pnpm má obdobné rozhraní, ale poskytuje mnoho optimalizací rychlosti instalace balíčků a využití místa na disku. Dále také poskytuje možnost správy zavislostí vnořených balíčků, což značně usnadňuje práci s monorepozitářem.
+
+
+\subsection{Server}
+Server poskytuje HTTP API pro manipulaci s daty uloženými v elastic search a PostgreSQL databázích. Poskytuje možnost správy uživatelů, sezení, kontrolu oprávnění a implementaci business logiky.
+
+\subsubsection{Architektura}
+Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšířitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části aplikace podle částí domény (např. správa skupin, texty Bible, ...). Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a usnadňuje udržení přehledu o dopadech provedených změn na zbytek projektu.
+
+Modulární monolit je kompromisem mezi mikroservisy a tradiční monolitickou architekturou. Stejně jako architektura mikroservisů, rozděluje aplikaci do více celků (v tomto případě jsou to moduly). Moduly sdružují funkcionalitu spjatou s danou částí domény a pro ostatní moduly poskytují jasně definované rozhraní. Narozdíl od mikrservisů však není aplikace rozdělena do více servisů, což usnadňuje počáteční nastavení a nasazení projektu spolu s jednodušším laděním a integrací celku.
+
+Narozdíl od monolitické architektury je modulární monolit časově náročnější na úvodní konfiguraci, tuto nevýhodu však vyvažuje skutečnost, že v modulární struktuře je možné se podstatně přirozeněji orientovat, protože struktura aplikace respektuje zvolenou doménu. Toto je výhodou zvláště u rozsáhlejších projektů, i přesto jsem však tuto architekturu zvolil i v tomto projektu, který je malého rozsahu. S ohledem na budoucí možnosti rozšíření se projekt takto může dále rozrůstat s podstatně menším ztížením orientace.
 
 Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a používají se na více místech napříč aplikací.
 
-Patří sem například middleware, který zajišťuje valitaci dat, ošetření chyb a logování. Dále také sdílené knihovny, jako například databázový adaptér.
+Patří sem například middleware, který zajišťuje valitaci dat, ošetření chyb a logování. Dále také sdílené knihovny, jako například adaptéry pro PostgreSQL a Elastic Search.
 
 Moduly
-\subsubsubsection{Struktura modulu}
+\paragraph{Struktura modulu}
 Moduly sdružují funkcionalitu, která je spojena na úrovni domény projektu.
 Každý modul obsahuje:
 \begin{itemize}
-	\item \textbf{router:} mapuje HTTP požadavky na příslušné metody controlleru
-	\item \textbf{controller:} Validuje a zpracovává data a požadavky. Zajišťuje komunikaci s routerem a spouští service
+	\item \textbf{Router} mapuje HTTP požadavky na příslušné metody controlleru. Prostřednictvím middlewaru se zde také provádí ověření, jestli je uživatel přihlášený a provádí se validace dat požadavku.
+	\item \textbf{Controller} validuje a zpracovává data a požadavky. Zajišťuje komunikaci s routerem a spouští service. Controller se stará o úlohy specifické pro exporess. Extrahuje data z Request objektu a nastavuje data, která jsou odeslána zpět uživateli.
 	\item \textbf{service:} zajišťuje získání a zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi. Uchovává závislosti
-	\item \textbf{repository:} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy pro elasticsearch klienta. Zajišťuje kontrolu a validaci dat. Obstarává konzistentnost dat v databázi.
+	\item \textbf{repository:} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy, které reflektují strukturu databáze. Zajišťuje kontrolu a validaci dat. Obstarává konzistentnost dat v databázi.
 \end{itemize}
+\subsection{Frontend}
+Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slouží k prezentaci dat z API a k jejich snadnější manipulaci.
 
-\subsubsection{Frontend}
-\subsubsection{Databáze}
+\subsection{Initializer}
+Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro elastic search vytvoří všechny dosud neexistující indexy.
+Projekt je strukturován do monorepozitáře, který obsahuje několik balíčků (packages), do kterých je funkcionalita rozdělena.
+Kořenový balíček monorepozitáře obsahuje společnou konfiguraci nástrojů a společné balíčky.
 
-\subsection{Nastavení projektu}
-Popis Základní struktury projektu, konfigurace a popis složek a souborů v kořenovém balíčku.
-
+\section{CI/CD}
 \subsection{Verzování}
-Pro verzování projektu jsem požil GIT a jako vzdálené úložiště GitHub. Nástroj GIT je velmi
-populární a v současnosti má velmi málo použitelných alternativ.
+Pro verzování projektu jsem požil GIT a jako vzdálené úložiště GitHub. Nástroj GIT je velmi populární a v současnosti má velmi málo použitelných alternativ.
 
-Pro vhodné použití s CI/CD pipeline, o kterém budu psát v další kapitole textu, a z důvodu lepší
-přehlednosti současného vývoje více funkcionalit, jsem zavedl také konvence pro pojmenování
-commitů a větví. Názvy mají pevnou strukturu a přidávají entitám verzovacího systému přesnější
-implicitní význam. Této struktury bude v budoucnu možné využít i pro automatizaci sémantického
-verzování.
+Pro vhodné použití s CI/CD pipeline, o kterém budu psát v další kapitole textu, a z důvodu lepší přehlednosti současného vývoje více funkcionalit, jsem zavedl také konvence pro pojmenování commitů a větví. Názvy mají pevnou strukturu a přidávají entitám verzovacího systému přesnější implicitní význam. Této struktury bude v budoucnu možné využít i pro automatizaci sémantického verzování.
 
 Níže budu popisovat jednotlivé konvence.
+
 \subsubsection{Větve}
+
 Větev obsahuje větší množství ucelených změn, které mají společný účel. Větev může být používána
 dlouhou dobu. Může sloužit například pro vývoj celého konkrétního modulu, pro dokumentaci, úpravy
 infrastruktury, nebo refactoring balíčku.
@@ -263,7 +285,7 @@ nich lze přidávat jen pomocí pull-requestů. Větev dev slouží ke kompletac
 Změny, které jsou přidány do větve main jsou určeny k vydání. Vydání nové verze se provede
 automaticky po oštítkování commitu.
 
-Každá větev je pojmenována ve formátu $<typ>/<název>$, kde $<název>$ popisuje společný účel změn
+Každá větev je pojmenována ve formátu $<typ><nazev>$, kde $<nazev>$ popisuje společný účel změn
 ve větvi (např. server-authentication). $<typ>$ přibližuje, jaký technický charakter změny mají
 (správa infrastruktury, dokumentace, testování...)
 
@@ -278,7 +300,9 @@ Povolené typy větví jsou následující:
 	\item \textbf{docs:} Provádí se zde přidání a údržba přiložené dokumentace projektu.
 \end{itemize}
 
+
 \subsubsection{Commity}
+
 Jednotlivé commity obsahují menší ucelené změny. Jeden commit by neměl obsahovat více změn, které
 spolu přímo nesouvisí (tématicky, nebo umístěním). Toto se mi nepodařilo v začátcích vývoje dodržet
 ve všech případech. Některé commity kromě přidání funkcionalit obsahují také refactoring, nebo opravu
@@ -299,26 +323,17 @@ také orientaci ve změnách a upřesňují technický význam commitů. Povolen
 \end{itemize}
 
 \subsection{CI/CD pipeline}
-GitHub jsem zvolil táké pro jeho
-rozšířenost a řadu možností, které poskytuje. mezi ně patří především služba GitHub Actions,
-kterou jsem použil pro vytvoření CI/CD pipeline.
+GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které poskytuje. mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
 
-GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události
-v repozitáři.
+GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři. Tuto možnost používám pro spouštění akcí při přidání nových změn do vzdáleného repozitáře, kde se provedou automatizované testy a kontrola kvality kódu.
 
-\subsection{Styl kódu}
-Popis konvencí
+Pro commit označený štítkem se správným názvem se spustí akce, která vytvoří image jednotlivých kontejnerů projektu a přidá je do kontejnerového repozitáře.
+
+
+
 \section{Použité technologie}
 \subsection{TypeScript}
-TypesCript jako hlavní jazyk, ve kterém jsem projekt psal, jsem zvolil pro jeho univerzalitu.
-Kompiluje se do javascriptu, který je vhodný pro použití na backendu i frontendu aplikace. Toto jsem
-na začátku vývoje považoval za velkou výhodu. Typescript také na rozdíl od JavaScriptu poskytuje
-statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj,
-poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které by v kódu jinak vznikaly.
-Na mnoha místech však také kód značně znepřehledňuje a plní zbytečným přetypováním, které nemá vliv
-na výsledný běh kódu, vzhledem ke skutečnosti, že se vše kompiluje do javascriptu, který statické
-typování neimplementje. Proto je také všechny vstupy, které se do aplikace přijmou za běhu (data z
-databáze, HTTP požadavky, vstupy uživatele, ...), validovat znovu při běhu (k tomu jsem použil
+TypesCript jako hlavní jazyk, ve kterém jsem projekt psal, jsem zvolil pro jeho univerzalitu. Kompiluje se do javascriptu, který je vhodný pro použití na backendu i frontendu aplikace. Toto jsem na začátku vývoje považoval za velkou výhodu. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které by v kódu jinak vznikaly. Na mnoha místech však také kód značně znepřehledňuje a plní zbytečným přetypováním, které nemá vliv na výsledný běh kódu, vzhledem ke skutečnosti, že se vše kompiluje do javascriptu, který statické typování neimplementje. Proto je také všechny vstupy, které se do aplikace přijmou za běhu (data z databáze, HTTP požadavky, vstupy uživatele, ...), validovat znovu při běhu (k tomu jsem použil
 knihovnu Zod.)
 \subsection{Express}
 \subsection{Vue.js}

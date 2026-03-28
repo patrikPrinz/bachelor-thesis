@@ -1,0 +1,16 @@
+{
+  "soft_wrap": "preferred_line_length",
+  "lsp": {
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": {
+            "onSave": true,
+            "executable": "pdflatex",
+            "args": ["%f"],
+          },
+        },
+      },
+    },
+  },
+}
