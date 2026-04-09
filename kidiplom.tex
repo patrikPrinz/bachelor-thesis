@@ -162,11 +162,11 @@
 Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k modlitebním textům a textům Bible pro každodenní použití. Řeckokatolická farnost v Olomouci, pro kterou bude tato aplikace určena, dosud nemá žádný vhodný systém, který by toto uspokojivě poskytoval a zohledňoval i skutečnost, že modliteb je velké množství a systém včetně databáze, by měl být snadno rozšiřitelný, aby bylo možné i v budoucnu přidávat další texty, rozdělovat je do kategorií a třídit je podle událostí a dat, ke kterým patří.
 
 \subsection{Cílová skupina}
-Primární cílovou skupinou této aplikace jsou členové Řeckokatolické farnosti v Olomouci. Patří sem běžní farníci, lidé, kteří jsou různým způsobem zapojeni do chodu farnosti a duchovní. Farnost je v současnosti vícenárodnostní a v posledních letech se značně
+Primární cílovou skupinou této aplikace jsou členové Řeckokatolické farnosti v Olomouci. Patří sem běžní farníci, lidé, kteří jsou různým způsobem zapojeni do chodu farnosti, a duchovní. Farnost je v současnosti vícenárodnostní a v posledních letech se značně
 rozrůstá. Nejpočetněji jsou zde zastoupeni farníci z Ukrajiny.
 
 Farnost má vlastní společenství, které se modlí modlitby žalmů a funguje od
-roku 2024. Každý člen společenství se modlí jednu z kaftizem během týdne. Kaftizmy se mezi členy společenství pravidelně střídají.
+roku 2024. Každý člen společenství se během týdne modlí jednu část žaltáře zvanou kaftizma. Kaftizmy se mezi členy společenství pravidelně střídají.
 
 \subsection{Doména}
 Texty Bible jsou v katolické církvi velmi často využívané při liturgických obřadech, ale také při osobní modlitbě a rozjímání.
@@ -180,11 +180,11 @@ Texty z knihy žalmů jsou často používány jako samostatné modlitby. Výcho
 4-8 žalmů. Ke kaftizmám jsou přidruženy další texty, které se modlí zároveň s nimi.
 
 \subsection{Přínos práce}
-V rámci této práce bych se chtěl zaměřit především na implementaci čtečky Bible a textů žaltáře. Aplikace bude poskytovat Bibli samotnou v různých překladech pro čtení a studium, a také bude poskytovat vizualizaci úryvků textu podle dostupného kalendáře. Dále bude dostupné i zobrazení textů žaltáře.
+V rámci této práce bych se chtěl zaměřit především na implementaci čtečky Bible a textů žaltáře. Aplikace bude poskytovat Bibli samotnou v různých překladech pro čtení a studium, a také bude poskytovat vizualizaci úryvků textu podle dostupného kalendáře. Dále bude dostupné i zobrazení textů žaltáře pro osobní modlitbu, nebo modlitbu ve společenství.
 
 Další částí bude možnost správy farního společenství žaltáře a případně i dalších skupin, které ve farnosti existují. Tato možnost především usnadní komunikaci se členy a sdílení informací.
 
-Mým dalším cílem jenavrhnout aplikaci s ohledem na budoucí rozšířitelnost, což by umožnilo i v budoucnu reflektovat požadavky společenství, které jej bude využívat a které bude pravděpodobně také dál růst a rozvíjet se. Existuje velké množství obřadů a modliteb řeckokatolické církve, které by v aplikaci mohly být v budoucnu uloženy.
+Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšířitelnost, což by umožnilo i v budoucnu reflektovat požadavky společenství, které jej bude využívat a které bude pravděpodobně také dál růst a rozvíjet se. Existuje velké množství obřadů a modliteb řeckokatolické církve, které by v aplikaci mohly být v budoucnu uloženy.
 
 Dále se chci v této práci zaměřit i na průzkum a využití konceptů z oblasti DevOps, které usnadní vývoj samotný v dlouhodobém měřítku, urychlí integraci i samotné nasazení aplikace. Na projektu pracuji sám, proto je pro mne výhodné především zautomatizovat proces ověření a nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu.
 
@@ -245,6 +245,10 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 	\item Aplikace bude umožňovat přihlášeným uživatelům spravovat svou knihovnu úryvků.
 	\item Oprávněný uživatel může spravovat úryvky, které jsou přiřazeny ke kalendáři.
 \end{itemize}
+\textbf{Ostatní}
+\begin{itemize}
+	\item Aplikace bude umožňovat přepínání jazyka uživatelského rozhraní.
+\end{itemize}
 
 \subsubsection{Nefunkční požadavky}
 \begin{itemize}
@@ -271,7 +275,10 @@ knihovnu Zod.)
 \subsubsection{Docker}
 Docker je nástroj, který
 Použití Dockeru pro kontejnerizaci jednotlivých komponent aplikace značně zjednodušilo vývoj i spuštění aplikace v produkčním prostředí.
-\subsubsection{Github actions}
+\subsubsection{GitHub a GitHub Action}
+GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které poskytuje. Mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
+
+GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
 
 \section{Implementace}
 Části porojektu jsou rozděleny do samostatných kontejnerů, které spolu komunikují prostředním lokální sítě Dockeru.
@@ -377,9 +384,7 @@ Typy commitů jsou určeny pro budoucí implementaci automatického sémantické
 GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. v0.1.0) a dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o kandidáta na verzi (release candidate). Jednotliví kandidáti mají v názvu pořadové číslo. Označení kandidáta na verzi může být např. `v0.1.0-rc1'. Kandidátů na verzi může být více. Tyto verze slouží k otestování, že se všechny artefakty vytvořily správně a jsou použitelné.
 
 \subsection{CI/CD pipeline}
-GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které poskytuje. mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
-
-GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři. Tuto možnost používám pro spouštění akcí při přidání nových změn do vzdáleného repozitáře, kde se provedou automatizované testy a kontrola kvality kódu.
+Pro spouštění automatizovaných akcí v rámci CI/CD pipeline jsem použil GitHub Action. Tato technologie umožňuje spustit akci ve vzdáleném repozitáři na GitHubu.
 
 Pro commit označený štítkem se správným názvem se spustí akce, která vytvoří obrazy jednotlivých kontejnerů projektu a přidá je do kontejnerového repozitáře.
 
