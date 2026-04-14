@@ -61,7 +61,7 @@
 %  biblatex,
 %  language=english,
 %  font=sans,
-  figures=false,
+%  figures=false,
 %  tables=false,
 %  theorems,
 %  sourcecodes,
@@ -129,12 +129,21 @@
 %% (zvolenou nepovinným parametrem biblatex makra
 %% \documentclass). Použijte pouze při této sazbě, ne při (výchozí)
 %% sazbě v prostředí thebibliography.
+\usepackage[backend=biber,style=numeric]{biblatex}
 \bibliography{bibliografie.bib}
 
 %% Další dodatečné styly (balíky) potřebné pro sazbu vlastního textu
 %% práce.
 \usepackage{lipsum}
 \usepackage{longtable}
+
+%% Balíky prostředí pro ukázky zdrojových kódů
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\footnotesize
+}
 
 \begin{document}
 %% Sazba úvodních stran -- titulní, s bibliografickými údaji, s
@@ -155,7 +164,7 @@
 %   dokumentace stylu, vyjma přílohy~\ref{sec:ObsahData}, je rozpracovaná
 %   a (značně) neúplná verze!!!}
 
-\section{Úvod/kontext - rozdělit}
+\section{Úvod}
 
 \section{Kontext}
 \subsection{Cíl práce}
@@ -257,6 +266,40 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 \end{itemize}
 
 \section{Návrh řešení}
+\subsection{Použité technologie}
+\subsubsection{Node.js}
+Node.js je běhové prostředí pro JavaScript. Node lze využít pro spuštění Javascriptu na jiných platformách než v prohlížeči, pro který byl jazyk původně určený.
+
+Tuto technologii jsem se rozhodl použít pro backend tohoto projektu, protože tato volba mi umožňuje použít stejný jazyk pro vývoj frontendu i backendu. To mi usnadnilo nastavení nástrojů pro správu kvality kódu a typovou kontrolu. Všechny balíčky tak mohou sdílet velkou část nastavení. I když je rozdíl mezi funkcí JavaScriptu v prohlížeči a v Node.js, základní koncepty a mechanismy jazyka zůstávají stejné.
+\subsubsection{Pnpm}
+Pnpm je správce balíčků pro node.js. Pnpm má obdobné rozhraní, ale poskytuje mnoho optimalizací rychlosti instalace balíčků a využití místa na disku oproti výchozímu správci balíčků npm. Dále také poskytuje možnost správy zavislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s monorepozitářem, který v projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují jen jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a na tyto závislosti odkazuje. Oproti npm, které instaluje balíčky pro každý projekt znovu tak lze ušetřit mnoho místa.
+\subsubsection{TypeScript}
+TypeScript je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v prostředí výše zmíněného node.js i na frontendu aplikace pro běh v prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu, nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a v případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
+\subsubsection{Express}
+Express je framework pro vývoj wbových aplikací i API v JavaScriptu. Poskytuje základní nástroje pro práci s požadavky, jejich zpracování, poskytuje vlastní router a také lze integrovat s mnoha rozšířeními i dalšími balíčky, protože je minimalistický a nezavádí téměř žádné vlastní konvence struktury projektu.
+\subsubsection{Vue.js}
+Vue.js je framework pro vytváření webových uživatelkých rozhraní. Vue.js Umožňuje uživateli vyvíjet aplikace s architekturou MVVM. Vue.js samo o sobě implementuje ViewModel část jako obousměrné provázání dat aplikace a uživatelským rozhraním.
+
+Vue.js také usnadňuje rozdělení uživatelského rozhraní do komponent, které jsou základními stavebními bloky uživatelského rozhraní. Komponenta sdružuje HTML kód, JavaScriptový kód a CSS styl do jednho souboru.
+
+Vue.js má velmi přehlednou a obsáhlou dokumentaci. Systém komponent a mnoho hotových komponent a knihoven, které jsou s Vue.js kompatibilní poskytuje velmi pohodlný vývoj aplikací. Vue.js poskytuje monoho možností, které je mžné učit se v průběhu vývoje.
+
+\subsubsection{Pinia}
+Pinia je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují spravovat globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a settery pro vlastnosti, které jsou ve storu uloženy.
+\subsubsection{Elastic search}
+\subsubsection{PostgreSQL}
+PostgreSQL je v současnosti velmi oblíbenou volbou při výběru relační databáze.
+\subsubsection{Docker}
+Docker je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k distribuci aplikací.
+
+Díky kontejnerizaci odpadá potřeba řešit manuálně všechny závislosti projektu a hlídat jejich verze a nastavení. Všechna potřebná konfigurace je obsažena v docker imagi, jehož spuštěním vzniká samotný kontejner.
+
+Díky tomu jsem mohl vývoj projektu provádět z více zařízení bez větších komplikací s nastavením. Podstatně snadnější je i nasazení aplikace do provozu díky integraci Dockeru do CI/CD pipeline, které se budu dále v textu věnovat.
+\subsubsection{GitHub a GitHub Action}
+GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které poskytuje. Mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
+
+GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
+
 \subsection{Architektura projektu}
 Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent, které zajišťují uchování dat a jejich manipulaci
 
@@ -265,20 +308,16 @@ Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent, 
 	\caption{Blokové schéma}
 \end{figure}
 
-\subsection{Použité technologie}
-\subsubsection{TypeScript}
-TypesCript jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem zvolil pro jeho univerzalitu. Kompiluje se do javascriptu, který je vhodný pro použití na backendu i frontendu aplikace. Toto jsem na začátku vývoje považoval za velkou výhodu. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které by v kódu jinak vznikaly. Na mnoha místech však také kód značně znepřehledňuje a plní zbytečným přetypováním, které nemá vliv na výsledný běh kódu, vzhledem ke skutečnosti, že se vše kompiluje do javascriptu, který statické typování neimplementje. Proto je také všechny vstupy, které se do aplikace přijmou za běhu (data z databáze, HTTP požadavky, vstupy uživatele, ...), validovat znovu při běhu (k tomu jsem použil
-knihovnu Zod.)
-\subsubsection{Express}
-\subsubsection{Vue.js}
-\subsubsection{Elastic search}
-\subsubsection{Docker}
-Docker je nástroj, který
-Použití Dockeru pro kontejnerizaci jednotlivých komponent aplikace značně zjednodušilo vývoj i spuštění aplikace v produkčním prostředí.
-\subsubsection{GitHub a GitHub Action}
-GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které poskytuje. Mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
+\subsection{Návrh databáze}
+Aplikace je určena především k prezentaci uložených dat a jejich správě. Proto pro mne byla volba vhodného nástroje důležitá. Pro potřeby projektu jsem se rozhodl využít dva nástroje pro různé účely.
+\subsubsection{PostgeSQL}
+PostgreSQL databázi jsem využil především pro ukládání uživatelských dat a dat a dat, která obsahují méně textu. Relační databáze jsou vhodné pro ukládání dat s pevnou strukturou a také těch dat, nad kterými se nebude provádět full-textové vyhledávání.
 
-GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
+Databáze je
+
+\subsubsection{ElasticSearch}
+ElasticSearch jsem se rozhodl použít pro rozsáhlejší textová data, především ty, u kterých bude prováděno vyhledávání. Nejdůležitější částí dat jsou překlady Bible.
+
 
 \section{Implementace}
 Části porojektu jsou rozděleny do samostatných kontejnerů, které spolu komunikují prostředním lokální sítě Dockeru.
@@ -295,34 +334,85 @@ S polečná konfigurace zahrnuje především docker compose soubory, konfigurac
 
 \subsubsection{Nástroje pro správu projektu}
 \paragraph{GIT}
-Nástroj GIT je v projektu použit pro správu verzí projektu. V CI/CD je verzování klíčové a řídí procesy kontroly kvality a doručení připravených artefaktů uživateli. Více se budu konvencím verzování v projektu věnovat dále v textu.
-\paragraph{pnpm}
-Pnpm jsem použil pro správu zavislostí projektu a pro implementaci onom skriptů, což jsou příkazy uložené v konfiguračních souborech pnpm. Umožnují jednoduché spouštění často opakovaných příkazů. Tuto možnost jsem využil pro zjednodušení přísrupu k nástrojům pro kontrolu kódu, kompilaci a spuštění docker compose.
-
-Pnpm je správce balíčků pro node js. Pro tento správce balícků jsem se rozhodl, neboť jsem byl z dřívějších projektů zvyklý na použití npm. Pnpm má obdobné rozhraní, ale poskytuje mnoho optimalizací rychlosti instalace balíčků a využití místa na disku. Dále také poskytuje možnost správy zavislostí vnořených balíčků, což značně usnadňuje práci s monorepozitářem.
-
+Nástroj GIT jsem použit pro správu verzí projektu. V CI/CD je verzování klíčové a řídí procesy kontroly kvality a doručení připravených artefaktů uživateli. Více se budu konvencím verzování v projektu věnovat dále v textu.
+\paragraph{Pnpm}
+Pnpm jsem použil pro správu zavislostí projektu a pro vytvoření pnpm skriptů, které usnadňují spouštění příkazů. Tuto možnost jsem využil pro zjednodušení přístupu k nástrojům pro kontrolu kódu, kompilaci a spuštění docker compose.
 
 \subsection{Server}
 Server poskytuje HTTP API pro manipulaci s daty uloženými v elastic search a PostgreSQL databázích. Poskytuje možnost správy uživatelů, sezení, kontrolu oprávnění a implementaci business logiky.
 
-Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšířitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části domény aplikace (např. správa skupin, texty Bible, žaltář,...). Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a umožňuje udržet si přehled o částech, které budou ovlivněy případnými změnami.
+Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšiřitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části domény aplikace. Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a umožňuje udržet si přehled o částech, které budou ovlivněy případnými změnami.
 
 Modulární monolit je kompromisem mezi mikroservisy a tradiční monolitickou architekturou. Stejně jako architektura mikroservisů, rozděluje aplikaci do více celků (v tomto případě jsou to moduly). Moduly sdružují funkcionalitu spjatou s danou částí domény a pro ostatní moduly poskytují jasně definované rozhraní. Narozdíl od mikrservisů však není aplikace rozdělena do více servisů, což usnadňuje počáteční nastavení a nasazení projektu spolu s jednodušším laděním a integrací celku.
 
 Narozdíl od monolitické architektury je modulární monolit časově náročnější na úvodní konfiguraci, tuto nevýhodu však vyvažuje skutečnost, že v modulární struktuře je možné se podstatně přirozeněji orientovat, protože struktura aplikace respektuje zvolenou doménu. Toto je výhodou zvláště u rozsáhlejších projektů, i přesto jsem však tuto architekturu zvolil i v tomto projektu, který je malého rozsahu. S ohledem na budoucí možnosti rozšíření se projekt takto může dále rozrůstat s podstatně menším ztížením orientace.
 
+Ztěžejní částí Každého modulu je v případě této aplikace servis. Servis je třída, která reprezentuje jednotlivé operace v dané části domény. Například pro záložky by šlo o možnost vypsat včechny záložky, přidat novou, nebo upravit existující. Servis Tak poskytuje rozhraní, které používá typy reprezentující jednotlivé entity ve zvolené doméně. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a business logikou v servisu, nebo servisy ostatních modulů. Tím je zajištěno, že při manipulaci s daty z jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i refactoring kódu.
+
+\subsubsection{Globální nástroje}
 Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a používají se na více místech napříč aplikací.
 
-Tyto nástroje jsou uloženy ve složce shared. Nachází se zde:
+Tyto nástroje jsou uloženy ve složce shared.
+\paragraph{Ošetření chyb}
+Express.js má vestavěný mechanismus pro ošetření chyb. Pokud dojde k chybě při zpracování HTTP požadavku, zavolá se automaticky výchozí middleware pro ošetření chyb. Pro potřeby tohoto projektu jsem implementoval middleware, který zajišťuje ošetření chyb a jejich převedení na stavové HTTP kódy, které jou důležité pro uživatele. Vytvořil jsem systém výjimek, které odpovídají stavovým kódům pro odpověď. Všechny tyto výjimky dědí ze třídy AppErro. K výjimce je možné přidat také textovou zprávu.
+
+Výjimky mohou reprezentovat různé stavy, kdy server požadavek nemůže správně zpracovat. Pro potřeby aplikace jsem využil tyto stavové kódy pro různé nežádoucí stavy. Jejich sémantiku jsem interpretoval podle dokumentace z Mozilla Developer Network\cite{mdn-status}:
 \begin{itemize}
-	\item Middleware pro validaci požadavků
-	\item Middleware obsluhující výjimky
+	\item AppError(500): výchozí výjimka, je možné u ní změnit kód, čehož využívají ostatní výjimky, kteréz této dědí. Měnit kód ručně je nežádoucí, protože každá z výjimek nese nějakou informaci a tato je nejobecnější. Proto by se měla používat pro neočekávané chyby serveru.
+	\item ValidationError(400): Používá se především v middlewaru pro validaci uživatelských požadavků. Je vrácena, pokud uživatel§v požadavek neodpovídá očekávanému formátu.
+	\item AuthError(401): Oznamuje uživateli, že se pokouší bez platného přihlášení přistoupit k datům, která jsou dostupná jen přihlášeným uživatelům.
+	\item PermissionError(403): Informuje o skutečnosti, že server zná identitu klienta a odmítá mu poskytnout požadovaná data z důvodu nedostatečných oprávnění.
+	\item NotFoundError(404): Tato výjimka je vrácena, pokud nelze najít žádný výsledek, který by odpoídal požadavku.
+	\item ConflictError(409): K této výjimce dojde, pokud uživatel požaduje platnou akci, není však možné ji provést vzhledem k aktuálnímu stavu databáze. Například pokud se pokouší vytvořit záznam v databázi, který by porušoval unikátnost.
+\end{itemize}
+
+Pokud dojde k vyvolání výjimky, přijme ji middleware pro obsluhu chyb, který ověří, jestli jde o instanci třídy AppError a pokud ano, vloží data z výjimky do odpovědi. Pokud nejde o instanci AppError, vytvoří se odpověď, která ukazuje, že jde o neočekávanou chybu serveru.
+
+
+\paragraph{Middleware pro validaci požadavků:}
+Každý HTTP požadavek může obsahovat data od uživatele. Před předání k dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu.
+
+\begin{lstlisting}[language=JavaScript]
+export function requestValidator<T extends ZodType>(
+  schema: T,
+  part: string = 'params',
+) {
+  return (req: Request, _res: Response, next: NextFunction) => {
+    try {
+      const parsedData = schema.parse(req[part]);
+      (req as ValidatedRequest<z.infer<typeof schema>>).validated = parsedData;
+      next();
+    } catch (error) {
+      next(new ValidationError('Bad request format', error as Error));
+    }
+  };
+}
+\end{lstlisting}
+
+Validátor je implementová jako funkce vyššího řádu se dvěma parametry. První je zod schéma, které definuje žádaný formát objektu s daty od uživatele. Druhý parametr je textový řetězec, který určuje, jak uživatel data předal. Data mohou být předána buď v těle dotazu, jako součást url adresy, nebo jako HTTP parametry.
+
+Všechny tři možnosti jsou v expressu reprezentovány jako objekt v dotazu. Dotaz validátor přijímá v parametru req. Pokud validace proběhne správně, middleware přetypuje dotaz na generický typ ValidatedRequest<T>, kde T je typ objektu validovaných dat. Typ ValidatedRequest obsahuje vlastnost validated, ve které jsou zvalidovaná data uložena. Díky tomu má již TypeScript typovou kontrolu nad uživatelskými daty a je možné s nimi bezpečně pracovat. Middleware v tom případě volá funkci next, která reprezentuje další funkci, která má požadavek zpracovávat.
+
+Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce next s výjimou ValidationError, čímž dojce k předání požadavku systému pro ošetření výjimek.
+
+Reálným omezením tohoto návrhu je skutečnost, že není možné předávat uživatelská data v jednom požadavku více metodami zároveň. Vzhledem k aktuálnímu rozsahu projektu jsem však nenarazil na to, že by pro mne byla tato možnost klíčová. V budoucnu je možné tento nedostatek vyřešit přidáním vlastností, které reprezentují jednotlivé metody dovnitř vlastnosti validated.
+
+\begin{itemize}
 	\item Adaptér pro Elasticsearch
 	\item Adaptér pro PostgreSQL
 	\item Logger
 \end{itemize}
 
-\subsubsection{Struktura modulu}
+\subsubsection{Moduly}
+Aplikace je složena z těchto modulů:
+\begin{itemize}
+	\item \textbf{auth: } Zajišťuje registraci, přihlášení a odhlášení uživatele. Dále také správu uživatelských rolí a ověření, jestli je uživatel přihlášený, případně jestli má přiřazenou zvolenou roli.
+	\item \textbf{bible: } Tenoto modul poskytuje rozhraní pro přidávání a zobrazování textů Bible a také pro správu úryvků.
+	\item \textbf{group: } Zajišťuje správu skupin a jejich členů.
+	\item \textbf{psalter: } Zajišťuje práci s texty žaltáře.
+	\item \textbf{user: } Slouží ke správě uživatelských dat, což jsou záložky a metadata veršů (využívaná pro přidávání poznámek a zvýraznění do textů Bible).
+\end{itemize}
+
 Moduly sdružují funkcionalitu, která je spojena na úrovni domény projektu.
 Každý modul obsahuje:
 \begin{itemize}
@@ -331,6 +421,9 @@ Každý modul obsahuje:
 	\item \textbf{service:} zajišťuje získání a zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi. Uchovává závislosti
 	\item \textbf{repository:} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy, které reflektují strukturu databáze. Zajišťuje kontrolu a validaci dat. Obstarává konzistentnost dat v databázi.
 \end{itemize}
+\subsubsection{Zpracování HTTP požadavku}
+Většinu práce s HTTP požadavkem zajišťuje framework Express, který se stará o zpracování
+
 \subsection{Frontend}
 Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slouží k prezentaci dat z API a k jejich snadnější manipulaci.
 
@@ -388,6 +481,10 @@ Pro spouštění automatizovaných akcí v rámci CI/CD pipeline jsem použil Gi
 
 Pro commit označený štítkem se správným názvem se spustí akce, která vytvoří obrazy jednotlivých kontejnerů projektu a přidá je do kontejnerového repozitáře.
 
+\section{Ukázka aplikace}
+\subsection{Registrace a přihlášení}
+
+
 \section{Děkuji za pozornost :-)}
 
 %% -------------------------------------------------------------------
@@ -416,6 +513,8 @@ Pro commit označený štítkem se správným názvem se spustí akce, která vy
 
 %% Sazba volitelného rejstříku, za bibliografií.
 \printindex
+
+\printbibliography
 
 \end{document}
 

@@ -6,8 +6,7 @@
         "texlab": {
           "build": {
             "onSave": true,
-            "executable": "pdflatex",
-            "args": ["%f"],
+            "executable": "make",
           },
         },
       },
