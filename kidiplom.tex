@@ -145,6 +145,8 @@
     basicstyle=\footnotesize
 }
 
+\usepackage{float}
+
 \begin{document}
 %% Sazba úvodních stran -- titulní, s bibliografickými údaji, s
 %% anotací a klíčovými slovy, s poděkováním a prohlášením, s obsahem a
@@ -303,7 +305,7 @@ GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako 
 \subsection{Architektura projektu}
 Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent, které zajišťují uchování dat a jejich manipulaci
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/block-diagram.png}
 	\caption{Blokové schéma}
 \end{figure}
@@ -482,8 +484,23 @@ Pro spouštění automatizovaných akcí v rámci CI/CD pipeline jsem použil Gi
 Pro commit označený štítkem se správným názvem se spustí akce, která vytvoří obrazy jednotlivých kontejnerů projektu a přidá je do kontejnerového repozitáře.
 
 \section{Ukázka aplikace}
-\subsection{Registrace a přihlášení}
+V této sekci budu popisovat funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
 
+\section{Navigace}
+Hlavním ovládacím prvkem je horní lišta (vizte obrázek X), na ktré se nachází Název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil a tlačítko pro otevření bočního menu.
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{images/ui/top-bar.png}
+	\caption{Ukázka horní lišty}
+\end{figure}
+
+Pomocí ikonky menu na pravé straně horní lišty lze otevřít boční menu (vizte obrázek X), které obsahuje přepínač tmavého a světlého motivu rozhraní. Dále jsou zde odkazy na jednotlivé důležité části aplikace. Nabídku lze zavřít pomocí stejného tlačítka, kterým byla otevřena, nebo kliknutím do prostoru okna.
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{images/ui/navigation.png}
+	\caption{Ukázka boční nabídky}
+\end{figure}
+
+\subsection{Registrace a přihlášení}
+Část funkcionalit aplikace je dostupná i nepřihlášeným uživatelům. Nepřihlášení uživatelé mohou procházet globálně dostupné texty (texty Bible, žaltář, úryvky na den). Řada funkcionalit však vyžaduje ukládání uživatelských dat a proto i identifikaci a autentizaci uživatele, aby bylo možné jeho data sdíle mezi zařízeními a ověřovat jeho oprávnění.
 
 \section{Děkuji za pozornost :-)}
 
