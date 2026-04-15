@@ -167,8 +167,6 @@
 %   a (značně) neúplná verze!!!}
 
 \section{Úvod}
-
-\section{Kontext}
 \subsection{Cíl práce}
 Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k modlitebním textům a textům Bible pro každodenní použití. Řeckokatolická farnost v Olomouci, pro kterou bude tato aplikace určena, dosud nemá žádný vhodný systém, který by toto uspokojivě poskytoval a zohledňoval i skutečnost, že modliteb je velké množství a systém včetně databáze, by měl být snadno rozšiřitelný, aby bylo možné i v budoucnu přidávat další texty, rozdělovat je do kategorií a třídit je podle událostí a dat, ke kterým patří.
 
@@ -180,9 +178,11 @@ Farnost má vlastní společenství, které se modlí modlitby žalmů a funguje
 roku 2024. Každý člen společenství se během týdne modlí jednu část žaltáře zvanou kaftizma. Kaftizmy se mezi členy společenství pravidelně střídají.
 
 \subsection{Doména}
+Hlavní doménou projektu jsou různé modlitby a církevní texty především řeckokatolické církve. Dále také společenství a skupiny, jejichž správu by měl software usnadňovat.
+
 Texty Bible jsou v katolické církvi velmi často využívané při liturgických obřadech, ale také při osobní modlitbě a rozjímání.
 
-Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti existuje kalendář, který obsahuje i biblické texty pro každý den v roce. Každému dni v roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Evangelia tvoří pro katolickou církev nejvýznamnější část Bible. Dále je každému dni také přiřazen úryvek z jedné z ostatních knih Nového zákona.
+Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti existuje kalendář, který obsahuje i biblické texty pro každý den v roce. Každému dni v roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Evangelia tvoří pro katolickou církev nejvýznamnější část Bible. Dále je každému dni také přiřazen úryvek z jedné z ostatních knih Nového zákona. Při slavnostních bohoslužbách se biblických textů předčítá větší množství a čtou se i různé texty ze Starého zákona.
 
 Biblické texty v církevních obřadech jsou často vázány ke svátkům, které jsou buď pevně svázány s datem, nebo jsou pohyblivé a připadají každý rok na jiné datum.
 Mnoho textů je také svázáno s konkrétním obřadem nebo událostí (např. křest, svěcení domu...).
@@ -195,27 +195,19 @@ V rámci této práce bych se chtěl zaměřit především na implementaci čte
 
 Další částí bude možnost správy farního společenství žaltáře a případně i dalších skupin, které ve farnosti existují. Tato možnost především usnadní komunikaci se členy a sdílení informací.
 
-Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšířitelnost, což by umožnilo i v budoucnu reflektovat požadavky společenství, které jej bude využívat a které bude pravděpodobně také dál růst a rozvíjet se. Existuje velké množství obřadů a modliteb řeckokatolické církve, které by v aplikaci mohly být v budoucnu uloženy.
+Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšiřitelnost, což by umožnilo i v budoucnu reflektovat požadavky společenství, které jej bude využívat a které bude pravděpodobně také dál růst a rozvíjet se. Existuje velké množství obřadů a modliteb řeckokatolické církve, které by v aplikaci mohly být v budoucnu uloženy.
 
-Dále se chci v této práci zaměřit i na průzkum a využití konceptů z oblasti DevOps, které usnadní vývoj samotný v dlouhodobém měřítku, urychlí integraci i samotné nasazení aplikace. Na projektu pracuji sám, proto je pro mne výhodné především zautomatizovat proces ověření a nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu.
+Dále se chci v této práci zaměřit i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný v dlouhodobém měřítku, urychlí integraci i samotné nasazení aplikace. Na projektu pracuji sám, proto je pro mne výhodné především zautomatizovat proces ověření a nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu.
 
 \section{Analýza}
 \subsection{Podobné projekty}
-V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřeních existuje celá řada.
-Většina je však určena k jiným účelům a především pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny
-na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již
-zastaralá a dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle
-dne. Projekt, který vyvíjím v rámci této práce sdružuje a implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu
-farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V seznamu níže uvádím některé z projektů, se kterými jsem se dosud setkal.
+V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřeních existuje celá řada. Většina je však určena k jiným účelům a především pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již zastaralá a dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v rámci této práce sdružuje a implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
 
 \subsubsection{Časoslov.sk}
-Časoslov.sk je projekt vyvíjený Radou pre mládež Košickej eparchie na slovensku. Poskytuje texty pro jednotlivé dny v roce. Nabízí webovou i mobilní aplikaci s obdobnými
-funkcionalitami. Časoslov.sk se zaměřuje především na samotné texty pro jednotlivé dny. Neposkytuje možnost samostatného čtení a studia biblických textů, správu více
-překladů, ani funkcionalitu skupin.
+Časoslov.sk\cite{casoslov.sk} je projekt vyvíjený Radou pre mládež košickej eparchie na Slovensku. Poskytuje texty pro jednotlivé dny v roce. Má také knihovnu s různými připravenými texty k modlitbě. Nabízí webovou i mobilní aplikaci s obdobnými funkcionalitami. Časoslov.sk se zaměřuje především na samotné texty pro jednotlivé dny a obsahuje také knihovnu liturgických textů a různých modliteb, jejichž texty se nemění podle dne. Pro věřící v České Republice je také klíčová možnost spravovat zároveň více překladů textů, kterou tato aplikace neposkyuje. Neposkytuje také možnost samostatného čtení a studia biblických textů, správu více překladů, ani funkcionalitu skupin.
 
 \subsubsection{BibleGateway}
-BibleGateway je Webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a neimplementuje funkcionality jako
-modlitení skupiny, nebo žaltář a další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a není v souladu s mými požadavky.
+BibleGateway\cite{biblegateway} je Webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a neimplementuje funkcionality jako modlitení skupiny, nebo žaltář a další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a není v souladu s mými požadavky.
 
 \subsubsection{Beblia.com}
 Beblia.com je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překlaů a v rámci projektu je k dispozici i databáze různých překladů
@@ -486,7 +478,7 @@ Pro commit označený štítkem se správným názvem se spustí akce, která vy
 \section{Ukázka aplikace}
 V této sekci budu popisovat funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
 
-\section{Navigace}
+\subsection{Navigace}
 Hlavním ovládacím prvkem je horní lišta (vizte obrázek X), na ktré se nachází Název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil a tlačítko pro otevření bočního menu.
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/ui/top-bar.png}
@@ -501,6 +493,16 @@ Pomocí ikonky menu na pravé straně horní lišty lze otevřít boční menu (
 
 \subsection{Registrace a přihlášení}
 Část funkcionalit aplikace je dostupná i nepřihlášeným uživatelům. Nepřihlášení uživatelé mohou procházet globálně dostupné texty (texty Bible, žaltář, úryvky na den). Řada funkcionalit však vyžaduje ukládání uživatelských dat a proto i identifikaci a autentizaci uživatele, aby bylo možné jeho data sdíle mezi zařízeními a ověřovat jeho oprávnění.
+
+Vytvoření uživatelského účtu lze provést prostřednictvím formuláře registrace (vizte obrázek X). V tomto formuláři stačí vyplnit jen email, který funguje jako unikátní identifikátor uživatelského účtu, a poté vepsat heslo a potvdit jej opětovným vepsáním do dalšího políčka.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/ui/registration.png}
+	\caption{Ukázka boční nabídky}
+\end{figure}
+
+Po registraci je uživatel přesměrován na obrazovku pro přihlášení. Přihlašovací formulář je velmi podobný formuláři pro registraci. Přihlášený uživatel může  např. vytvářet vlastní úryvky Bible, vést si poznámky k biblickým textům nebo vytvářet záložky. Může také být členem skupin, ve kterých se zobrazují přízpěvky správců skupiny. Pokud jsou mu přidělena administrátorská oprávnění, může mít přístup také ke správě překladů Bible, kalendáře nebo dalších skupin a uživatelských účtů.
 
 \section{Děkuji za pozornost :-)}
 
