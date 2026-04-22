@@ -167,6 +167,15 @@
 %   a (značně) neúplná verze!!!}
 
 \section{Úvod}
+
+\subsection{Slovníček pojmů}
+Vzhledem k oblasti, na kterou se text zaměřuje, budu používat pojmy, které jsou spojeny s církevním prostředím, různými modlitbami a liturgickými texty. Na úvod tedy uvádím sekci, která čtenáře s těmito pojmy stručně seznámí.
+
+\subsubsection{Bible}
+\textbf{Bible} je klíčovou posvátnou knihou křesťanské církve. Jejímu studiu, výkladům, vytváření překladů a pojednání o ní je věnováno velké úsilí. Četba, studium a rozjímání textů Bible je důležitou součástí života každého křesťana.
+
+Bible je souborem knih různých autorů. Tyto knihy jsou rozděleny na dvě hlavní části - na \textbf{Starý a Nový zákon}. První knihy Starého zákona se datují do roku X.
+
 \subsection{Cíl práce}
 Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k modlitebním textům a textům Bible pro každodenní použití. Řeckokatolická farnost v Olomouci, pro kterou bude tato aplikace určena, dosud nemá žádný vhodný systém, který by toto uspokojivě poskytoval a zohledňoval i skutečnost, že modliteb je velké množství a systém včetně databáze, by měl být snadno rozšiřitelný, aby bylo možné i v budoucnu přidávat další texty, rozdělovat je do kategorií a třídit je podle událostí a dat, ke kterým patří.
 
@@ -199,24 +208,23 @@ Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšiřitelnos
 
 Dále se chci v této práci zaměřit i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný v dlouhodobém měřítku, urychlí integraci i samotné nasazení aplikace. Na projektu pracuji sám, proto je pro mne výhodné především zautomatizovat proces ověření a nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu.
 
-\section{Analýza}
-\subsection{Podobné projekty}
+\section{Podobné projekty}
 V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřeních existuje celá řada. Většina je však určena k jiným účelům a především pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již zastaralá a dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v rámci této práce sdružuje a implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
 
-\subsubsection{Časoslov.sk}
+\subsection{Časoslov.sk}
 Časoslov.sk\cite{casoslov.sk} je projekt vyvíjený Radou pre mládež košickej eparchie na Slovensku. Poskytuje texty pro jednotlivé dny v roce. Má také knihovnu s různými připravenými texty k modlitbě. Nabízí webovou i mobilní aplikaci s obdobnými funkcionalitami. Časoslov.sk se zaměřuje především na samotné texty pro jednotlivé dny a obsahuje také knihovnu liturgických textů a různých modliteb, jejichž texty se nemění podle dne. Pro věřící v České Republice je také klíčová možnost spravovat zároveň více překladů textů, kterou tato aplikace neposkyuje. Neposkytuje také možnost samostatného čtení a studia biblických textů, správu více překladů, ani funkcionalitu skupin.
 
-\subsubsection{BibleGateway}
+\subsection{BibleGateway}
 BibleGateway\cite{biblegateway} je Webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a neimplementuje funkcionality jako modlitení skupiny, nebo žaltář a další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a není v souladu s mými požadavky.
 
-\subsubsection{Beblia.com}
+\subsection{Beblia.com}
 Beblia.com je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překlaů a v rámci projektu je k dispozici i databáze různých překladů
 v XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
 
-\subsection{Analýza požadavků}
+\section{Analýza požadavků}
 Software je určen především pro Řeckokatolickou farnost v Olomouci, její farníky a osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a informace pro členy společneství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v busoucnu přínosem i pro další řeckokatolíky v ČR mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty je velké množství a některé z nich se mění podle svátku a období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
 
-\subsubsection{Funkční požadavky}
+\subsection{Funkční požadavky}
 
 \textbf{Sekce Bible}
 \begin{itemize}
@@ -253,10 +261,11 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 	\item Aplikace bude umožňovat přepínání jazyka uživatelského rozhraní.
 \end{itemize}
 
-\subsubsection{Nefunkční požadavky}
+\subsection{Nefunkční požadavky}
 \begin{itemize}
-	\item Aplikace by měla být snadno rozšířitelná
-	\item Aplikace by měla umožňovat snadné nastavení a spuštění na novém zařízení
+	\item Aplikace by měla být snadno rozšířitelná a udržovatelná.
+	\item Aplikace by měla umožňovat snadné nastavení a spuštění na novém zařízení.
+	\item Aplikace by měla být kompatibilní s různými platformami, aby byla snadno dostupná a použitelná pro uživatele.
 \end{itemize}
 
 \section{Návrh řešení}
@@ -421,6 +430,9 @@ Většinu práce s HTTP požadavkem zajišťuje framework Express, který se sta
 \subsection{Frontend}
 Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slouží k prezentaci dat z API a k jejich snadnější manipulaci.
 
+\subsubsection{Progresivní webová aplikace}
+
+
 \subsection{Initializer}
 Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro elastic search vytvoří všechny dosud neexistující indexy.
 Projekt je strukturován do monorepozitáře, který obsahuje několik balíčků (packages), do kterých je funkcionalita rozdělena.
@@ -471,40 +483,84 @@ Typy commitů jsou určeny pro budoucí implementaci automatického sémantické
 GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. v0.1.0) a dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o kandidáta na verzi (release candidate). Jednotliví kandidáti mají v názvu pořadové číslo. Označení kandidáta na verzi může být např. `v0.1.0-rc1'. Kandidátů na verzi může být více. Tyto verze slouží k otestování, že se všechny artefakty vytvořily správně a jsou použitelné.
 
 \subsection{CI/CD pipeline}
-Pro spouštění automatizovaných akcí v rámci CI/CD pipeline jsem použil GitHub Action. Tato technologie umožňuje spustit akci ve vzdáleném repozitáři na GitHubu.
+Pro spouštění automatizovaných akcí v rámci CI/CD pipeline jsem použil GitHub Actions. Tato technologie umožňuje spustit akci ve vzdáleném repozitáři na GitHubu.
 
 Pro commit označený štítkem se správným názvem se spustí akce, která vytvoří obrazy jednotlivých kontejnerů projektu a přidá je do kontejnerového repozitáře.
+
 
 \section{Ukázka aplikace}
 V této sekci budu popisovat funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
 
 \subsection{Navigace}
-Hlavním ovládacím prvkem je horní lišta (vizte obrázek X), na ktré se nachází Název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil a tlačítko pro otevření bočního menu.
+Hlavním ovládacím prvkem je horní lišta (vizte obrázek \ref{fig:top-bar}), na ktré se nachází Název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil a tlačítko pro otevření bočního menu.
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/ui/top-bar.png}
 	\caption{Ukázka horní lišty}
+	\label{fig:top-bar}
 \end{figure}
 
-Pomocí ikonky menu na pravé straně horní lišty lze otevřít boční menu (vizte obrázek X), které obsahuje přepínač tmavého a světlého motivu rozhraní. Dále jsou zde odkazy na jednotlivé důležité části aplikace. Nabídku lze zavřít pomocí stejného tlačítka, kterým byla otevřena, nebo kliknutím do prostoru okna.
+Pomocí ikonky menu na pravé straně horní lišty lze otevřít boční menu (vizte obrázek \ref{fig:navigation}), které obsahuje přepínač tmavého a světlého motivu rozhraní. Dále jsou zde odkazy na jednotlivé důležité části aplikace. Nabídku lze zavřít pomocí stejného tlačítka, kterým byla otevřena, nebo kliknutím do prostoru okna.
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/ui/navigation.png}
 	\caption{Ukázka boční nabídky}
+	\label{fig:navigation}
 \end{figure}
 
 \subsection{Registrace a přihlášení}
 Část funkcionalit aplikace je dostupná i nepřihlášeným uživatelům. Nepřihlášení uživatelé mohou procházet globálně dostupné texty (texty Bible, žaltář, úryvky na den). Řada funkcionalit však vyžaduje ukládání uživatelských dat a proto i identifikaci a autentizaci uživatele, aby bylo možné jeho data sdíle mezi zařízeními a ověřovat jeho oprávnění.
 
-Vytvoření uživatelského účtu lze provést prostřednictvím formuláře registrace (vizte obrázek X). V tomto formuláři stačí vyplnit jen email, který funguje jako unikátní identifikátor uživatelského účtu, a poté vepsat heslo a potvdit jej opětovným vepsáním do dalšího políčka.
+Vytvoření uživatelského účtu lze provést prostřednictvím formuláře registrace (vizte obrázek \ref{fig:registration}). V tomto formuláři stačí vyplnit jen email, který funguje jako unikátní identifikátor uživatelského účtu, a poté vepsat heslo a potvdit jej opětovným vepsáním do dalšího políčka.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{images/ui/registration.png}
 	\caption{Ukázka boční nabídky}
+	\label{fig:registration}
 \end{figure}
 
 Po registraci je uživatel přesměrován na obrazovku pro přihlášení. Přihlašovací formulář je velmi podobný formuláři pro registraci. Přihlášený uživatel může  např. vytvářet vlastní úryvky Bible, vést si poznámky k biblickým textům nebo vytvářet záložky. Může také být členem skupin, ve kterých se zobrazují přízpěvky správců skupiny. Pokud jsou mu přidělena administrátorská oprávnění, může mít přístup také ke správě překladů Bible, kalendáře nebo dalších skupin a uživatelských účtů.
 
-\section{Děkuji za pozornost :-)}
+\subsection{Čtečka Bible}
+Převážnou část obrazovky s texty Bible vyplňuje samotný zobrazovaný text Bible. Důležitými ovládacími prvky jsou navigační šipky na začátku i na konci textu. Pomocí těch je možné přepínat mezi zobrazenými kapitolami, případně přejít nahoru v Biblické hierarchii (přepnutí na výběr kapitol, nebo knih).
+
+Hlavním ovládacím prvkem čtečky Bible je dolní lišta. V pravém dolním rohu obsahuje tlačítko pro zobrazení nabídky, ve které je možné změnit překlad Bible, nebo přejít do seznamu záložek uživatele.
+
+Do textu mohou přihlášení uživatelé přidávat poznámky k veršům, zvýrazňovat verše a vytvářet pojmenované záložky, ke kterým se mohou později vrátit. Všechny tyto entity jsou spojeny s konkrétním veršem. Pro jejich vytvoření, nebo upravení je nejdřív vybrat z textu konkrétní verš. Poté se aktivují tlačítka v levé části dolní lišty (vizte obrázek \ref{fig:bible-bottom-bar}). Pomocí nich je možné otevřít okna pro správu těchto možností.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/ui/bible-bottom-bar.png}
+	\caption{Ukázka boční nabídky a vybraného verše}
+	\label{fig:bible-bottom-bar}
+\end{figure}
+
+\subsection{Úryvky Bible}
+Aplikace obsahuje rozhraní pro tvorbu a upravoválí úryvků Bible. Každý úryvek je tvořený jednou, nebo více částmi. Začátek a konec každé části se stanovují Číslem verše a kapitoly. Kniha Bible je stanovena pro celý úryvek. Úryvky jsou nezávislé na překladu Bible. Překlad se volí podle preferencí uživatele.
+
+\subsubsection{Uživatelské úryvky}
+Přihlášený uživatel může vytvářet a sparovat vlastní úryvky. Seznam úryvků se zobrazí po otevření sekce "Moje úryvky" v boční nabídce. V horní části seznamu úryvků se nachází tlačítko pro vytvoření nového úryvku. Po kliknutí na úryvek se zobrazí pouze vybraný úryvek na samostatné stránce. Odtud je možné dostat se do editoru úryvků stejně jako po kliknutí na tlačítko přidání úryvku.
+
+\subsubsection{Editor úryvků}
+Další důležitou částí je editor úryvků (vizte obrázek \ref{fig:passage-editor}). Stránka pro upravování úryvků je rozdělena na dvě části. V levé čísti obrazovky je formulář, do kterého se vepisují hodnoty, podle kterých se úryvky vytváří. V pravé části je náhled textu, který se aktualizuje podle změn v editoru.
+
+U úryvku je možné nastavit název, knihu a datum. Datum může nastavit pouze uživatel s příslušnými oprávněními. Pokud je datum nastavené, úryvek se bude zobrazovat v kalendáři pro daný den. Pod tlačítkem pro uložení se nachází sekce, ve které lze spravovat jednotlivé části úryvků. Jednotlivé části lze přidávat i odstraňovat. Jejich počet není omezen. U každé části se vyplňuje počáteční a koncový verš a kapitola. Koncová kapitola může zůstat bez hodnoty. V takovém případě aplikace používá stejnou hodnotu jako pro počáteční kapitolu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{images/ui/passage-editor.png}
+	\caption{Editor úryvků Bible}
+	\label{fig:passage-editor}
+\end{figure}
+
+\subsection{Žaltář}
+Z bočního menu se lze dostat také do sekce žaltáře. Po kliknutí na odkaz v bočním menu se zobrazí výchozí stránka, na které lze vybrat kaftizmu ze seznamu. V horní části se nachází odkaz stránku s možností výběru jednotlivých žalmů.
+
+Zobrazení kaftizmy obsahuje jednotlivé žalmy společně s přidruženými modlitbami.
+
+\subsection{Administrace}
+Sekce administrace umožňuje administrátorům spravovat uživatele, jejich role a skupiny, a přidávat překlady textů.
+
+V sekci pro správu uživatelů je možné vytvářet nové uživatele nebo již existujícím uživatelům přidávat a odebírat role. Všichni uživatelé jsou zobrazeni v tabulce. V poseldních sloupcích tabulky se nachází tlačítka pro správu rolí uživatele a pro obnovení hesla.
 
 %% -------------------------------------------------------------------
 
