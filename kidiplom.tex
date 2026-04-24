@@ -269,7 +269,11 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 \end{itemize}
 
 \section{Návrh řešení}
+V této sekci popíšu technologie a obecné koncepty, které jsem se rozhodl pro realizaci tohoto projektu použít.
+
 \subsection{Použité technologie}
+Vzhledem k charakteru projektu a skutečnosti, že jsem se rozhodl pro využití DevOps postupů, jsou použil celou řadu nástrjů a knihoven, které vývoj značně usnadnily.
+
 \subsubsection{Node.js}
 Node.js je běhové prostředí pro JavaScript. Node lze využít pro spuštění Javascriptu na jiných platformách než v prohlížeči, pro který byl jazyk původně určený.
 
@@ -304,19 +308,35 @@ GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které pos
 GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
 
 \subsection{Architektura projektu}
-Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent, které zajišťují uchování dat a jejich manipulaci
+Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent, které zajišťují uchování dat a jejich manipulaci.
 
 \begin{figure}[H]
-	\includegraphics[width=\linewidth]{images/block-diagram.png}
+	\includegraphics[width=\linewidth]{images/diagrams/block-diagram.png}
 	\caption{Blokové schéma}
 \end{figure}
 
 \subsection{Návrh databáze}
 Aplikace je určena především k prezentaci uložených dat a jejich správě. Proto pro mne byla volba vhodného nástroje důležitá. Pro potřeby projektu jsem se rozhodl využít dva nástroje pro různé účely.
 \subsubsection{PostgeSQL}
-PostgreSQL databázi jsem využil především pro ukládání uživatelských dat a dat a dat, která obsahují méně textu. Relační databáze jsou vhodné pro ukládání dat s pevnou strukturou a také těch dat, nad kterými se nebude provádět full-textové vyhledávání.
+PostgreSQL databázi jsem využil jako primární úložiště dat, která bude aplikace uchovávat. Jsou zde uloženy data o uživatelích, skupinách, oprávněních, úryvcích biblických textů a další.
 
-Databáze je
+
+\paragraph{Uživatelské účty}
+Databáze obsahuje strukturu pro ukládání dat o uživatelských účtech a možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka user\_details, která obsahuje detaily o uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
+
+Struktura této části databáze je přizpůsobena tomu, aby bylo možné implementovat různé typy přihlašování.
+
+Další tabulkou je tabulka poskytovatelů autentizace. Zde je uložen název a zktatka poskytovatele.
+
+Tabulka authentication obsahuje odkaz na tabulku s poskytovateli autentizačních služeb. Dále odkaz na uživatele, jehož totožnost se ověřuje a icentifikační kód poskytnutý autentizační službou.
+
+Pro přihlášení pomocí hesla existuje tabulka credentials. Zde se ukládá uživatelské heslo. Hodnota provider\_id je poskytována externím poskytovatelem. Pro lokální přihlášení pomocí emailu a hesla je hodnota provider\_id nastavena na local<user\_id>.
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{images/diagrams/db-user.png}
+	\caption{Schéma tabulek pro správu uživatelského účtu a přihlášení}
+	\label{fig:db-user}
+\end{figure}
 
 \subsubsection{ElasticSearch}
 ElasticSearch jsem se rozhodl použít pro rozsáhlejší textová data, především ty, u kterých bude prováděno vyhledávání. Nejdůležitější částí dat jsou překlady Bible.
@@ -372,7 +392,7 @@ Výjimky mohou reprezentovat různé stavy, kdy server požadavek nemůže sprá
 Pokud dojde k vyvolání výjimky, přijme ji middleware pro obsluhu chyb, který ověří, jestli jde o instanci třídy AppError a pokud ano, vloží data z výjimky do odpovědi. Pokud nejde o instanci AppError, vytvoří se odpověď, která ukazuje, že jde o neočekávanou chybu serveru.
 
 
-\paragraph{Middleware pro validaci požadavků:}
+\paragraph{Middleware pro validaci požadavků}
 Každý HTTP požadavek může obsahovat data od uživatele. Před předání k dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu.
 
 \begin{lstlisting}[language=JavaScript]
@@ -580,8 +600,8 @@ V sekci pro správu uživatelů je možné vytvářet nové uživatele nebo již
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\linewidth]{images/ui/role-modal.png}
-	\caption{Editor úryvků Bible}
+	\includegraphics[width=0.8\linewidth]{images/ui/role-modal.png}
+	\caption{Okno pro správu uživatelských rolí}
 	\label{fig:role-modal}
 \end{figure}
 
