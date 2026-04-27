@@ -123,7 +123,7 @@
 
 %% Volitelné poděkování. Stručné! Výchozí je prázdné. Makro nemá
 %% nepovinný parametr pro uvedení jazyka.
-\thanks{Děkuji, děkuji, děkuji.}
+\thanks{Tímto bych rád poděkoval vedoucímu mé práce, Mgr. Tomáši Urbanci PhD., za poskytnutý čas a cenné rady při jejím zpracování. Dále bych také chtěl poděkovat faráři Řeckokatolické farnosti v Olomouci, otci Pteru Prinzovi, bez něhož bych zde vůbec nebyl.}
 
 %% Cesta k souboru s bibliografií pro její sazbu pomocí BibLaTeXu
 %% (zvolenou nepovinným parametrem biblatex makra
@@ -136,6 +136,7 @@
 %% práce.
 \usepackage{lipsum}
 \usepackage{longtable}
+
 
 %% Balíky prostředí pro ukázky zdrojových kódů
 \usepackage{listings}
@@ -293,7 +294,7 @@ Vue.js má velmi přehlednou a obsáhlou dokumentaci. Systém komponent a mnoho 
 
 \subsubsection{Pinia}
 Pinia je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují spravovat globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a settery pro vlastnosti, které jsou ve storu uloženy.
-\subsubsection{Elastic search}
+\subsubsection{Elasticsearch}
 \subsubsection{PostgreSQL}
 PostgreSQL je v současnosti velmi oblíbenou volbou při výběru relační databáze.
 \subsubsection{Docker}
@@ -338,8 +339,17 @@ Pro přihlášení pomocí hesla existuje tabulka credentials. Zde se ukládá u
 	\label{fig:db-user}
 \end{figure}
 
-\subsubsection{ElasticSearch}
-ElasticSearch jsem se rozhodl použít pro rozsáhlejší textová data, především ty, u kterých bude prováděno vyhledávání. Nejdůležitější částí dat jsou překlady Bible.
+\paragraph{Uživatelská metadata Bible}
+Další část databáze tvoří tabulky pro ukládání Metadat Bible (ukázka schématu je na obrázku \ref{fig:db-user-metadata}). Tato metadata zahrnují záložky, poznámky k veršům Bible a zvýraznění veršů. Všechna tato metadata jsou vyhrazena pro přístup pouze pro jejich autora. Metadata jsou uzpůsobena tak, aby korespondovala s mentálním modelem záložek a poznámek v papírové knize. Tomu odpovídá i reprezentace v databázi a následná práce s nimi. Záložka představuje pojmenované místo v Bibli. Záložky jsou uzpůsobeny k přesouvání mezi verši a předpokládá se, že název se nemění. S jedním veršem může být v jednu chvíli spojeno i několik záložek. Ostaní metadata jsou vázána staticky ke konkrétním veršům a není možné je přesunout k jinému verši. V tom případě dochází k jejich odstranění a opětovnému vytvoření. Ke každému místu a autorovi smí v danou chvíli patřit jen jeden záznam v databázi. Proto, že poznámka i zvýraznění jsou vázána ke konkrétnímu verši, jsou uloženy ve stejném záznamu, pokud mají stejné umístění. Data jsou rozdělena do dvou tabulek. První z nich obsahuje data o záložkách. Záznam v databázi obsahuje informaci o poloze záložky v textu, id autora a název. Druhá tabulka obsahuje data o poznámkách a zvýrazněných verších. V této tabulce je stejná část popisující autora a umístění. Dále tabulka obsahuje možnost vložit kód barvy zvýraznění, nebo hodnotu NULL a dále také volitelný text poznámky.
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{images/diagrams/db-user-metadata.png}
+	\caption{Schéma tabulek pro správu uživatelských poznámek a záložek k Bibli}
+	\label{fig:db-user-metadata}
+\end{figure}
+
+\subsubsection{Elasticsearch}
+Elasticsearch jsem se rozhodl použít pro rozsáhlejší textová data, především ty, u kterých bude prováděno vyhledávání. Nejdůležitější částí dat jsou překlady Bible.
 
 
 \section{Implementace}
@@ -362,15 +372,13 @@ Nástroj GIT jsem použit pro správu verzí projektu. V CI/CD je verzování kl
 Pnpm jsem použil pro správu zavislostí projektu a pro vytvoření pnpm skriptů, které usnadňují spouštění příkazů. Tuto možnost jsem využil pro zjednodušení přístupu k nástrojům pro kontrolu kódu, kompilaci a spuštění docker compose.
 
 \subsection{Server}
-Server poskytuje HTTP API pro manipulaci s daty uloženými v elastic search a PostgreSQL databázích. Poskytuje možnost správy uživatelů, sezení, kontrolu oprávnění a implementaci business logiky.
+Server poskytuje HTTP API pro manipulaci s daty uloženými v Elasticsearch a PostgreSQL databázích. Poskytuje možnost správy uživatelů, sezení, kontrolu oprávnění a implementaci business logiky.
 
 Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšiřitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části domény aplikace. Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a umožňuje udržet si přehled o částech, které budou ovlivněy případnými změnami.
 
-Modulární monolit je kompromisem mezi mikroservisy a tradiční monolitickou architekturou. Stejně jako architektura mikroservisů, rozděluje aplikaci do více celků (v tomto případě jsou to moduly). Moduly sdružují funkcionalitu spjatou s danou částí domény a pro ostatní moduly poskytují jasně definované rozhraní. Narozdíl od mikrservisů však není aplikace rozdělena do více servisů, což usnadňuje počáteční nastavení a nasazení projektu spolu s jednodušším laděním a integrací celku.
+Modulární monolit je kombinací výhodných vlastností mikroservisů a tradiční monolitické architektury. Stejně jako architektura mikroservisů, rozděluje aplikaci do více celků (v tomto případě jsou to moduly). Moduly sdružují funkcionalitu spjatou s danou částí domény a pro ostatní moduly poskytují jasně definované rozhraní. Narozdíl od mikrservisů však není aplikace rozdělena do více servisů, což usnadňuje počáteční nastavení a nasazení projektu spolu s jednodušším laděním a integrací celku.
 
 Narozdíl od monolitické architektury je modulární monolit časově náročnější na úvodní konfiguraci, tuto nevýhodu však vyvažuje skutečnost, že v modulární struktuře je možné se podstatně přirozeněji orientovat, protože struktura aplikace respektuje zvolenou doménu. Toto je výhodou zvláště u rozsáhlejších projektů, i přesto jsem však tuto architekturu zvolil i v tomto projektu, který je malého rozsahu. S ohledem na budoucí možnosti rozšíření se projekt takto může dále rozrůstat s podstatně menším ztížením orientace.
-
-Ztěžejní částí Každého modulu je v případě této aplikace servis. Servis je třída, která reprezentuje jednotlivé operace v dané části domény. Například pro záložky by šlo o možnost vypsat včechny záložky, přidat novou, nebo upravit existující. Servis Tak poskytuje rozhraní, které používá typy reprezentující jednotlivé entity ve zvolené doméně. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a business logikou v servisu, nebo servisy ostatních modulů. Tím je zajištěno, že při manipulaci s daty z jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i refactoring kódu.
 
 \subsubsection{Globální nástroje}
 Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a používají se na více místech napříč aplikací.
@@ -426,6 +434,12 @@ Reálným omezením tohoto návrhu je skutečnost, že není možné předávat 
 	\item Logger
 \end{itemize}
 
+\subsubsection{Dependency injection}
+
+
+\subsubsection{Inicializace aplikace}
+Vstupním bodem pro start aplikace je soubor \lstinline{index.ts} v adresáři src tohoto modulu. Odtud se volá funkce \lstinline{initializePostgres}. Tato funkce vytvoří v databázi uživatele s administrátorskými oprávněními, pokud v databázi ještě žádný uživatel není. Login a heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v souboru \lstinline{bootstrap.ts}.
+
 \subsubsection{Moduly}
 Aplikace je složena z těchto modulů:
 \begin{itemize}
@@ -436,8 +450,12 @@ Aplikace je složena z těchto modulů:
 	\item \textbf{user: } Slouží ke správě uživatelských dat, což jsou záložky a metadata veršů (využívaná pro přidávání poznámek a zvýraznění do textů Bible).
 \end{itemize}
 
-Moduly sdružují funkcionalitu, která je spojena na úrovni domény projektu.
-Každý modul obsahuje:
+\subsubsection{Struktura modulu}
+Každý modul stdružuje funkcionality, které spadají do stejné domény. Po technické stránce je hlavní struktura modulu jednotná. Hlavní součásti a jejich určení jsou vždy stejné. Hlavní úlohou serveru je poskytovat uživateli přístup k datům v databázi porstřednictvím HTTP rozhraní. Tomu odpovídá i struktura každého moulu.
+
+Ztěžejní částí Každého modulu je v případě této aplikace takzvaný servis. Servis je třída, která reprezentuje jednotlivé operace v dané části domény. Například pro záložky by šlo o možnost vypsat včechny záložky, přidat novou, nebo upravit existující. Servis Tak poskytuje rozhraní, které používá typy reprezentující jednotlivé entity ve zvolené doméně. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a business logikou v servisu, nebo servisy ostatních modulů. Tím je zajištěno, že při manipulaci s daty z jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i refactoring kódu.
+
+
 \begin{itemize}
 	\item \textbf{Router} mapuje HTTP požadavky na příslušné metody controlleru. Prostřednictvím middlewaru se zde také provádí ověření, jestli je uživatel přihlášený a provádí se validace dat požadavku.
 	\item \textbf{Controller} validuje a zpracovává data a požadavky. Zajišťuje komunikaci s routerem a spouští service. Controller se stará o úlohy specifické pro exporess. Extrahuje data z Request objektu a nastavuje data, která jsou odeslána zpět uživateli.
@@ -454,9 +472,10 @@ Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slou�
 
 
 \subsection{Initializer}
-Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro elastic search vytvoří všechny dosud neexistující indexy.
-Projekt je strukturován do monorepozitáře, který obsahuje několik balíčků (packages), do kterých je funkcionalita rozdělena.
-Kořenový balíček monorepozitáře obsahuje společnou konfiguraci nástrojů a společné balíčky.
+Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro Elasticsearch vytvoří všechny dosud neexistující indexy.
+
+\subsubsection{Inicializace PostgreSQL}
+
 
 \section{CI/CD}
 CI/CD pipeline v mém projektu zajišťuje automatizaci kontroly kódu, sestavení artefaktů nové verze a jejich přidání do kontejnerového repozitáře. Díky tomu je celý proces začleňování změn do projektu rychlejší a spolehlivější.
@@ -520,9 +539,30 @@ Typy commitů jsou určeny pro budoucí implementaci automatického sémantické
 \subsubsection{Štítky}
 GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. v0.1.0) a dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o kandidáta na verzi (release candidate). Jednotliví kandidáti mají v názvu pořadové číslo. Označení kandidáta na verzi může být např. `v0.1.0-rc1'. Kandidátů na verzi může být více. Tyto verze slouží k otestování, že se všechny artefakty vytvořily správně a jsou použitelné.
 
-\subsubsection{Využití GitHub Actions}
+\subsection{Sestavení projektu}
+V této sekci se zaměřím na popis automatizace celého procesu vytvoření produkčních obrazů pro Docker i na sestavení projektu pro testovací prostředí.
 
+\subsubsection{Sestavení kontejneru}
+Pro chod aplikace jsou potřeba celkem 3 kontejnery, které jsem vytvořil v rámci tohoto projektu. V této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demnostrovat na backendu aplikace.
 
+Celý postup je uložen v soubodu Dockerfile. Proces sestavení obrazu kontejneru je rozdělen do několika stupňů, z nichž každý provádí část procesu. Tyto stupně jsou znovupoužitelné a využívají se podle toho, jestli jde o sestavení produkčního artefaktu, nebo jestli je sestavení prováděno pro účely vývoje a testování.
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{images/diagrams/dockerfile-stages.png}
+	\caption{Diagram závislostí stupňů v Dockerfile}
+	\label{fig:dockerfile-stages}
+\end{figure}
+
+Dockerfile je tvořen celkem 5 stupmi. Stupně a jejich závislosti je možné vidět na obrázku \ref{fig:dockerfile-stages}. Stupně jsou rozvrženy tak, aby přehledně oddělovaly jednotlivé části procesu a zároveň efektivněji využívaly cachování. Stupně build i dev dědí ze stupně dependencies, což zajistí, že většina uloženého postupu zůstane uložena z posledního sestavení, pokud zde nedojde ke změnám. Docker umí s těmito změnami pracovat efektivně a Kroky, ve kterých nedošlo ke měně si ponechává v cache.
+
+Zde je popis jednotlivých stupňů:
+\begin{itemize}
+	\item \textbf{base:} Základní stupeň dědí z oficiálního image pro node.js. Provádí konfiguraci a instalaci pnpm pro správu balíčků.
+	\item \textbf{dependencies:} Tento stupeň dědí ze stupně base. Provádí se zde kopírování konfiguračních souborů a instalace závislostí pro vývojové prostředí a kompilaci.
+	\item \textbf{build:} V tomto stupni probíhá kopírování zdrojového kódu a jeho kompilace.
+	\item \textbf{dev:} Zde se provádí spuštění vývojového serveru. Pro tuto variantu je vyžadováno mít pomocí Dockeru namontovaný souborový systém obsahující zdrojový kód.
+	\item \textbf{runtime:} V tomto stupni probíhá instalace závislostí pro produkční běh a nastavení Nginx serveru.
+\end{itemize}
 
 \section{Ukázka aplikace}
 V této sekci budu popisovat funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
