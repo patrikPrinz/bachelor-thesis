@@ -219,7 +219,7 @@ V rámci této práce jsem hledal a procházel i další software zaměřený na
 BibleGateway\cite{biblegateway} je Webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a neimplementuje funkcionality jako modlitení skupiny, nebo žaltář a další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a není v souladu s mými požadavky.
 
 \subsection{Beblia.com}
-Beblia.com je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překlaů a v rámci projektu je k dispozici i databáze různých překladů
+Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překlaů a v rámci projektu je k dispozici i databáze různých překladů
 v XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
 
 \section{Analýza požadavků}
@@ -295,8 +295,9 @@ Vue.js má velmi přehlednou a obsáhlou dokumentaci. Systém komponent a mnoho 
 \subsubsection{Pinia}
 Pinia je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují spravovat globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a settery pro vlastnosti, které jsou ve storu uloženy.
 \subsubsection{Elasticsearch}
+Elasticsearch je vyhledávací engine, který jsem se rozhodl použít k indexaci a vyhledávání v textech Bible. Aplikace může obsahovat libovolné množství různých překladů a Elasticsearch Usnadňuje vyhledávání v nich.
 \subsubsection{PostgreSQL}
-PostgreSQL je v současnosti velmi oblíbenou volbou při výběru relační databáze.
+PostgreSQL je v současnosti velmi oblíbenou volbou při výběru relační databáze. PostgreSQL je velmi výkonná a je bez problémů kompstibilní s ostatními technoliemi, které používám. Relační model dat je vhodný pro uložení Dat o uživatelských účtech a jiných dat, která mají pevnou strukturu. PostgreSQL také umožňuje ukládání JSON dokumentů, což jsem také v projektu úspěšně využil.
 \subsubsection{Docker}
 Docker je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k distribuci aplikací.
 
@@ -347,10 +348,6 @@ Další část databáze tvoří tabulky pro ukládání Metadat Bible (ukázka 
 	\caption{Schéma tabulek pro správu uživatelských poznámek a záložek k Bibli}
 	\label{fig:db-user-metadata}
 \end{figure}
-
-\subsubsection{Elasticsearch}
-Elasticsearch jsem se rozhodl použít pro rozsáhlejší textová data, především ty, u kterých bude prováděno vyhledávání. Nejdůležitější částí dat jsou překlady Bible.
-
 
 \section{Implementace}
 Části porojektu jsou rozděleny do samostatných kontejnerů, které spolu komunikují prostředním lokální sítě Dockeru.
@@ -462,19 +459,39 @@ Ztěžejní částí Každého modulu je v případě této aplikace takzvaný s
 	\item \textbf{service:} zajišťuje získání a zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi. Uchovává závislosti
 	\item \textbf{repository:} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy, které reflektují strukturu databáze. Zajišťuje kontrolu a validaci dat. Obstarává konzistentnost dat v databázi.
 \end{itemize}
-\subsubsection{Zpracování HTTP požadavku}
-Většinu práce s HTTP požadavkem zajišťuje framework Express, který se stará o zpracování
 
 \subsection{Frontend}
 Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slouží k prezentaci dat z API a k jejich snadnější manipulaci.
 
 \subsubsection{Progresivní webová aplikace}
+Technologie progresivních webových aplikací (dále PWA) umožňuje z webové aplikace vytvořit aplikaci spustitelnou na různých platformách. Hlavním cílem pro tuto práci bylo vytvořit aplikaci, která bude pro uživatele snadněji dostupná, což je usnadněno možností provozovat aplikaci v režimu, který je obdobný nativním mobilním apliakcím.
 
+Konfiguraci PWA jsem realizoval prostřednictvím knihovny \lstinline{vite-plugin-pwa}\cite{vite-plugin-pwa}. Tebto plugin se nastavuje v konfiguračním souboru pro Vite.
+
+Minimálními požadvky\cite{pwa-installation}, aby bylo možné PWA nainstalovat z prohlížeče Google Chrome, je přítomnonst následujících atributů v konfiguračním objektu:
+\begin{itemize}
+	\item \lstinline{name}, nebo \lstinline{short_name}: Používá se pro pojmenování aplikace po nainstalování.
+	\item \lstinline{icons}: Obsahuje pole ikonek spojených s aplikací. Pro instalaci jsou zapotřebí alespoň 2 ikonky čtercového tavaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a pro obrazovku, kdy se aplikace načítá po spuštění.
+	\item \lstinline{display}, nebo \lstinline{display_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v režimu, který vypadá jako prohlížeč, nebo se skrytými ovládacími prvky prohlížeče.
+	\item \lstinline{start_url}: Označujr výchozí adresu aplikace. Tato stránka je načtena, když uživatel aplikaci otevře.
+	\item \lstinline{prefer_related_applications}: Pokud existuje nativní aplikace, jejíž instalace je preferována před PWA, touto hodnotou lze toto chování nastavit. Je k tomu vyžadován seznam preferovaných aplikací ve vlastnosti \lstinline{related_applications}.
+\end{itemize}
+
+\subsubsection{Struktura balíčku}
+Balíček frontend je také rozdělen do modulů. Zde jsem se rozhodl pro méně striktní oddělení jednotlivých modulů, ale pokusil jsem se dodržet rozčlenění podle domény, které přibližně odpovídá rozdělení na straně backendu.
+
+Moduly zde představují logické seskupení funckionalit, které k sobě patří podle domény, moduly však mohou importovat části z jiných modulů. Pro uchování čístí, které jsou velmi často často používány z různých míst projektu jsem vytvořil složku shared. Zde je umístěn například HTTP klient, vytvořený pomocí knihovny Axios. Dále se zde nachází část s konfigurací internacionalizace.
+
+Vzhledem k tomu, že nejdůležitější funkcí tohoto balíčku je zajistit uživatelské rozhraní pro komunikaci s backendem, každý modul obsahuje vlastního HTTP klienta, který používá sdílenou nakonfigurovanou instanci Axios. Klienti jednotlivých modulů definují metody, které vytváří jasně definované rozhraní pro realizaci jednotlivých HTTP požadavků (např. přihlášení, načtení knih Bible, vložení záložky,...).
+
+Částí specifickou pro Vue.js je takzvaný store. Story jsou do Vue.js přidány pomocí knihovny Pinia. Story slouží k ukládání a globálnímu sdílení stavu a jeho mutaci (např. uložení informací o uživatelském účtu, oprávnění uživatele, možnosti odhlášení, nebo přihlášení uživatele). V případě tohoto projektu je informace ve storu často propojena s daty v databázi. Proto jsem často využíval přístup, kdy sotre tvoří rozhraní nad HTTP klientem. Při změně globálního stavu na frontendu tak zároveň posílá požadavek backendu.
+
+Tento postup lze snadno demonstrovat například na modulu zajišťujícím autentizaci. Funkce \lstinline{login}, umístěná v souboru \lstinline{authStore.ts} provádí pokus o přihlášení uživatele. Přihlášení je silně závislé na validaci ze strany serveru. Metoda přijímá přihlašovací jméno a heslo. Pošle serveru požadavek na přihlášení uživatele. Pokud požadavek proběhne úspěšně a přihlašovací údaje jsou platné, načte funkce ze serveru podrobnosti o uživateli a uloží je do storu.
+
+Vue.js používá pro skládání uživatelského rozhraní takzvané komponenty. Komponenta je celek, který stružuje HTLM kód, logiku, pro manipulaci s HTML elementy a CSS styl elementů komponenty. Při implementaci jsem nevyužil možnost vkládat CSS kód. Pro stylování jsem použil knihovnu Tailwind, která používá sadu předpřipravených stylů, které se elementům přiřazují pomocí HTML tříd.
 
 \subsection{Initializer}
 Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro Elasticsearch vytvoří všechny dosud neexistující indexy.
-
-\subsubsection{Inicializace PostgreSQL}
 
 
 \section{CI/CD}
@@ -563,6 +580,10 @@ Zde je popis jednotlivých stupňů:
 	\item \textbf{dev:} Zde se provádí spuštění vývojového serveru. Pro tuto variantu je vyžadováno mít pomocí Dockeru namontovaný souborový systém obsahující zdrojový kód.
 	\item \textbf{runtime:} V tomto stupni probíhá instalace závislostí pro produkční běh a nastavení Nginx serveru.
 \end{itemize}
+
+Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z proměnných prostředí. Vite, který zajišťuje sestavení frontendu v kombinaci s Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a sestavení kontejneru a ne z \lstinline{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značn nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
+
+Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spoušťí bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v kódu odkazují vlastnosti proměné \lstinline{import.meta.env}. Ve svém projektu a podle instrukcí poskytnutých v repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a nahrazeny skutečnými hodnotami, které poskytne uživatel.
 
 \section{Ukázka aplikace}
 V této sekci budu popisovat funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
