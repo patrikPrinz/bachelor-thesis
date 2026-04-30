@@ -173,41 +173,42 @@
 Vzhledem k oblasti, na kterou se text zaměřuje, budu používat pojmy, které jsou spojeny s církevním prostředím, různými modlitbami a liturgickými texty. Na úvod tedy uvádím sekci, která čtenáře s těmito pojmy stručně seznámí.
 
 \subsubsection{Bible}
-\textbf{Bible} je klíčovou posvátnou knihou křesťanské církve. Jejímu studiu, výkladům, vytváření překladů a pojednání o ní je věnováno velké úsilí. Četba, studium a rozjímání textů Bible je důležitou součástí života každého křesťana.
+\textbf{Bible} je klíčovou posvátnou knihou křesťanské církve. Jejímu studiu, výkladům, vytváření překladů a pojednání o ní je věnováno velké úsilí. Četba, studium a rozjímání textů Bible je důležitou součástí života každého křesťana. Proto existuje v překladech do mnoha jazyků a většina jazyků má překladů více.
 
-Bible je souborem knih různých autorů. Tyto knihy jsou rozděleny na dvě hlavní části - na \textbf{Starý a Nový zákon}. První knihy Starého zákona se datují do roku X.
+Bible je souborem knih různých autorů z historie křesťanství a judaismu. Tyto knihy jsou rozděleny do dvou částí - do \textbf{Starého a Nového  zákona}. Každá kniha je tvořena kapitolami a kapitoly jsou tvořeny verši.
+
+Významnými knihami jsou 4 evangelia, která popisují život Ježíše Krista a jsou často používány i při liturgických obřadech.
+
+Další významnou knihou je kniha žalmů (takzvaný \textbf{žaltář}). Mezi východními křesťanskými církvemi se žaltář rozděluje do 20 částí, kterým se říká kaftizmy. Každá kaftizma obsahuje skupinu žalmů a další přidružené texty modliteb. Jednotlivé žalmy a kaftismy jsou často používány jako samostatné modlitby.
 
 \subsection{Cíl práce}
-Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k modlitebním textům a textům Bible pro každodenní použití. Řeckokatolická farnost v Olomouci, pro kterou bude tato aplikace určena, dosud nemá žádný vhodný systém, který by toto uspokojivě poskytoval a zohledňoval i skutečnost, že modliteb je velké množství a systém včetně databáze, by měl být snadno rozšiřitelný, aby bylo možné i v budoucnu přidávat další texty, rozdělovat je do kategorií a třídit je podle událostí a dat, ke kterým patří.
+Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k modlitebním textům a textům Bible pro každodenní použití. Řeckokatolická farnost v Olomouci, pro kterou bude tato aplikace určena, používá v současné době systém, který neposkytuje dostatečný komfort pro správu obsahu z pohledu administrátora. Systém v současné podobě není dostatečně flexibilní, aby mohl být uspokojivě rozšířen.
 
 \subsection{Cílová skupina}
 Primární cílovou skupinou této aplikace jsou členové Řeckokatolické farnosti v Olomouci. Patří sem běžní farníci, lidé, kteří jsou různým způsobem zapojeni do chodu farnosti, a duchovní. Farnost je v současnosti vícenárodnostní a v posledních letech se značně
 rozrůstá. Nejpočetněji jsou zde zastoupeni farníci z Ukrajiny.
 
 Farnost má vlastní společenství, které se modlí modlitby žalmů a funguje od
-roku 2024. Každý člen společenství se během týdne modlí jednu část žaltáře zvanou kaftizma. Kaftizmy se mezi členy společenství pravidelně střídají.
+roku 2024. Každý člen společenství se během týdne modlí jednu část žaltáře zvanou kaftizma.
 
 \subsection{Doména}
-Hlavní doménou projektu jsou různé modlitby a církevní texty především řeckokatolické církve. Dále také společenství a skupiny, jejichž správu by měl software usnadňovat.
+Hlavní doménou projektu jsou modlitby a církevní texty používané řeckokatolickou církví.
 
-Texty Bible jsou v katolické církvi velmi často využívané při liturgických obřadech, ale také při osobní modlitbě a rozjímání.
-
-Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti existuje kalendář, který obsahuje i biblické texty pro každý den v roce. Každému dni v roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Evangelia tvoří pro katolickou církev nejvýznamnější část Bible. Dále je každému dni také přiřazen úryvek z jedné z ostatních knih Nového zákona. Při slavnostních bohoslužbách se biblických textů předčítá větší množství a čtou se i různé texty ze Starého zákona.
+Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti, existuje kalendář, který obsahuje i biblické texty pro každý den v roce. Každému dni v roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Evangelia tvoří pro katolickou církev nejvýznamnější část Bible. Dále je každému dni také přiřazen úryvek z jedné z ostatních knih Nového zákona. Při slavnostních bohoslužbách se biblických textů předčítá větší množství.
 
 Biblické texty v církevních obřadech jsou často vázány ke svátkům, které jsou buď pevně svázány s datem, nebo jsou pohyblivé a připadají každý rok na jiné datum.
 Mnoho textů je také svázáno s konkrétním obřadem nebo událostí (např. křest, svěcení domu...).
 
-Texty z knihy žalmů jsou často používány jako samostatné modlitby. Východní církve žalmy rozdělují do 20 skupin zvaných kaftizmy, které obsahují většinou okolo
-4-8 žalmů. Ke kaftizmám jsou přidruženy další texty, které se modlí zároveň s nimi.
-
 \subsection{Přínos práce}
-V rámci této práce bych se chtěl zaměřit především na implementaci čtečky Bible a textů žaltáře. Aplikace bude poskytovat Bibli samotnou v různých překladech pro čtení a studium, a také bude poskytovat vizualizaci úryvků textu podle dostupného kalendáře. Dále bude dostupné i zobrazení textů žaltáře pro osobní modlitbu, nebo modlitbu ve společenství.
+V rámci této práce se zaměřuji především na implementaci čtečky Bible a textů žaltáře. Aplikace poskytuje Bibli samotnou v různých překladech pro čtení a studium, a také poskytuje vizualizaci úryvků textu podle dostupného kalendáře. Dále je k dispozici i zobrazení textů žaltáře pro osobní modlitbu, nebo modlitbu ve společenství.
 
-Další částí bude možnost správy farního společenství žaltáře a případně i dalších skupin, které ve farnosti existují. Tato možnost především usnadní komunikaci se členy a sdílení informací.
+Další částí je možnost vytváření skupin, které budou využity společenstvími ve farnosti a a možnost sdílení příspěvků se členy těchto skupin.
 
-Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšiřitelnost, což by umožnilo i v budoucnu reflektovat požadavky společenství, které jej bude využívat a které bude pravděpodobně také dál růst a rozvíjet se. Existuje velké množství obřadů a modliteb řeckokatolické církve, které by v aplikaci mohly být v budoucnu uloženy.
+Tato aplikace má za cíl nahradit stávající systém\cite{grekokat-casoslov}, který  který je používán pro poskytování modlitebních textů.
 
-Dále se chci v této práci zaměřit i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný v dlouhodobém měřítku, urychlí integraci i samotné nasazení aplikace. Na projektu pracuji sám, proto je pro mne výhodné především zautomatizovat proces ověření a nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu.
+Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšiřitelnost, což by umožnilo v budoucnu přidávat další texty, které budou moci fungovat jako samostatné moduly aplikace. Textů je velké množství a celá řada z nich má mnoho složitých pravidel, podle kterých se skládají konkrétní texty pro specifický den, období nebo svátek.
+
+Dále se v této práci zaměřuji i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný. V dlouhodobém měřítku tyto koncepty, urychlí integraci i samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a správnosti, nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení nových verzí a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a vidět i výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o kvalitě provedených změn a jejich kompatibilitě se zbytkem projektu.
 
 \section{Podobné projekty}
 V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřeních existuje celá řada. Většina je však určena k jiným účelům a především pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již zastaralá a dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v rámci této práce sdružuje a implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
@@ -223,23 +224,22 @@ Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Bi
 v XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
 
 \section{Analýza požadavků}
-Software je určen především pro Řeckokatolickou farnost v Olomouci, její farníky a osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a informace pro členy společneství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v busoucnu přínosem i pro další řeckokatolíky v ČR mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty je velké množství a některé z nich se mění podle svátku a období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
+Software je určen především pro Řeckokatolickou farnost v Olomouci, její farníky a osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a informace pro členy společneství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v budoucnu přínosem i pro další řeckokatolíky v ČR mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty je velké množství a některé z nich se mění podle svátku a období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
 
 \subsection{Funkční požadavky}
 
 \textbf{Sekce Bible}
 \begin{itemize}
-	\item Aplikace bude umožňovat zibrazení textů Bible.
+	\item Aplikace bude umožňovat zobrazení textů Bible.
 	\item Aplikace bude umožňovat administrátorům importovat překlady ve formátu Zefania XML.
-	\item Aplikace umožňovat přihlášeným uživatelům vytvářet si záložky.
+	\item Aplikace bude umožňovat přihlášeným uživatelům vytvářet si záložky.
 	\item Aplikace bude umožňovat přihlášeným uživatelům označovat verše a přidávat k nim poznámky.
-	\item Aplikace bude umožňovat full-textové vyhledávání v textech Bible
 \end{itemize}
 \textbf{Uživatelské účty}
 \begin{itemize}
-	\item Aplikace bude implementovat uživatelské účty pro identifikaci uživatelů a ukládání jejich personalizovaných nastavení.
+	\item Aplikace bude implementovat uživatelské účty pro identifikaci uživatelů.
 	\item Aplikace bude implementovat správu rolí, pomocí kterých bude možné přiřazovat uživatleům oprávnění.
-	\item Uživatel si může vytvořit uživatelský účet
+	\item Uživatel si může vytvořit uživatelský účet.
 	\item Uživatel se může pomocí emailu a hesla přihlásit do aplikace.
 \end{itemize}
 \textbf{Skupiny}
@@ -255,7 +255,8 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 \textbf{Úryvky}
 \begin{itemize}
 	\item Aplikace bude umožňovat přihlášeným uživatelům spravovat svou knihovnu úryvků.
-	\item Oprávněný uživatel může spravovat úryvky, které jsou přiřazeny ke kalendáři.
+	\item Oprávněný uživatel může spravovat úryvky, které jsou přiřazeny k jednotlivým dnům.
+	\item Všichni uživatelé mohou zobrazovat texty vložené do kalendáře.
 \end{itemize}
 \textbf{Ostatní}
 \begin{itemize}
@@ -265,12 +266,12 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 \subsection{Nefunkční požadavky}
 \begin{itemize}
 	\item Aplikace by měla být snadno rozšířitelná a udržovatelná.
-	\item Aplikace by měla umožňovat snadné nastavení a spuštění na novém zařízení.
-	\item Aplikace by měla být kompatibilní s různými platformami, aby byla snadno dostupná a použitelná pro uživatele.
+	\item Aplikace by měla být schopna spravovat své závislosti a co nejméně záviset na prostředí a konfiguraci dané aktuálním stavem systému, na kterém bude spuštěna.
+	\item Aplikace by měla umožňovat snadnou úvodní konfiguraci a spuštění.
 \end{itemize}
 
 \section{Návrh řešení}
-V této sekci popíšu technologie a obecné koncepty, které jsem se rozhodl pro realizaci tohoto projektu použít.
+V této sekci se věnuji technoliím a obecným konceptům, které jsem se rozhodl pro realizaci tohoto projektu použít.
 
 \subsection{Použité technologie}
 Vzhledem k charakteru projektu a skutečnosti, že jsem se rozhodl pro využití DevOps postupů, jsou použil celou řadu nástrjů a knihoven, které vývoj značně usnadnily.
@@ -310,11 +311,12 @@ GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které pos
 GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
 
 \subsection{Architektura projektu}
-Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent, které zajišťují uchování dat a jejich manipulaci.
+Projekt je složen z 5 hlavních komponent. Orchestrace a propojení komponent, které zajišťují uchování dat a jejich manipulaci. Blokový diagram komponent projektu lze vidět na obrázku \ref{fig:block-diagram}. Jednotlivým komponentám se budu blíže věnovat v dalších sekcích.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/block-diagram.png}
 	\caption{Blokové schéma}
+	\label{fig:block-diagram}
 \end{figure}
 
 \subsection{Návrh databáze}
@@ -381,6 +383,18 @@ Narozdíl od monolitické architektury je modulární monolit časově náročn�
 Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a používají se na více místech napříč aplikací.
 
 Tyto nástroje jsou uloženy ve složce shared.
+
+Patří sem:
+\begin{itemize}
+	\item Middleware pro ošetření chyb
+	\item Validátor uživatelských dat v požadavku
+	\item Adaptér pro Elasticsearch
+	\item Adaptér pro PostgreSQL
+	\item Logger
+\end{itemize}
+
+Některým z nich se níže věnuji podrobněji.
+
 \paragraph{Ošetření chyb}
 Express.js má vestavěný mechanismus pro ošetření chyb. Pokud dojde k chybě při zpracování HTTP požadavku, zavolá se automaticky výchozí middleware pro ošetření chyb. Pro potřeby tohoto projektu jsem implementoval middleware, který zajišťuje ošetření chyb a jejich převedení na stavové HTTP kódy, které jou důležité pro uživatele. Vytvořil jsem systém výjimek, které odpovídají stavovým kódům pro odpověď. Všechny tyto výjimky dědí ze třídy AppErro. K výjimce je možné přidat také textovou zprávu.
 
