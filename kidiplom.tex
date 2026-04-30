@@ -168,6 +168,7 @@
 %   a (značně) neúplná verze!!!}
 
 \section{Úvod}
+Tato kapitola se věnuje objasnění základních pojmů z domény projektu a dále vytyčuje cíl a motivaci práce.
 
 \subsection{Slovníček pojmů}
 Vzhledem k oblasti, na kterou se text zaměřuje, budu používat pojmy, které jsou spojeny s církevním prostředím, různými modlitbami a liturgickými texty. Na úvod tedy uvádím sekci, která čtenáře s těmito pojmy stručně seznámí.
@@ -333,7 +334,6 @@ Aplikace je určena především k prezentaci uložených dat a jejich správě.
 \subsubsection{PostgeSQL}
 PostgreSQL databázi jsem využil jako primární úložiště dat, která bude aplikace uchovávat. Jsou zde uloženy data o uživatelích, skupinách, oprávněních, úryvcích biblických textů a další. Důležitějším částem databáze se budu v této části věnovat podrobněji.
 
-
 \paragraph{Uživatelské účty}
 Databáze obsahuje strukturu pro ukládání dat o uživatelských účtech a možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka user\_details, která obsahuje detaily o uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
 
@@ -360,13 +360,35 @@ Ostaní metadata jsou vázána staticky ke konkrétním veršům a není možné
 
 Data jsou rozdělena do dvou tabulek. První z nich obsahuje data o záložkách. Záznam v databázi obsahuje informaci o poloze záložky v textu, id autora a název. Druhá tabulka obsahuje data o poznámkách a zvýrazněných verších. V této tabulce je stejná část popisující autora a umístění. Dále tabulka obsahuje možnost vložit kód barvy zvýraznění, nebo hodnotu NULL a dále také volitelný text poznámky.
 
-
-
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/db-user-metadata.png}
 	\caption{Schéma tabulek pro správu uživatelských poznámek a záložek k Bibli}
 	\label{fig:db-user-metadata}
 \end{figure}
+
+\subsubsection{Elasticsearch}
+Pro uložení textů, ve kterých se bude vyhledávat jsem použil Elasticsearch. Elasticsearch je určený primárně k indexaci dat a vyhledávání v nich. Pro účely práce jsem do něj uložil data tvořená větším množstvím textu, ve kterých budu provádět vyhledávání.
+
+\paragraph{Texty Bible}
+Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje \autoref{code:bible-index}.
+
+V databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou strukturu kvůli lepší indexaci ukládám po jednotlivých verších s jejich přesným umístěním. Záznam tak obsahuje kó překladu, ke kterému patří, číslo knihy, kapitoly a verše. Dále obsahuje samotný text, který se indexuje a vlastnost \lstinline{is_header}, která určuje, jestli se jedná o nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i v databázi.
+
+\begin{lstlisting}[language={JavaScript}, caption={index Bible}, label={code:bible-index}]
+{
+  index: 'bible',
+  mappings: {
+    properties: {
+      translation: { type: 'keyword' },
+      book: { type: 'integer' },
+      chapter: { type: 'integer' },
+      verse: { type: 'integer' },
+      text: { type: 'text' },
+      is_header: { type: 'boolean' },
+    },
+  },
+}
+\end{lstlisting}
 
 \section{Implementace}
 Části porojektu jsou rozděleny do samostatných kontejnerů, které spolu komunikují prostředním lokální sítě Dockeru.
@@ -374,27 +396,26 @@ Data jsou rozdělena do dvou tabulek. První z nich obsahuje data o záložkách
 \subsection{Monorepozitář}
 Kontejnery tvořící projekt se vytvářejí z kódu a konfigurací uložených v monorepozitářové struktuře. Data jednotlivých kontejnerů jsou rozdělena do balíčků, které jsou reprezentovány podadresáři s příslušnými názky v adresáři packages.
 
-Hlavní výhodou struktury monorepozitáře je přirozené sdružení více balíčků do jednoho projektu. To umožňuje jednodušší build proces a vydávání nových verzí. Dále je výhodná i možnost sdílení konfigurace a některých závislostí. Díky společnému umístění v projektu lze velmi jednoduše spustit celý projekt v testovacím prostředí a ověřit správnou komunikaci balíčků mezi sebou a případné odstranění nalezení chyb. Projekt je také velmi jednoduše přenositelný a pro konfiguraci na novém zařízení vyžaduje naprosto minimální konfiguraci.
-
-\subsubsection{Společná konfigurace}
-Každý balíček má vlastní specifické konfigurace. Společné konfigurace, které jsou globální pro projekt, nebo sdílené více balíčky, jsou umístěny v hlavním adresáři projektu.
-
-S polečná konfigurace zahrnuje především docker compose soubory, konfiguraci nástrojů pro kontrolu kvality a spoelčnou konfiguraci pro TypeScript.
+Hlavní výhodou struktury monorepozitáře je přirozené sdružení více balíčků do jednoho projektu. To umožňuje jednodušší proces sestavení a vydávání nových verzí. Dále je výhodná i možnost sdílení konfigurace a některých závislostí. Díky společnému umístění v projektu lze velmi jednoduše spustit celý projekt v testovacím prostředí a ověřit správnou komunikaci balíčků mezi sebou a případné odstranění chyb. Projekt je také velmi jednoduše přenositelný a na novém zařízení vyžaduje jen minimální konfiguraci.
 
 \subsubsection{Nástroje pro správu projektu}
+Každý balíček má vlastní specifické konfigurace jednotlivých nástrojů. Společné konfigurace, které jsou globální pro projekt, nebo sdílené více balíčky, jsou umístěny v hlavním adresáři projektu.
+
+Společná konfigurace zahrnuje především docker compose soubory. Dále zde nalezneme také  konfiguraci TypeScriptu pro typovou kontrolu a sestavení projektu a nástrojů pro kontrolu kvality kódu a testování.
+
 \paragraph{GIT}
 Nástroj GIT jsem použit pro správu verzí projektu. V CI/CD je verzování klíčové a řídí procesy kontroly kvality a doručení připravených artefaktů uživateli. Více se budu konvencím verzování v projektu věnovat dále v textu.
 \paragraph{Pnpm}
-Pnpm jsem použil pro správu zavislostí projektu a pro vytvoření pnpm skriptů, které usnadňují spouštění příkazů. Tuto možnost jsem využil pro zjednodušení přístupu k nástrojům pro kontrolu kódu, kompilaci a spuštění docker compose.
+Pnpm jsem použil pro správu zavislostí projektu a pro vytvoření pnpm skriptů, které usnadňují spouštění složitých příkazů specifických pro projekt. Tuto možnost jsem využil pro zjednodušení přístupu k nástrojům pro kontrolu kódu, kompilaci a spuštění docker compose.
 
 \subsection{Server}
 Server poskytuje HTTP API pro manipulaci s daty uloženými v Elasticsearch a PostgreSQL databázích. Poskytuje možnost správy uživatelů, sezení, kontrolu oprávnění a implementaci business logiky.
 
 Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšiřitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části domény aplikace. Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a umožňuje udržet si přehled o částech, které budou ovlivněy případnými změnami.
 
-Modulární monolit je kombinací výhodných vlastností mikroservisů a tradiční monolitické architektury. Stejně jako architektura mikroservisů, rozděluje aplikaci do více celků (v tomto případě jsou to moduly). Moduly sdružují funkcionalitu spjatou s danou částí domény a pro ostatní moduly poskytují jasně definované rozhraní. Narozdíl od mikrservisů však není aplikace rozdělena do více servisů, což usnadňuje počáteční nastavení a nasazení projektu spolu s jednodušším laděním a integrací celku.
+Modulární monolit je kombinací výhodných vlastností mikroservisů a tradiční monolitické architektury. Celá aplikace je tak tvořena sdílenými nástroji a express serverem spolu s moduly, do kterých je rozdělena doménová logika aplikace. Modulární monolitická arcitektura je pro návrh a nastavení složitější, než běžná monolitická architktura, poskytuje však přirozenější rozdělení kódu podle domény, namísto podle technického určení. Zároveň je podstatně jednodušší na správu, než architektura mikroservisů i když podkytuje některé stejné výhody.
 
-Narozdíl od monolitické architektury je modulární monolit časově náročnější na úvodní konfiguraci, tuto nevýhodu však vyvažuje skutečnost, že v modulární struktuře je možné se podstatně přirozeněji orientovat, protože struktura aplikace respektuje zvolenou doménu. Toto je výhodou zvláště u rozsáhlejších projektů, i přesto jsem však tuto architekturu zvolil i v tomto projektu, který je malého rozsahu. S ohledem na budoucí možnosti rozšíření se projekt takto může dále rozrůstat s podstatně menším ztížením orientace.
+Tuto architekturu jsem zvolil i s ohledem na budoucí údržbu a další rozvoj aplikace. V takto strukturovaném kódu se jednodušeji provádějí úpravy, protože části, které jsou spojeny doménou a tedy zároveň i na sobě závislé, se nacházejí na stejném místě.
 
 \subsubsection{Globální nástroje}
 Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a používají se na více místech napříč aplikací.
@@ -429,9 +450,9 @@ Pokud dojde k vyvolání výjimky, přijme ji middleware pro obsluhu chyb, kter�
 
 
 \paragraph{Middleware pro validaci požadavků}
-Každý HTTP požadavek může obsahovat data od uživatele. Před předání k dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu.
+Každý HTTP požadavek může obsahovat data od uživatele. Před předání k dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu (vizte \autoref{code:validator}).
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language={JavaScript}, caption={Middleware pro validaci požadavků}, label={code:validator}]
 export function requestValidator<T extends ZodType>(
   schema: T,
   part: string = 'params',
@@ -456,14 +477,8 @@ Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce next s v�
 
 Reálným omezením tohoto návrhu je skutečnost, že není možné předávat uživatelská data v jednom požadavku více metodami zároveň. Vzhledem k aktuálnímu rozsahu projektu jsem však nenarazil na to, že by pro mne byla tato možnost klíčová. V budoucnu je možné tento nedostatek vyřešit přidáním vlastností, které reprezentují jednotlivé metody dovnitř vlastnosti validated.
 
-\begin{itemize}
-	\item Adaptér pro Elasticsearch
-	\item Adaptér pro PostgreSQL
-	\item Logger
-\end{itemize}
-
-\subsubsection{Dependency injection}
-
+\paragraph{Připojení k databázi}
+Aplikace komunikuje se dvěma databázemi.
 
 \subsubsection{Inicializace aplikace}
 Vstupním bodem pro start aplikace je soubor \lstinline{index.ts} v adresáři src tohoto modulu. Odtud se volá funkce \lstinline{initializePostgres}. Tato funkce vytvoří v databázi uživatele s administrátorskými oprávněními, pokud v databázi ještě žádný uživatel není. Login a heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v souboru \lstinline{bootstrap.ts}.
@@ -487,8 +502,8 @@ Ztěžejní částí Každého modulu je v případě této aplikace takzvaný s
 \begin{itemize}
 	\item \textbf{Router} mapuje HTTP požadavky na příslušné metody controlleru. Prostřednictvím middlewaru se zde také provádí ověření, jestli je uživatel přihlášený a provádí se validace dat požadavku.
 	\item \textbf{Controller} validuje a zpracovává data a požadavky. Zajišťuje komunikaci s routerem a spouští service. Controller se stará o úlohy specifické pro exporess. Extrahuje data z Request objektu a nastavuje data, která jsou odeslána zpět uživateli.
-	\item \textbf{service:} zajišťuje získání a zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi. Uchovává závislosti
-	\item \textbf{repository:} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy, které reflektují strukturu databáze. Zajišťuje kontrolu a validaci dat. Obstarává konzistentnost dat v databázi.
+	\item \textbf{Service} zajišťuje získání a zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi. Uchovává závislosti
+	\item \textbf{Repository} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy, které reflektují strukturu databáze. Zajišťuje kontrolu a validaci dat. Obstarává konzistentnost dat v databázi.
 \end{itemize}
 
 \subsection{Frontend}
@@ -525,20 +540,31 @@ Vue.js používá pro skládání uživatelského rozhraní takzvané komponenty
 Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro Elasticsearch vytvoří všechny dosud neexistující indexy.
 
 
-\section{CI/CD}
+\section{DevOps a CI/CD}
+V této kapitole se budu věnovat popisu prvků z oblasti DevOps a CI/CD, které jsem v této práci použil.
+
+DevOps je filosofie, která je postavena na propojení procesů vývoje, nasazení a provozu software s důrazem na automatizaci.
+
+V tomto projektu jsem se zaměřil především na CI/CD (continuous integration and continuous delivery), což je proces automatizace integrace provedených změn do projektu a automatizované doručení změn zákazníkovi.
+
+Podle myšlenek DevOps jsem zautomatizoval proces sestavení projektu, vytvořil jsem automatizované testy a výpočet pokrytí kódu těmito testy. Do projektu jsem integroval mechanismy pro ověření kvality kódu. Všechny tyto nástroje je možné spustit v projektu pomocí jednoho příkazu. Dále jsem zajistil i vytváření a ukládání logů.
+
+Ve zbytku kapitoly se budu věnovat především CI/CD.
+
+\subsection{CI/CD pipeline}
 CI/CD pipeline v mém projektu zajišťuje automatizaci kontroly kódu, sestavení artefaktů nové verze a jejich přidání do kontejnerového repozitáře. Díky tomu je celý proces začleňování změn do projektu rychlejší a spolehlivější.
 
 Základní částí CI/CD pipeline je kontrola kvality kódu. Ta sestává z kontroly formátování kódu, lintování a provedení automatizovaných testů. Pro jednoduchost a přehlednost a také vzhledem k malé velikosti projektu jsem všechny testy nechal spustit při každé kontrole projektu.
 
 Všechny tyto části kontroly může uživatel spustit ručně v lokálním vývojovém prostředí, nebo se spouštějí automaticky při každém přidání změn do vzdáleného GitHub repozitáře.
 
-Provedené změny lze do repozitáře přidat pomocí pushe (běžné přidání změn, které může provést každý, kdo má oprávnění vkládat změny do dané větve, neprobíhá zde žádný schvalovací proces). Dvě hlavní větve (dev a main) jsou však proti tomuto postupu chráněny. Pro přidání změn do těchto větví je potřeba otevřít takzvaný pull-request. Při tom vznikne žádost o začlenění změn, kterou musí správce projektu potvrdit, aby mohla být přidána.
+Provedené změny lze do repozitáře přidat pomocí pushe (běžné přidání změn, které může provést každý, kdo má oprávnění vkládat změny do dané větve, neprobíhá zde žádný schvalovací proces). Po přidání změn dostane uživatel zpětnou vazbu, jestli kontorola proběhla úspěšně. Dvě hlavní větve (dev a main) jsou však proti tomuto postupu chráněny. Pro přidání změn do těchto větví je potřeba otevřít takzvaný pull-request. Při tom vznikne žádost o začlenění změn, kterou musí správce projektu potvrdit, aby mohla být přidána.
 
-Proces schvalování pull-requestů je momentálně poněkud zdlouhavý a ne zcela dobře využitý vzhledem k tomu, že na projektu pracují sám. Tak v tuto chvíli pouze sám potvrzují vlastní změny. Do budoucna však může být výhodný a pro práci ve vícečlenném týmu je velmi důležitý.
+Proces schvalování pull-requestů je momentálně poněkud zdlouhavý a ne zcela dobře využitý vzhledem k tomu, že na projektu pracuji sám. Tak v tuto chvíli pouze sám potvrzuji vlastní změny. Do budoucna však může být výhodný a pro práci ve vícečlenném týmu je velmi důležitý.
 
-Větve dev a main mají v repozitáři zvláštní roli. Zatímco ostatní větve slouží pro běžný vývoj, opravování chyb a přidávání nových možností, dev větev slouží ke kompletaci těchto změn dohromady. Dokončená změna z některé z ostatních větví tak může být přidána pomocí pull-requestu do větve dev.
+Větve dev a main mají v repozitáři zvláštní roli. Zatímco ostatní větve slouží pro běžný vývoj, opravování chyb a přidávání nových možností, větev dev slouží ke kompletaci těchto změn dohromady. Dokončená změna z některé z ostatních větví tak může být přidána pomocí pull-requestu do větve dev.
 
-Proces vydání nové verze je z části ruční, ověření kvality a sestavení však probíhá automatizovaně. Autor nové verze tak musí vzít změny z větve dev a na na nové větvi provede změnu číslování verze. Změna se provádí v packages.json souborech jednotlivých balíčků projektu, včetně kořenového balíčku. Dále přidá krátkou zprávu shrnující změny v dané verzi do souboru docs/changelog.md.
+Proces vydání nové verze je z části ruční, ověření kvality a sestavení však probíhá automatizovaně. Autor nové verze tak musí vzít změny z větve dev a na na nové větvi provede změnu číslování verze. Změna se provádí v package.json souborech jednotlivých balíčků projektu, včetně kořenového balíčku. Dále přidá krátkou zprávu shrnující změny v dané verzi do souboru \lstinline{docs/changelog.md}.
 
 S takto provedenými změnami se provede pull-request do větve main. Zde je možné jednotlivé změny označit štítkem. Pokud má štítek správný název, provede se sestavení nové verze a jednotlivé obrazy docker kontejnerů jsou přidány do kontejnerového repozitáře, odkud mohou být staženy.
 
@@ -555,25 +581,22 @@ Větev obsahuje větší množství ucelených změn, které mají společný ú
 
 Zvláštní roli mají větve dev a main, které jsou chráněny před přímým přidáváním commitů. Změny do nich lze přidávat jen pomocí pull-requestů. Větev dev slouží ke kompletaci změn z ostatních větví. Změny, které jsou přidány do větve main jsou určeny k vydání. Vydání nové verze se provede automaticky po oštítkování commitu.
 
-Každá větev je pojmenována ve formátu $<typ><nazev>$, kde $<nazev>$ popisuje společný účel změn ve větvi (např. server-authentication). $<typ>$ přibližuje, jaký technický charakter změny mají (správa infrastruktury, dokumentace, testování...)
+Každá větev je pojmenována ve formátu \lstinline{<typ>/<nazev>}, kde \lstinline{<nazev>} popisuje společný účel změn ve větvi (např. server-authentication). \lstinline{<typ>} přibližuje, jaký technický charakter změny mají.
 
 Povolené typy větví jsou následující:
 \begin{itemize}
-	\item \textbf{chore:} Slouží pro údržbu projektu, závislostí, infrastruktury. Nepřidává další
-	      funkcionalitu, ani neopravuje chyby v kódu
-	\item \textbf{feature:} Přidává skupinu funkcionalit do projektu (čtečka Bible, modlitební
-	      skupiny, ...)
-	\item \textbf{release:} Stará se o poslední změny před vydáním nové verze. Typicky se zde
-	      provádí přidání change logu a zvýšení čísla verze.
+	\item \textbf{chore:} Slouží pro údržbu projektu, závislostí, infrastruktury. Nepřidává další funkcionalitu, ani neopravuje chyby v kódu
+	\item \textbf{feature:} Přidává skupinu funkcionalit do projektu (čtečka Bible, modlitební skupiny, ...)
+	\item \textbf{release:} Stará se o poslední změny před vydáním nové verze. Typicky se zde provádí přidání change logu a zvýšení čísla verze.
 	\item \textbf{docs:} Provádí se zde přidání a údržba přiložené dokumentace projektu.
 \end{itemize}
 
 
 \subsubsection{Commity}
 
-Jednotlivé commity obsahují menší ucelené změny. Jeden commit by neměl obsahovat více změn, které spolu přímo nesouvisí (tématicky, nebo umístěním). Toto se mi nepodařilo v začátcích vývoje dodržet ve všech případech. Některé commity kromě přidání funkcionalit obsahují také refactoring, nebo opravu jiné části balíčku, která s primárními změnami přímo nesouvisí.
+Jednotlivé commity obsahují menší ucelené změny. Jeden commit by neměl obsahovat více změn, které spolu přímo nesouvisí (tématicky, nebo umístěním).
 
-Pojmenování commitu je vždy ve formátu $<typ>: <popis>$, kde $<popis>$ stručně vysvětluje hlavní provedené změny v rámci daného commitu. Dále zpráva ke commitu obsahuje i podrobnější popis provedených změn.
+Pojmenování commitu je vždy ve formátu \lstinline{<typ>: <popis>}, kde \lstinline{<popis>} stručně vysvětluje hlavní provedené změny v rámci daného commitu. Dále zpráva ke commitu obsahuje i podrobnější popis provedených změn.
 
 Typy commitů jsou určeny pro budoucí implementaci automatického sémantického verzování. Usnadňují také orientaci ve změnách a upřesňují technický význam commitů. Povolené typy jsou tyto:
 \begin{itemize}
@@ -585,12 +608,9 @@ Typy commitů jsou určeny pro budoucí implementaci automatického sémantické
 \end{itemize}
 
 \subsubsection{Štítky}
-GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. v0.1.0) a dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o kandidáta na verzi (release candidate). Jednotliví kandidáti mají v názvu pořadové číslo. Označení kandidáta na verzi může být např. `v0.1.0-rc1'. Kandidátů na verzi může být více. Tyto verze slouží k otestování, že se všechny artefakty vytvořily správně a jsou použitelné.
+GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \lstinline{v0.1.0}) a dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o kandidáta na verzi (release candidate). Jednotliví kandidáti mají v názvu pořadové číslo. Označení kandidáta na verzi může být např. \lstinline{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k otestování, že se všechny artefakty vytvořily správně a jsou použitelné.
 
-\subsection{Sestavení projektu}
-V této sekci se zaměřím na popis automatizace celého procesu vytvoření produkčních obrazů pro Docker i na sestavení projektu pro testovací prostředí.
-
-\subsubsection{Sestavení kontejneru}
+\subsection{Sestavení kontejneru}
 Pro chod aplikace jsou potřeba celkem 3 kontejnery, které jsem vytvořil v rámci tohoto projektu. V této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demnostrovat na backendu aplikace.
 
 Celý postup je uložen v soubodu Dockerfile. Proces sestavení obrazu kontejneru je rozdělen do několika stupňů, z nichž každý provádí část procesu. Tyto stupně jsou znovupoužitelné a využívají se podle toho, jestli jde o sestavení produkčního artefaktu, nebo jestli je sestavení prováděno pro účely vývoje a testování.
@@ -615,6 +635,14 @@ Zde je popis jednotlivých stupňů:
 Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z proměnných prostředí. Vite, který zajišťuje sestavení frontendu v kombinaci s Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a sestavení kontejneru a ne z \lstinline{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značn nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
 
 Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spoušťí bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v kódu odkazují vlastnosti proměné \lstinline{import.meta.env}. Ve svém projektu a podle instrukcí poskytnutých v repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a nahrazeny skutečnými hodnotami, které poskytne uživatel.
+
+\subsection{Logování}
+Uchování a přístup k logům je uajištěn pomocí Docker compose. pomocí tohoto nástroje je možné záznamy uhovávat, filtrovat je a zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v terminálu.
+
+\subsection{Spuštění projektu}
+Výsledné obrazy je možné spustit pomocí souboru \lstinline{docker-compose.yaml}, který je umístěn ve složce release. Ten automaticky stáhne obrazy pro nejnovější verzi projektu a spustí je. Pro spuštění na libovolném zařízení s nainstalovaným Dockerem tak stačí spustit ve složce se staženým konfiguračním souborem docker compose příkaz \lstinline{docker compose up}.
+
+Do nastavení projektu je možné zasáhnout pomocí proměnných prostředí. Těm jsem se blíže věnoval v přiložené dokumentaci projektu.
 
 \section{Ukázka aplikace}
 V této sekci budu popisovat funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
