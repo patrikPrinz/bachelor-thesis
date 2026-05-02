@@ -270,20 +270,20 @@ V této sekci se věnuji technoliím a obecným konceptům, které jsem se rozho
 Vzhledem k charakteru projektu a skutečnosti, že jsem se rozhodl pro využití DevOps postupů, jsem použil celou řadu nástrojů a knihoven, které vývoj značně usnadnily.
 
 \subsubsection{Node.js}
-Node.js je běhové prostředí pro jazyk JavaScript. Node lze využít pro spuštění JavaScriptu na jiných platformách než v prohlížeči, pro který byl jazyk původně určený.
+Node.js\cite{nodejs} je běhové prostředí pro jazyk JavaScript. Node lze využít pro spuštění JavaScriptu na jiných platformách než v prohlížeči, pro který byl jazyk původně určený.
 
 Tuto technologii jsem se rozhodl použít pro backend tohoto projektu, protože tato volba mi umožňuje použít stejný jazyk pro vývoj frontendu i backendu. To mi usnadnilo nastavení nástrojů pro správu kvality kódu a typovou kontrolu. Všechny balíčky tak mohou sdílet velkou část nastavení. I když je rozdíl mezi funkcí JavaScriptu v prohlížeči a v Node.js, základní koncepty a mechanismy jazyka zůstávají stejné.
 \subsubsection{Pnpm}
-Pnpm je správce balíčků pro Node.js. Pnpm má podobné rozhraní jako npm. Oproti tomuto správci však poskytuje mnoho optimalizací rychlosti instalace a využití místa na disku. Dále také poskytuje možnost správy zavislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s monorepozitářem, který v projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují pouze jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a na tyto závislosti odkazuje. Důsledkem této optimalizace je značně efektivnější využití místa na disku.
+Pnpm\cite{pnpm} je správce balíčků pro Node.js. Pnpm má podobné rozhraní jako npm. Oproti tomuto správci však poskytuje mnoho optimalizací rychlosti instalace a využití místa na disku. Dále také poskytuje možnost správy zavislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s monorepozitářem, který v projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují pouze jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a na tyto závislosti odkazuje. Důsledkem této optimalizace je značně efektivnější využití místa na disku.
 \subsubsection{TypeScript}
-TypeScript je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v prostředí výše zmíněného node.js i na frontendu aplikace pro běh v prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu, nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a v případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
+TypeScript\cite{typescript} je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v prostředí výše zmíněného node.js i na frontendu aplikace pro běh v prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu, nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a v případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
 \subsubsection{Express}
-Express je framework pro vývoj wbových aplikací i API v JavaScriptu. Poskytuje základní nástroje pro práci s HTTP požadavky, jejich zpracování, poskytuje vlastní router a také lze integrovat s mnoha rozšířeními i dalšími balíčky, protože je minimalistický a nezavádí téměř žádné vlastní konvence struktury projektu.
+Express.js\cite{express} je framework pro vývoj wbových aplikací i API v JavaScriptu. Poskytuje základní nástroje pro práci s HTTP požadavky, jejich zpracování, poskytuje vlastní router a také lze integrovat s mnoha rozšířeními i dalšími balíčky, protože je minimalistický a nezavádí téměř žádné vlastní konvence struktury projektu.
 
 Jeho minimalističnost a zaměření pouze na úkoly, které má plnit spolu se stabilitou a jednoduchodtí použití byly pro mě hlavním důvodem pro jeho volbu. Toto mi umožnilo jednoduše jej použít jako jádro serverové části aplikace, ale zároveň mi i nadále zůstal prostor pro vlastní návrh struktury zbylých částí serveru.
 
 \subsubsection{Vue.js}
-Vue.js je framework pro vytváření webových uživatelkých rozhraní. Vue.js Umožňuje uživateli vyvíjet aplikace s architekturou MVVM\cite{vue-mvvm}. Vue.js samo o sobě implementuje ViewModel část jako obousměrné provázání dat aplikace s uživatelským rozhraním.
+Vue.js\cite{vuejs} je framework pro vytváření webových uživatelkých rozhraní. Vue.js Umožňuje uživateli vyvíjet aplikace s architekturou MVVM\cite{vue-mvvm}. Vue.js samo o sobě implementuje ViewModel část jako obousměrné provázání dat aplikace s uživatelským rozhraním.
 
 Vue.js také usnadňuje rozdělení uživatelského rozhraní do komponent, které jsou základními stavebními bloky aplikace. Komponenta sdružuje HTML kód, JavaScriptový kód a CSS styl do jednho souboru.
 
@@ -292,15 +292,15 @@ Vue.js má velmi přehlednou a obsáhlou dokumentaci. Systém komponent a mnoho 
 Před vývojem tohoto projektu jsem neměl mnoho zkušeností s vývojem frontendu za použití obdobných frameworků. Hlavní volbou pro tuto variantu tak byl jednoduchý proces učení a dostatek dostupné dokumentace spolu s rozsáhlým ekosystémem kompatibilních knihven a rozšíření.
 
 \subsubsection{Pinia}
-Pinia je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují sdílet globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a settery pro vlastnosti, které jsou ve storu uloženy.
+Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují sdílet globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a settery pro vlastnosti, které jsou ve storu uloženy.
 
 Pinia je v současnosti doporučeným řešením pro správu globálního stavu v aplikacích založených na Vue.js a má oficiální podporu.
 \subsubsection{Elasticsearch}
-Elasticsearch je vyhledávací engine, který jsem se rozhodl použít k indexaci a vyhledávání v textech Bible a k jejich uložení. Aplikace může obsahovat libovolné množství různých překladů a Elasticsearch Usnadňuje vyhledávání v nich.
+Elasticsearch\cite{elasticsearch} je vyhledávací engine, který jsem se rozhodl použít k indexaci a vyhledávání v textech Bible a k jejich uložení. Aplikace může obsahovat libovolné množství různých překladů a Elasticsearch Usnadňuje vyhledávání v nich.
 \subsubsection{PostgreSQL}
-PostgreSQL je v současnosti velmi oblíbenou volbou při výběru relační databáze. PostgreSQL je velmi výkonná a je bez problémů kompatibilní s ostatními technologiemi, které používám. Relační model dat je vhodný pro uložení Dat o uživatelských účtech a jiných dat, která mají pevnou strukturu. PostgreSQL také umožňuje ukládání JSON dokumentů, což jsem také v projektu úspěšně využil.
+PostgreSQL\cite{postgresql} je v současnosti velmi oblíbenou volbou při výběru relační databáze. PostgreSQL je velmi výkonná a je bez problémů kompatibilní s ostatními technologiemi, které používám. Relační model dat je vhodný pro uložení Dat o uživatelských účtech a jiných dat, která mají pevnou strukturu. PostgreSQL také umožňuje ukládání JSON dokumentů, což jsem také v projektu úspěšně využil.
 \subsubsection{Docker}
-Docker je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k distribuci aplikací.
+Docker\cite{docker} je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k distribuci aplikací.
 
 Díky kontejnerizaci odpadá potřeba řešit manuálně všechny závislosti projektu a hlídat jejich verze a nastavení. Všechna potřebná konfigurace je obsažena v docker obrazu, jehož spuštěním vzniká samotný kontejner.
 
@@ -310,7 +310,7 @@ Souběh kontejnerů zajišťuje Docker Compose. Jde o nástroj, který konfiguru
 \subsubsection{GitHub a GitHub Actions}
 GitHub jsem zvolil táké pro jeho rozšířenost a řadu možností, které poskytuje. Mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
 
-GitHub Actions je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
+GitHub Actions\cite{github_actions} je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
 
 \subsection{Architektura projektu}
 Projekt je složen z 5 hlavních komponent, které zajišťují uchování dat a jejich manipulaci. Blokový diagram komponent projektu lze vidět na obrázku \ref{fig:block-diagram}. Jednotlivým komponentám se budu blíže věnovat v dalších sekcích.
