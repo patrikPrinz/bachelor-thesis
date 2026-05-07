@@ -201,10 +201,10 @@ Tato aplikace má za cíl nahradit stávající systém\cite{grekokat-casoslov},
 
 Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšiřitelnost, což by umožnilo v budoucnu přidávat další texty, které budou moci fungovat jako samostatné moduly aplikace. Textů je velké množství a celá řada z nich má mnoho složitých pravidel, podle kterých se skládají konkrétní texty pro specifický den, období nebo svátek.
 
-Dále se v této práci zaměřuji i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný. V dlouhodobém měřítku tyto koncepty, urychlí integraci i samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a správnosti, nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení nových verzí a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a vidět i výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o kvalitě provedených změn a jejich kompatibilitě se zbytkem projektu.
+Dále se v této práci zaměřuji i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný. V dlouhodobém měřítku tyto koncepty urychlí integraci i samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a správnosti, nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení nových verzí a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a vidět i výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o kvalitě provedených změn a jejich kompatibilitě se zbytkem projektu.
 
 \section{Podobné projekty}
-V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřeních existuje celá řada. Většina je však určena k jiným účelům a především pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již zastaralá a dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v rámci této práce sdružuje a implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
+V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřeních existuje celá řada. Většina je však určena k jiným účelům a především pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již zastaralá a dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v rámci této práce, sdružuje a implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
 
 \subsection{Časoslov.sk}
 Časoslov.sk\cite{casoslov.sk} je projekt vyvíjený Radou pre mládež košickej eparchie na Slovensku. Poskytuje texty pro jednotlivé dny v roce. Má také knihovnu s různými připravenými texty k modlitbě. Nabízí webovou i mobilní aplikaci s obdobnými funkcionalitami. Časoslov.sk se zaměřuje především na samotné texty pro jednotlivé dny a obsahuje také knihovnu liturgických textů a různých modliteb, jejichž texty se nemění podle dne. Pro věřící v České Republice je také klíčová možnost spravovat zároveň více překladů textů, kterou tato aplikace neposkyuje. Neposkytuje také možnost samostatného čtení a studia biblických textů, správu více překladů, ani funkcionalitu skupin.
@@ -217,7 +217,7 @@ Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Bi
 v XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
 
 \section{Analýza požadavků}
-Software je určen především pro Řeckokatolickou farnost v Olomouci, její farníky a osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a informace pro členy společneství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v budoucnu přínosem i pro další řeckokatolíky v ČR mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty je velké množství a některé z nich se mění podle svátku a období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
+Software je určen především pro Řeckokatolickou farnost v Olomouci, její farníky a osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a informace pro členy společneství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v budoucnu přínosem i pro další řeckokatolíky v ČR mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty, je velké množství a některé z nich se mění podle svátku a období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
 
 \subsection{Funkční požadavky}
 
@@ -509,7 +509,7 @@ Konfiguraci PWA jsem realizoval prostřednictvím knihovny \lstinline{vite-plugi
 Minimálními požadvky\cite{pwa-installation}, aby bylo možné PWA nainstalovat z prohlížeče Google Chrome, je přítomnonst následujících atributů v konfiguračním objektu:
 \begin{itemize}
 	\item \lstinline{name}, nebo \lstinline{short_name}: Používá se pro pojmenování aplikace po nainstalování.
-	\item \lstinline{icons}: Obsahuje pole ikonek spojených s aplikací. Pro instalaci jsou zapotřebí alespoň 2 ikonky čtercového tavaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a pro obrazovku, kdy se aplikace načítá po spuštění.
+	\item \lstinline{icons}: Obsahuje pole cest k ikonám spojeným s aplikací. Pro instalaci jsou zapotřebí alespoň 2 ikonky čtercového tavaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a pro obrazovku, kdy se aplikace načítá po spuštění.
 	\item \lstinline{display}, nebo \lstinline{display_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v režimu, který vypadá jako prohlížeč, nebo se skrytými ovládacími prvky prohlížeče.
 	\item \lstinline{start_url}: Označujr výchozí adresu aplikace. Tato stránka je načtena, když uživatel aplikaci otevře.
 	\item \lstinline{prefer_related_applications}: Pokud existuje nativní aplikace, jejíž instalace je preferována před PWA, touto hodnotou lze toto chování nastavit. Je k tomu vyžadován seznam preferovaných aplikací ve vlastnosti \lstinline{related_applications}.
@@ -673,7 +673,7 @@ Převážnou část obrazovky s texty Bible vyplňuje samotný zobrazovaný text
 
 Hlavním ovládacím prvkem čtečky Bible je dolní lišta. V pravém dolním rohu obsahuje tlačítko pro zobrazení nabídky, ve které je možné změnit překlad Bible, nebo přejít do seznamu záložek uživatele.
 
-Do textu mohou přihlášení uživatelé přidávat poznámky k veršům, zvýrazňovat verše a vytvářet pojmenované záložky, ke kterým se mohou později vrátit. Všechny tyto entity jsou spojeny s konkrétním veršem. Pro jejich vytvoření, nebo upravení je nejdřív vybrat z textu konkrétní verš. Poté se aktivují tlačítka v levé části dolní lišty (vizte obrázek \ref{fig:bible-bottom-bar}). Pomocí nich je možné otevřít okna pro správu těchto možností.
+Do textu mohou přihlášení uživatelé přidávat poznámky k veršům, zvýrazňovat verše a vytvářet pojmenované záložky, ke kterým se mohou později vrátit. Všechny tyto entity jsou spojeny s konkrétním veršem. Pro jejich vytvoření, nebo upravení je nejdříve třeba vybrat z textu konkrétní verš. Poté se aktivují tlačítka v levé části dolní lišty (vizte obrázek \ref{fig:bible-bottom-bar}). Pomocí nich je možné otevřít okna pro správu těchto možností.
 
 \begin{figure}[H]
 	\centering
@@ -683,10 +683,10 @@ Do textu mohou přihlášení uživatelé přidávat poznámky k veršům, zvýr
 \end{figure}
 
 \subsection{Úryvky Bible}
-Aplikace obsahuje rozhraní pro tvorbu a upravoválí úryvků Bible. Každý úryvek je tvořený jednou, nebo více částmi. Začátek a konec každé části se stanovují Číslem verše a kapitoly. Kniha Bible je stanovena pro celý úryvek. Úryvky jsou nezávislé na překladu Bible. Překlad se volí podle preferencí uživatele.
+Aplikace obsahuje rozhraní pro tvorbu a upravoválí úryvků Bible. Každý úryvek je tvořený jednou, nebo více částmi. Začátek a konec každé části se stanovují číslem verše a kapitoly. Kniha Bible je stanovena pro celý úryvek. Úryvky jsou nezávislé na překladu Bible. Překlad se volí podle preferencí uživatele.
 
 \subsubsection{Uživatelské úryvky}
-Přihlášený uživatel může vytvářet a sparovat vlastní úryvky. Seznam úryvků se zobrazí po otevření sekce "Moje úryvky" v boční nabídce. V horní části seznamu úryvků se nachází tlačítko pro vytvoření nového úryvku. Po kliknutí na úryvek se zobrazí pouze vybraný úryvek na samostatné stránce. Odtud je možné dostat se do editoru úryvků stejně jako po kliknutí na tlačítko přidání úryvku.
+Přihlášený uživatel může vytvářet a spravovat vlastní úryvky. Seznam úryvků se zobrazí po otevření sekce "Moje úryvky" v boční nabídce. V horní části seznamu úryvků se nachází tlačítko pro vytvoření nového úryvku. Po kliknutí na úryvek se zobrazí pouze vybraný úryvek na samostatné stránce. Odtud je možné dostat se do editoru úryvků stejně jako po kliknutí na tlačítko přidání úryvku.
 
 \subsubsection{Editor úryvků}
 Další důležitou částí je editor úryvků (vizte obrázek \ref{fig:passage-editor}). Stránka pro upravování úryvků je rozdělena na dvě části. V levé čísti obrazovky je formulář, do kterého se vepisují hodnoty, podle kterých se úryvky vytváří. V pravé části je náhled textu, který se aktualizuje podle změn v editoru.
@@ -701,7 +701,7 @@ U úryvku je možné nastavit název, knihu a datum. Datum může nastavit pouze
 \end{figure}
 
 \subsection{Žaltář}
-Z bočního menu se lze dostat také do sekce žaltáře. Po kliknutí na odkaz v bočním menu se zobrazí výchozí stránka, na které lze vybrat kaftizmu ze seznamu. V horní části se nachází odkaz stránku s možností výběru jednotlivých žalmů.
+Z bočního menu se lze dostat také do sekce žaltáře. Po kliknutí na odkaz v bočním menu se zobrazí výchozí stránka, na které lze vybrat kaftizmu ze seznamu. V horní části se nachází odkaz na stránku s možností výběru jednotlivých žalmů.
 
 Zobrazení kaftizmy obsahuje jednotlivé žalmy společně s přidruženými modlitbami.
 
@@ -719,14 +719,45 @@ V sekci pro správu uživatelů je možné vytvářet nové uživatele nebo již
 
 Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje tabulku, ve které jsou vypsány jednotlivé skupiny.
 
-\section{Závěr}
-V rámci této práce jsem vypracoval webovou aplikaci, která slouží k zobrazení a správě textů Bible a žaltáře. Aplikace také umožňuje vytvářet úryvky z textů Bible, dělat v nich poznámky a záložky. Aplikace obsahuje také sekci pro správu uživatelů a skupin, které umožňují vytváření příspěvků a jejich sdílení s vybranými uživateli.
+\begin{kiconclusions}
+	V rámci této práce jsem vypracoval webovou aplikaci, která slouží k zobrazení a správě textů Bible a žaltáře. Aplikace také umožňuje vytvářet úryvky z textů Bible, dělat v nich poznámky a záložky. Aplikace obsahuje také sekci pro správu uživatelů a skupin, které umožňují vytváření příspěvků a jejich sdílení s vybranými uživateli.
 
-Hlavním přínosem pro farnost bude možnost přistupovat centralizovaně k těmto textům a dále s nimi pracovat. Pro společenství bude dále také výhodné, že různé překlady textů i uživatelského rozhraní se dají spravovat velmi jednoduše, což v původním řešení, které farnost používala, nebylo uspokojivě zajištěno. V současnosti je žaltář ve farnosti velmi často využíván. Díky této aplikaci bude i spolu s texty Bible dostupný na jednom místě pro všechny farníky i v jejich preferovaném jazyce.
+	Hlavním přínosem pro farnost bude možnost přistupovat centralizovaně k těmto textům a dále s nimi pracovat. Pro společenství bude dále také výhodné, že různé překlady textů i uživatelského rozhraní se dají spravovat velmi jednoduše, což v původním řešení, které farnost používala, nebylo uspokojivě zajištěno. V současnosti je žaltář ve farnosti velmi často využíván. Díky této aplikaci bude i spolu s texty Bible dostupný na jednom místě pro všechny farníky i v jejich preferovaném jazyce.
 
-Důraz při vývoji jsem kladl zejména na prvky z oblasti DevOps. Do projektu jsem integroval CI/CD pipeline, automatizované testy, sestavení obrazů kontejnerů a kontrolu kvality kódu, což přispívá k jednoduššímu vývoji a vydávání nových verzí. Také aktualizace aplikace za běhu a nasazení na novém zařízení je díky těmto prvkům značně jednodušší.
+	Důraz při vývoji jsem kladl zejména na prvky z oblasti DevOps. Do projektu jsem integroval CI/CD pipeline, automatizované testy, sestavení obrazů kontejnerů a kontrolu kvality kódu, což přispívá k jednoduššímu vývoji a vydávání nových verzí. Také aktualizace aplikace za běhu a nasazení na novém zařízení je díky těmto prvkům značně jednodušší.
 
-V budoucnu se nabízí řada rozšíření aplikace především v oblasti přidání dalších textů modliteb. Textů modliteb řeckokatolické církve je velmi mnoho a i s ohledem na tuto skutečnost jsem se aplikaci snažil navrhnout modulárně. V dalších verzích by mohly být přítomné další bohoslužebné texty i modlitby, které se věřící modlí během dne, nebo kalendář svátků. Pro přidání textů je nejdříve třeba získat jejich potřebné překlady a převést do vhodného formátu, což je značně časově náročné a vyžaduje to spolupráci více lidí. Proto jsem dosud vytvořil jen ukázkovou sadu překladů, která se bude v budoucnu spolu s aplikací rozrůstat.
+	V budoucnu se nabízí řada rozšíření aplikace především v oblasti přidání dalších textů modliteb. Textů modliteb řeckokatolické církve je velmi mnoho a i s ohledem na tuto skutečnost jsem se aplikaci snažil navrhnout modulárně. V dalších verzích by mohly být přítomné další bohoslužebné texty i modlitby, které se věřící modlí během dne, nebo kalendář svátků. Pro přidání textů je nejdříve třeba získat jejich potřebné překlady a převést do vhodného formátu, což je značně časově náročné a vyžaduje to spolupráci více lidí. Proto jsem dosud vytvořil jen ukázkovou sadu překladů, která se bude v budoucnu spolu s aplikací rozrůstat.
+\end{kiconclusions}
+
+
+%% Přílohy obsahu textu práce, za makrem \appendix.
+\appendix
+
+%% Obsah elektronických dat. Poslední příloha. Upravte podle vlastní
+%% práce!
+\section{Obsah elektronických dat} \label{sec:ObsahData}
+
+K textu je přiložena elektronická příloha. Ta obsahuje tato data:
+
+\begin{description}
+
+	\item[\texttt{README.md}] \hfill \\
+		Obsahem tohoto souboru je popis spuštění projektu a importu připravených ukázkových dat.
+
+	\item[\texttt{text/}] \hfill \\
+		Adresář s textem práce ve formátu PDF, vytvořený s~použitím
+		závazného stylu KI PřF UP v~Olomouci pro závěrečné práce, včetně
+		všech (textových) příloh, a~všechny soubory potřebné pro
+		bezproblémové vytvoření PDF dokumentu textu (případně v~ZIP
+		archivu), tj.~zdrojový text textu a příloh, vložené obrázky, apod.
+
+	\item[\texttt{vera/}] \hfill \\
+		Adresář se soubory projektu. Obsahuje zdrojové kódy a dokumnetaci a konfigurační soubory projektu, které jsou nutné ke sprovoznění a sestavení aplikace.
+
+	\item[\texttt{vera-data/}] \hfill \\
+		Tento adresář obsahuje soubory s ukázkovými daty, které je možné importovat do aplikace. Postup je popsán v textu práce.
+
+\end{description}
 
 %% -------------------------------------------------------------------
 
