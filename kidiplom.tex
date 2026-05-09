@@ -172,7 +172,7 @@ Bible je souborem knih různých autorů z historie křesťanství a judaismu. T
 
 Významnými knihami jsou 4 evangelia, která popisují život Ježíše Krista a jsou často používány i při liturgických obřadech.
 
-Další významnou knihou je kniha žalmů (takzvaný \textbf{žaltář}). Mezi východními křesťanskými církvemi se žaltář rozděluje do 20 částí, kterým se říká kaftizmy. Každá kaftizma obsahuje skupinu žalmů a další přidružené texty modliteb. Jednotlivé žalmy a kaftizmy jsou často používány jako samostatné modlitby.
+Další významnou knihou je kniha žalmů (takzvaný \textbf{žaltář}). Mezi východními křesťanskými církvemi se žaltář rozděluje do 20 částí, kterým se říká \textbf{kaftizmy}. Každá kaftizma obsahuje skupinu žalmů a další přidružené texty modliteb. Jednotlivé žalmy a kaftizmy jsou často používány jako samostatné modlitby.
 
 \subsection{Cíl práce}
 Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k modlitebním textům a textům Bible pro každodenní použití. Řeckokatolická farnost v Olomouci, pro kterou bude tato aplikace určena, používá v současné době systém, který neposkytuje dostatečný komfort pro správu obsahu z pohledu administrátora. Systém v současné podobě není dostatečně flexibilní, aby mohl být uspokojivě rozšířen.
@@ -197,7 +197,7 @@ V rámci této práce se zaměřuji především na implementaci čtečky Bible 
 
 Další částí je možnost vytváření skupin, které budou využity společenstvími ve farnosti a možnost sdílení příspěvků se členy těchto skupin. Tato aplikace má za cíl nahradit stávající systém\cite{grekokat-casoslov}, který je používán pro poskytování modlitebních textů.
 
-Mým dalším cílem je navrhnout aplikaci s ohledem na budoucí rozšiřitelnost, což by umožnilo v budoucnu přidávat další texty, které budou moci fungovat jako samostatné moduly aplikace. Textů je velké množství a celá řada z nich má mnoho složitých pravidel, podle kterých se skládají konkrétní texty pro specifický den, období nebo svátek.
+Mým dalším cílem je navrhnout aplikaci s ohledem na rozšiřitelnost, což by umožnilo v budoucnu přidávat další texty, které budou moci fungovat jako samostatné moduly aplikace. Textů je velké množství a celá řada z nich má mnoho složitých pravidel, podle kterých se skládají konkrétní texty pro specifický den, období nebo svátek.
 
 V této práci zaměřuji i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný. V dlouhodobém měřítku tyto koncepty urychlí integraci i samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a správnosti, nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení nových verzí a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a vidět i výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o kvalitě provedených změn a jejich kompatibilitě se zbytkem projektu.
 
@@ -270,11 +270,11 @@ Vzhledem k charakteru projektu a skutečnosti, že jsem se rozhodl pro využití
 \subsubsection{Node.js}
 Node.js\cite{nodejs} je běhové prostředí pro jazyk JavaScript. Node lze využít pro spuštění JavaScriptu na jiných platformách než v prohlížeči, pro který byl jazyk původně určený.
 
-Tuto technologii jsem se rozhodl použít pro backend tohoto projektu, protože tato volba mi umožňuje použít stejný jazyk pro vývoj frontendu i backendu. To mi usnadnilo nastavení nástrojů pro správu kvality kódu a typovou kontrolu. Všechny balíčky tak mohou sdílet velkou část nastavení. I když je rozdíl mezi funkcí JavaScriptu v prohlížeči a v Node.js, základní koncepty a mechanismy jazyka zůstávají stejné.
+Tuto technologii jsem se rozhodl použít pro backend projektu, protože její volba mi umožňuje použít stejný jazyk pro vývoj frontendu i backendu. To mi usnadnilo nastavení nástrojů pro správu kvality kódu a typovou kontrolu. Všechny balíčky tak mohou sdílet velkou část nastavení. I když je rozdíl mezi funkcí JavaScriptu v prohlížeči a v Node.js, základní koncepty a mechanismy jazyka zůstávají stejné.
 \subsubsection{Pnpm}
 Pnpm\cite{pnpm} je správce balíčků pro Node.js. Pnpm má podobné rozhraní jako npm. Oproti tomuto správci však poskytuje mnoho optimalizací rychlosti instalace a využití místa na disku. Dále také poskytuje možnost správy závislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s monorepozitářem, který v projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují pouze jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a na tyto závislosti odkazuje. Důsledkem této optimalizace je značně efektivnější využití místa na disku.
 \subsubsection{TypeScript}
-TypeScript\cite{typescript} je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v prostředí výše zmíněného node.js i na frontendu aplikace pro běh v prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a v případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
+TypeScript\cite{typescript} je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v prostředí výše zmíněného Node.js i na frontendu aplikace pro běh v prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a v případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
 \subsubsection{Express}
 Express.js\cite{express} je framework pro vývoj webových aplikací i API v JavaScriptu. Poskytuje základní nástroje pro práci s HTTP požadavky, jejich zpracování, poskytuje vlastní router a také lze integrovat s mnoha rozšířeními i dalšími balíčky, protože je minimalistický a nezavádí téměř žádné vlastní konvence struktury projektu.
 
@@ -537,9 +537,7 @@ DevOps je filosofie, která je postavena na propojení procesů vývoje, nasazen
 
 V tomto projektu jsem se zaměřil především na CI/CD (continuous integration and continuous delivery), což je proces automatizace integrace provedených změn do projektu a automatizované doručení změn zákazníkovi.
 
-Podle myšlenek DevOps jsem zautomatizoval proces sestavení projektu, vytvořil jsem automatizované testy a výpočet pokrytí kódu těmito testy. Do projektu jsem integroval mechanismy pro ověření kvality kódu. Všechny tyto nástroje je možné spustit v projektu pomocí jednoho příkazu. Dále jsem zajistil i vytváření a ukládání logů.
-
-Ve zbytku kapitoly se budu věnovat především CI/CD.
+Podle myšlenek DevOps jsem zautomatizoval proces sestavení projektu, vytvořil jsem automatizované testy a výpočet pokrytí kódu těmito testy. Do projektu jsem integroval mechanismy pro ověření kvality kódu. Všechny tyto nástroje je možné spustit v projektu pomocí jednoho příkazu. Dále jsem zajistil i vytváření a ukládání logů. Ve zbytku kapitoly se budu věnovat především CI/CD.
 
 \subsection{CI/CD pipeline}
 CI/CD pipeline v mém projektu zajišťuje automatizaci kontroly kódu, sestavení artefaktů nové verze a jejich přidání do kontejnerového repozitáře. Díky tomu je celý proces začleňování změn do projektu rychlejší a spolehlivější.
@@ -601,7 +599,7 @@ Typy commitů jsou určeny pro budoucí implementaci automatického sémantické
 GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \lstinline{v0.1.0}) a dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o kandidáta na verzi (release candidate). Jednotliví kandidáti mají v názvu pořadové číslo. Označení kandidáta na verzi může být např. \lstinline{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k otestování, že se všechny artefakty vytvořily správně a jsou použitelné.
 
 \subsection{Sestavení kontejneru}
-Pro chod aplikace jsou potřeba celkem 3 kontejnery, které jsem vytvořil v rámci tohoto projektu. V této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demnostrovat na backendu aplikace.
+Pro chod aplikace jsou potřeba celkem 3 kontejnery, které jsem vytvořil v rámci tohoto projektu. V této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demonstrovat na backendu aplikace.
 
 Celý postup je uložen v soubodu Dockerfile. Proces sestavení obrazu kontejneru je rozdělen do několika stupňů, z nichž každý provádí část procesu. Tyto stupně jsou znovupoužitelné a využívají se podle toho, jestli jde o sestavení produkčního artefaktu, nebo jestli je sestavení prováděno pro účely vývoje a testování.
 
@@ -611,23 +609,23 @@ Celý postup je uložen v soubodu Dockerfile. Proces sestavení obrazu kontejner
 	\label{fig:dockerfile-stages}
 \end{figure}
 
-Dockerfile je tvořen celkem 5 stupni. Stupně a jejich závislosti je možné vidět na obrázku \ref{fig:dockerfile-stages}. Stupně jsou rozvrženy tak, aby přehledně oddělovaly jednotlivé části procesu a zároveň efektivněji využívaly cachování. Stupně build i dev dědí ze stupně dependencies, což zajistí, že většina uloženého postupu zůstane uložena z posledního sestavení, pokud zde nedojde ke změnám. Docker umí s těmito změnami pracovat efektivně a Kroky, ve kterých nedošlo ke měně si ponechává v cache.
+Dockerfile je tvořen celkem 5 stupni. Stupně a jejich závislosti je možné vidět na obrázku \ref{fig:dockerfile-stages}. Stupně jsou rozvrženy tak, aby přehledně oddělovaly jednotlivé části procesu a zároveň efektivněji využívaly cachování. Stupně build i dev dědí ze stupně dependencies, což zajistí, že většina uloženého postupu zůstane uložena z posledního sestavení, pokud zde nedojde ke změnám. Docker umí s těmito změnami pracovat efektivně a kroky, ve kterých nedošlo ke změně si ponechává v cache.
 
 Zde je popis jednotlivých stupňů:
 \begin{itemize}
 	\item \textbf{base:} Základní stupeň dědí z oficiálního image pro node.js. Provádí konfiguraci a instalaci pnpm pro správu balíčků.
 	\item \textbf{dependencies:} Tento stupeň dědí ze stupně base. Provádí se zde kopírování konfiguračních souborů a instalace závislostí pro vývojové prostředí a kompilaci.
 	\item \textbf{build:} V tomto stupni probíhá kopírování zdrojového kódu a jeho kompilace.
-	\item \textbf{dev:} Zde se provádí spuštění vývojového serveru. Pro tuto variantu je vyžadováno mít pomocí Dockeru namontovaný souborový systém obsahující zdrojový kód.
+	\item \textbf{dev:} Zde se provádí spuštění vývojového serveru. Pro tuto variantu je vyžadováno mít pomocí Dockeru připojený souborový systém obsahující zdrojový kód.
 	\item \textbf{runtime:} V tomto stupni probíhá instalace závislostí pro produkční běh a nastavení Nginx serveru.
 \end{itemize}
 
-Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z proměnných prostředí. Vite, který zajišťuje sestavení frontendu v kombinaci s Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a sestavení kontejneru a ne z \lstinline{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značn nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
+Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z proměnných prostředí. Vite, který zajišťuje sestavení frontendu v kombinaci s Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a sestavení kontejneru a ne z \lstinline{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značný nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
 
 Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spouští bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v kódu odkazují vlastnosti proměnné \lstinline{import.meta.env}. Ve svém projektu a podle instrukcí poskytnutých v repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a nahrazeny skutečnými hodnotami, které poskytne uživatel.
 
 \subsection{Logování}
-Uchování a přístup k logům je zajištěn pomocí Docker compose. pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v terminálu.
+Uchování a přístup k logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v terminálu.
 
 \subsection{Spuštění projektu}
 Výsledné obrazy je možné spustit pomocí souboru \lstinline{docker-compose.yaml}, který je umístěn ve složce release. Ten automaticky stáhne obrazy pro nejnovější verzi projektu a spustí je. Pro spuštění na libovolném zařízení s nainstalovaným Dockerem tak stačí spustit ve složce se staženým konfiguračním souborem docker compose příkaz \lstinline{docker compose up}.
@@ -635,10 +633,10 @@ Výsledné obrazy je možné spustit pomocí souboru \lstinline{docker-compose.y
 Do nastavení projektu je možné zasáhnout pomocí proměnných prostředí. Těm jsem se blíže věnoval v přiložené dokumentaci projektu.
 
 \section{Ukázka aplikace}
-V této sekci budu popisovat funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
+V této sekci budou popsány funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
 
 \subsection{Navigace}
-Hlavním ovládacím prvkem je horní lišta (vizte obrázek \ref{fig:top-bar}), na které se nachází Název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil a tlačítko pro otevření bočního menu.
+Hlavním ovládacím prvkem je horní lišta (vizte obrázek \ref{fig:top-bar}), na které se nachází název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil, a tlačítko pro otevření bočního menu.
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/ui/top-bar.png}
 	\caption{Ukázka horní lišty}
@@ -684,10 +682,10 @@ Do textu mohou přihlášení uživatelé přidávat poznámky k veršům, zvýr
 Aplikace obsahuje rozhraní pro tvorbu a upravování úryvků Bible. Každý úryvek je tvořený jednou, nebo více částmi. Začátek a konec každé části se stanovují číslem verše a kapitoly. Kniha Bible je stanovena pro celý úryvek. Úryvky jsou nezávislé na překladu Bible. Překlad se volí podle preferencí uživatele.
 
 \subsubsection{Uživatelské úryvky}
-Přihlášený uživatel může vytvářet a spravovat vlastní úryvky. Seznam úryvků se zobrazí po otevření sekce "Moje úryvky" v boční nabídce. V horní části seznamu úryvků se nachází tlačítko pro vytvoření nového úryvku. Po kliknutí na úryvek se zobrazí pouze vybraný úryvek na samostatné stránce. Odtud je možné dostat se do editoru úryvků stejně jako po kliknutí na tlačítko přidání úryvku.
+Přihlášený uživatel může vytvářet a spravovat vlastní úryvky. Seznam úryvků se zobrazí po otevření sekce \enquote{Moje úryvky} v boční nabídce. V horní části seznamu úryvků se nachází tlačítko pro vytvoření nového úryvku. Po kliknutí na úryvek se zobrazí pouze vybraný úryvek na samostatné stránce. Odtud je možné dostat se do editoru úryvků stejně jako po kliknutí na tlačítko přidání úryvku.
 
 \subsubsection{Editor úryvků}
-Další důležitou částí je editor úryvků (vizte obrázek \ref{fig:passage-editor}). Stránka pro upravování úryvků je rozdělena na dvě části. V levé čísti obrazovky je formulář, do kterého se vepisují hodnoty, podle kterých se úryvky vytváří. V pravé části je náhled textu, který se aktualizuje podle změn v editoru.
+Další důležitou částí je editor úryvků (vizte obrázek \ref{fig:passage-editor}). Stránka pro upravování úryvků je rozdělena na dvě části. V levé části obrazovky je formulář, do kterého se vepisují hodnoty, podle kterých se úryvky vytváří. V pravé části je náhled textu, který se aktualizuje podle změn v editoru.
 
 U úryvku je možné nastavit název, knihu a datum. Datum může nastavit pouze uživatel s příslušnými oprávněními. Pokud je datum nastavené, úryvek se bude zobrazovat v kalendáři pro daný den. Pod tlačítkem pro uložení se nachází sekce, ve které lze spravovat jednotlivé části úryvků. Jednotlivé části lze přidávat i odstraňovat. Jejich počet není omezen. U každé části se vyplňuje počáteční a koncový verš a kapitola. Koncová kapitola může zůstat bez hodnoty. V takovém případě aplikace používá stejnou hodnotu jako pro počáteční kapitolu.
 
