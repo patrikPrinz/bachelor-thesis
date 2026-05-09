@@ -279,8 +279,6 @@ Pro vývoj tohoto projektu jsem Express zvolil především díky jeho jednoduch
 \subsubsection{Vue.js}
 Vue.js\cite{vuejs} je framework pro vytváření webových uživatelských rozhraní. Vue.js Umožňuje uživateli vyvíjet aplikace s~architekturou MVVM\cite{vue-mvvm}. Vue.js samo o~sobě implementuje ViewModel část jako obousměrné provázání dat aplikace s~uživatelským rozhraním.
 
-Vue.js také usnadňuje rozdělení uživatelského rozhraní do komponent, které jsou základními stavebními bloky aplikace. Komponenta sdružuje HTML kód, JavaScriptový kód a~CSS styl do jednoho souboru.
-
 Vue.js má velmi přehlednou a~obsáhlou dokumentaci. Systém komponent a~mnoho hotových komponent a~knihoven, které jsou s~Vue.js kompatibilní, poskytují velmi pohodlný vývoj aplikací.
 
 Před vývojem tohoto projektu jsem neměl mnoho zkušeností s~vývojem frontendu za použití obdobných frameworků. Hlavní volbou pro tuto variantu tak byl jednoduchý proces učení a~dostatek dostupné dokumentace spolu s~rozsáhlým ekosystémem kompatibilních knihoven a~rozšíření.
@@ -294,6 +292,7 @@ Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Pinia zajišťuje správu 
 Pinia je v~současnosti doporučeným řešením pro správu globálního stavu v~aplikacích založených na Vue.js a~má oficiální podporu.
 \subsubsection{Elasticsearch}
 Elasticsearch\cite{elasticsearch} je vyhledávací engine, který jsem se rozhodl použít k~indexaci a~vyhledávání v~textech Bible a~k~jejich uložení. Aplikace může obsahovat libovolné množství různých překladů a~Elasticsearch usnadňuje vyhledávání v~nich.
+
 \subsubsection{PostgreSQL}
 PostgreSQL\cite{postgresql} je v~současnosti velmi oblíbenou volbou při výběru relační databáze. PostgreSQL je velmi výkonná a~je bez problémů kompatibilní s~ostatními technologiemi, které používám. Relační model dat je vhodný pro uložení dat o~uživatelských účtech a~jiných dat, která mají pevnou strukturu. PostgreSQL také umožňuje ukládání JSON dokumentů, což jsem také v~projektu úspěšně využil.
 
@@ -362,7 +361,9 @@ Data jsou rozdělena do dvou tabulek. První z~nich obsahuje data o~záložkách
 \end{figure}
 
 \subsubsection{Elasticsearch}
-Pro uložení textů, ve kterých se bude vyhledávat jsem použil Elasticsearch. Elasticsearch je určený primárně k~indexaci dat a~vyhledávání v~nich. Pro účely práce jsem do něj uložil data tvořená větším množstvím textu, ve kterých budu provádět vyhledávání.
+Pro uložení textů, ve kterých se bude vyhledávat, jsem použil Elasticsearch. Elasticsearch je určený primárně k~indexaci dat a~vyhledávání v~nich. Pro účely práce jsem do něj uložil data tvořená větším množstvím textu, ve kterých budu provádět vyhledávání.
+
+Jde v první řadě o texty Bible, které jsou rozděleny do veršů. S pomocí Elasticsearch je možné nad daty provádět vyhledávání s mnoha nastavitelnými parametry. Data se v Elasticsearch rozdělují do indexů podle podobné struktury nebo významu. Index může mít přiřazené schéma (tzv.~mapping). Pokud schéma není indexu přiřazeno, vytváří se automaticky na základě vložených dat.
 
 \paragraph{Texty Bible}
 Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje zdrojový kód \ref{code:bible-index}.
@@ -580,7 +581,7 @@ Níže budu popisovat jednotlivé konvence, které jsem pro projekt zavedl.
 
 Větev obsahuje větší množství ucelených změn, které mají společný účel. Může sloužit například pro vývoj celého konkrétního modulu, pro dokumentaci, úpravy infrastruktury, nebo refactoring balíčku, případně pro vývoj konkrétního doménového prvku.
 
-Zvláštní roli mají větve dev a~main, které jsou chráněny před přímým přidáváním commitů. Změny do nich lze přidávat jen pomocí pull-requestů. Větev dev slouží ke kompletaci změn z~ostatních větví. Změny, které jsou přidány do větve main jsou určeny k~vydání. Vydání nové verze se provede automaticky po oštítkování commitu.
+Větev dev slouží ke kompletaci změn z~ostatních větví. Změny, které jsou přidány do větve main jsou určeny k~vydání. Vydání nové verze se provede automaticky po oštítkování commitu.
 
 Každá větev je pojmenována ve formátu \texttt{<typ>/<nazev>}, kde \texttt{<nazev>} popisuje společný účel změn ve větvi (např. server-authentication). \texttt{<typ>} přibližuje, jaký technický charakter změny mají.
 
@@ -739,7 +740,11 @@ Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje t
 \end{kiconclusions}
 
 \begin{kiconclusions}[english]
-	Hello there.
+	As part of this thesis, I developed a web application, which servs as a tool for viewing and managing texts of Bible and Psalter. Application also enables user to create Bible passages and place his notes and bookmarks into the texts. Application also includes a section for administration of users and groups. In groups users can create posts and share them with other members.
+
+	The main bebefit for the Eastern catholic parish in Olomouc will be an option to access and manage texts and prayers, which are centralized in this project. It will als ve beneficial for the community that various texts and user interface in various translations can be managet easily, which wasnt possible in the original solution that parish was using. Currently psalter texts are frequently used in the parish. Thanks to this application it will be accessible alongside the Bible texts for all members of the parish in their preferred language.
+
+	Important part 
 \end{kiconclusions}
 
 
