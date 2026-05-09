@@ -1,4 +1,5 @@
 {
+  "format_on_save": "off",
   "soft_wrap": "preferred_line_length",
   "lsp": {
     "texlab": {

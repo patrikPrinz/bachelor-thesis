@@ -333,15 +333,15 @@ Aplikace je určena především k prezentaci uložených dat a jejich správě.
 PostgreSQL databázi jsem využil jako primární úložiště dat, která bude aplikace uchovávat. Jsou zde uložena data o uživatelích, skupinách, oprávněních, úryvcích biblických textů a další. Důležitějším částem databáze se budu v této části věnovat podrobněji.
 
 \paragraph{Uživatelské účty}
-Databáze obsahuje strukturu pro ukládání dat o uživatelských účtech a možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka \newstyle{user\_details}, která obsahuje detaily o uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
+Databáze obsahuje strukturu pro ukládání dat o uživatelských účtech a možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka \kiinlinecode{text}{!}{user\_details}, která obsahuje detaily o uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
 
 Struktura této části databáze je přizpůsobena tomu, aby bylo možné implementovat různé typy přihlašování.
 
 Další tabulkou je tabulka poskytovatelů autentizace. Zde je uložen název a zkratka poskytovatele.
 
-Tabulka \newstyle{authentication} obsahuje cizí klíče odkazující na záznam v tabulce poskytovatelů autentizace a dále na záznam z tabulky s detaily uživatele, jehož totožnost se ověřuje a identifikační kód poskytnutý autentizační službou.
+Tabulka \kiinlinecode{text}{!}{authentication} obsahuje cizí klíče odkazující na záznam v tabulce poskytovatelů autentizace a dále na záznam z tabulky s detaily uživatele, jehož totožnost se ověřuje a identifikační kód poskytnutý autentizační službou.
 
-Pro přihlášení pomocí hesla existuje tabulka \newstyle{credentials}. Zde se ukládá uživatelské heslo. Hodnota \lstinline{provider_account_identifier} je poskytována externím poskytovatelem. Pro lokální přihlášení pomocí emailu a hesla je hodnota \lstinline{provider_account_identifier} nastavena na \lstinline{local<user_id>}.
+Pro přihlášení pomocí hesla existuje tabulka \kiinlinecode{text}{!}{credentials}. Zde se ukládá uživatelské heslo. Hodnota \lstinline{provider_account_identifier} je poskytována externím poskytovatelem. Pro lokální přihlášení pomocí emailu a hesla je hodnota \lstinline{provider_account_identifier} nastavena na \lstinline{local<user_id>}.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/db-user.png}
@@ -368,25 +368,25 @@ Data jsou rozdělena do dvou tabulek. První z nich obsahuje data o záložkách
 Pro uložení textů, ve kterých se bude vyhledávat jsem použil Elasticsearch. Elasticsearch je určený primárně k indexaci dat a vyhledávání v nich. Pro účely práce jsem do něj uložil data tvořená větším množstvím textu, ve kterých budu provádět vyhledávání.
 
 \paragraph{Texty Bible}
-Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje \autoref{code:bible-index}.
+Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje zdrojový kód \ref{code:bible-index}.
 
 V databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou strukturu kvůli lepší indexaci ukládám po jednotlivých verších s jejich přesným umístěním. Záznam tak obsahuje kód překladu, ke kterému patří, číslo knihy, kapitoly a verše. Dále obsahuje samotný text, který se indexuje a vlastnost \lstinline{is_header}, která určuje, jestli se jedná o nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i v databázi.
 
-\begin{lstlisting}[language={JavaScript}, caption={index Bible}, label={code:bible-index}]
-{
-  index: 'bible',
-  mappings: {
-    properties: {
-      translation: { type: 'keyword' },
-      book: { type: 'integer' },
-      chapter: { type: 'integer' },
-      verse: { type: 'integer' },
-      text: { type: 'text' },
-      is_header: { type: 'boolean' },
-    },
-  },
-}
-\end{lstlisting}
+\begin{kicode}{JavaScript}{code:bible-index}{Index Bible}
+	{
+    	index: 'bible',
+    	mappings: {
+           	properties: {
+               	translation: { type: 'keyword' },
+               	book: { type: 'integer' },
+               	chapter: { type: 'integer' },
+               	verse: { type: 'integer' },
+               	text: { type: 'text' },
+               	is_header: { type: 'boolean' },
+            },
+        },
+	}
+\end{kicode}
 
 \section{Implementace}
 Části projektu jsou rozděleny do samostatných kontejnerů, které spolu komunikují prostředním lokální sítě Dockeru.
@@ -448,9 +448,9 @@ Pokud dojde k vyvolání výjimky, přijme ji middleware pro obsluhu chyb, kter�
 
 
 \paragraph{Middleware pro validaci požadavků}
-Každý HTTP požadavek může obsahovat data od uživatele. Před předání k dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu (vizte \autoref{code:validator}).
+Každý HTTP požadavek může obsahovat data od uživatele. Před předání k dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu (vizte zdrojový kód \ref{code:validator}).
 
-\begin{lstlisting}[language={JavaScript}, caption={Middleware pro validaci požadavků}, label={code:validator}]
+\begin{kicode}{JavaScript}{code:validator}{Middleware pro validaci požadavků}
 export function requestValidator<T extends ZodType>(
   schema: T,
   part: string = 'params',
@@ -465,7 +465,7 @@ export function requestValidator<T extends ZodType>(
     }
   };
 }
-\end{lstlisting}
+\end{kicode}
 
 Validátor je implementován jako funkce vyššího řádu se dvěma parametry. První je zod schéma, které definuje žádaný formát objektu s daty od uživatele. Druhý parametr je textový řetězec, který určuje, jak uživatel data předal. Data mohou být předána buď v těle dotazu, jako součást url adresy, nebo jako HTTP parametry.
 
@@ -774,7 +774,6 @@ K textu je přiložena elektronická příloha. Ta obsahuje tato data:
 %% -------------------------------------------------------------------
 
 %% Sazba volitelného seznamu zkratek, za přílohami.
-%\printglossary
 
 %% Sazba povinné bibliografie, za přílohami (případně i za seznamem
 %% zkratek). Při použití BibLaTeXu použijte makro
