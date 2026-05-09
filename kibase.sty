@@ -12,8 +12,8 @@
 \RequirePackage{kvoptions}
 
 \SetupKeyvalOptions{
-  family=kib,
-  prefix=kib@
+	family=kib,
+	prefix=kib@
 }
 
 %% [init]{name}[default]
@@ -25,8 +25,6 @@
 \DeclareStringOption[true]{joinlists}[true]
 %% seznam obrázků
 \DeclareStringOption[true]{figures}[true]
-%% seznam tabulek
-\DeclareStringOption[true]{tables}[true]
 %% seznam vět
 \DeclareStringOption[false]{theorems}[true]
 %% seznam zdrojových kódů
@@ -83,14 +81,14 @@
 
 %% Seznam zkratek.
 \ifthenelse{\equal{\kib@glossaries}{true}}{
-  %% glossaries definuje \printindex (definovany take makeidx) i kdyz
-  %% by NEMEL bez parametru index!
-  \RequirePackage{savesym}
-  \savesymbol{printindex}
-  \RequirePackage[acronym,nonumberlist,sanitize=none]{glossaries}
-  \restoresymbol{GLS}{printindex}
+	%% glossaries definuje \printindex (definovany take makeidx) i kdyz
+	%% by NEMEL bez parametru index!
+	\RequirePackage{savesym}
+	\savesymbol{printindex}
+	\RequirePackage[acronym,nonumberlist,sanitize=none]{glossaries}
+	\restoresymbol{GLS}{printindex}
 }{
-  \relax
+	\relax
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,98 +118,98 @@
 
 %% Čestina.
 \ifthenelse{\equal{\kib@language}{czech}}{
-  \newcommand{\kitextdept}{\kitextdeptcz}
-  \newcommand{\kitextfaculty}{\kitextfacultycz}
-  \newcommand{\kitextuniv}{\kitextunivcz}
-  \def\@texttitle{Tituln\'{i} strana}
+\newcommand{\kitextdept}{\kitextdeptcz}
+\newcommand{\kitextfaculty}{\kitextfacultycz}
+\newcommand{\kitextuniv}{\kitextunivcz}
+\def\@texttitle{Tituln\'{i} strana}
 
-  \renewcommand{\lstlistlistingname}{Seznam zdrojov\'ych k\'od\r{u}}
-  \renewcommand{\lstlistingname}{Zdrojov\'y k\'od}
-  \newcommand{\listtheoremname}{Seznam v\v et}
+\renewcommand{\lstlistlistingname}{Seznam zdrojov\'ych k\'od\r{u}}
+\renewcommand{\lstlistingname}{Zdrojov\'y k\'od}
+\newcommand{\listtheoremname}{Seznam v\v et}
 
-  \def\@textdefinition{Definice}
-  \def\@textlemma{Lemma}
-  \def\@textconsequence{D\r{u}sledek}
-  \def\@textremark{Pozn\'{a}mka}
-  \def\@texttheorem{V\v{e}ta}
-  \def\@textproof{D\r{u}kaz}
-  \def\@textexample{P\v{r}\'{i}klad}
+\def\@textdefinition{Definice}
+\def\@textlemma{Lemma}
+\def\@textconsequence{D\r{u}sledek}
+\def\@textremark{Pozn\'{a}mka}
+\def\@texttheorem{V\v{e}ta}
+\def\@textproof{D\r{u}kaz}
+\def\@textexample{P\v{r}\'{i}klad}
 
-  \ifthenelse{\equal{\kib@glossaries}{true}}{
-    \def\@textindex{Rejst\v{r}\'{i}k}
-    \renewcommand{\acronymname}{Seznam zkratek}
-  }{
-    \relax
-  }
-
-  \newcommand{\buno}{bez \'{u}jmy na obecnosti}
-  \newcommand{\Buno}{Bez \'{u}jmy na obecnosti}
+\ifthenelse{\equal{\kib@glossaries}{true}}{
+\def\@textindex{Rejst\v{r}\'{i}k}
+\renewcommand{\acronymname}{Seznam zkratek}
 }{
-	\relax
+\relax
+}
+
+\newcommand{\buno}{bez \'{u}jmy na obecnosti}
+\newcommand{\Buno}{Bez \'{u}jmy na obecnosti}
+}{
+\relax
 }
 
 %% Angličtina.
 \ifthenelse{\equal{\kib@language}{english}}{
-  \newcommand{\kitextdept}{\kitextdepten}
-  \newcommand{\kitextfaculty}{\kitextfacultyen}
-  \newcommand{\kitextuniv}{\kitextuniven}
-  \def\@texttitle{Title page}
- 
-  \renewcommand{\lstlistlistingname}{List of source codes}
-  \renewcommand{\lstlistingname}{Source code}
-  \newcommand{\listtheoremname}{List of theorems}
+	\newcommand{\kitextdept}{\kitextdepten}
+	\newcommand{\kitextfaculty}{\kitextfacultyen}
+	\newcommand{\kitextuniv}{\kitextuniven}
+	\def\@texttitle{Title page}
 
-  \def\@textdefinition{Definition}
-  \def\@textlemma{Lemma}
-  \def\@textconsequence{Corollary}
-  \def\@textremark{Remark}
-  \def\@texttheorem{Theorem}
-  \def\@textproof{Proof}
-  \def\@textexample{Example}
+	\renewcommand{\lstlistlistingname}{List of source codes}
+	\renewcommand{\lstlistingname}{Source code}
+	\newcommand{\listtheoremname}{List of theorems}
 
-  \ifthenelse{\equal{\kib@glossaries}{true}}{
-    \def\@textindex{Index}
-    \renewcommand{\acronymname}{List of abbreviations}
-  }{
-    \relax
-  }
+	\def\@textdefinition{Definition}
+	\def\@textlemma{Lemma}
+	\def\@textconsequence{Corollary}
+	\def\@textremark{Remark}
+	\def\@texttheorem{Theorem}
+	\def\@textproof{Proof}
+	\def\@textexample{Example}
 
-  \newcommand{\buno}{without loss of generality}
-  \newcommand{\Buno}{Without loss of generality}
+	\ifthenelse{\equal{\kib@glossaries}{true}}{
+		\def\@textindex{Index}
+		\renewcommand{\acronymname}{List of abbreviations}
+	}{
+		\relax
+	}
+
+	\newcommand{\buno}{without loss of generality}
+	\newcommand{\Buno}{Without loss of generality}
 }{
 	\relax
 }
 
 %% Slovenština.
 \ifthenelse{\equal{\kib@language}{slovak}}{
-  \newcommand{\kitextdept}{\kitextdeptcz}
-  \newcommand{\kitextfaculty}{\kitextfacultycz}
-  \newcommand{\kitextuniv}{\kitextunivcz}
-  \def\@texttitle{Tituln\'{a} strana}
+\newcommand{\kitextdept}{\kitextdeptcz}
+\newcommand{\kitextfaculty}{\kitextfacultycz}
+\newcommand{\kitextuniv}{\kitextunivcz}
+\def\@texttitle{Tituln\'{a} strana}
 
-  \renewcommand{\lstlistlistingname}{Zoznam zdrojov\'ych k\'odov}
-  \renewcommand{\lstlistingname}{Zdrojov\'y k\'od}
-  \newcommand{\listtheoremname}{Zoznam viet}
+\renewcommand{\lstlistlistingname}{Zoznam zdrojov\'ych k\'odov}
+\renewcommand{\lstlistingname}{Zdrojov\'y k\'od}
+\newcommand{\listtheoremname}{Zoznam viet}
 
-  \def\@textdefinition{Defin\'icia}
-  \def\@textlemma{Lemma}
-  \def\@textconsequence{D\^osledok}
-  \def\@textremark{Pozn\'{a}mka}
-  \def\@texttheorem{Veta}
-  \def\@textproof{D\^okaz}
-  \def\@textexample{Pr\'{i}klad}
+\def\@textdefinition{Defin\'icia}
+\def\@textlemma{Lemma}
+\def\@textconsequence{D\^osledok}
+\def\@textremark{Pozn\'{a}mka}
+\def\@texttheorem{Veta}
+\def\@textproof{D\^okaz}
+\def\@textexample{Pr\'{i}klad}
 
-  \ifthenelse{\equal{\kib@glossaries}{true}}{
-    \def\@textindex{Register}
-    \renewcommand{\acronymname}{Zoznam skratiek}
-  }{
-    \relax
-  }
-
-  \newcommand{\buno}{bez ujmy na všeobecnosti}
-  \newcommand{\Buno}{Bez ujmy na všeobecnosti}
+\ifthenelse{\equal{\kib@glossaries}{true}}{
+	\def\@textindex{Register}
+	\renewcommand{\acronymname}{Zoznam skratiek}
 }{
 	\relax
+}
+
+\newcommand{\buno}{bez ujmy na všeobecnosti}
+\newcommand{\Buno}{Bez ujmy na všeobecnosti}
+}{
+\relax
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -219,17 +217,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \ifthenelse{\equal{\kib@logo}{black}}{
-  \def\@logofile{graphics/UP_znak_cerna}
+	\def\@logofile{graphics/UP_znak_cerna}
 }{
-  \ifthenelse{\equal{\kib@logo}{blue}}{
-    \def\@logofile{graphics/UP_znak}
-  }{
-    \ifthenelse{\equal{\kib@printversion}{true}}{
-      \def\@logofile{graphics/UP_znak_outline}
-    }{
-      \def\@logofile{graphics/UP_znak}
-    }
-  }
+	\ifthenelse{\equal{\kib@logo}{blue}}{
+		\def\@logofile{graphics/UP_znak}
+	}{
+		\ifthenelse{\equal{\kib@printversion}{true}}{
+			\def\@logofile{graphics/UP_znak_outline}
+		}{
+			\def\@logofile{graphics/UP_znak}
+		}
+	}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -261,10 +259,10 @@
 \RequirePackage[autostyle=try]{csquotes}
 
 \DeclareQuoteStyle{czech}
-	{\quotedblbase}
-	{\textquotedblleft}
-	{\textquoteleft}
-	{\textquoteright}
+{\quotedblbase}
+{\textquotedblleft}
+{\textquoteleft}
+{\textquoteright}
 
 \DeclareQuoteAlias{czech}{slovak}
 
@@ -287,23 +285,23 @@
 
 %% Barevné odkazy.
 \ifthenelse{\equal{\kib@printversion}{true}}{
-  \hypersetup{
-    colorlinks=false
-  }
+	\hypersetup{
+		colorlinks=false
+	}
 }{
-  \hypersetup{
-    colorlinks=true
-  }
+	\hypersetup{
+		colorlinks=true
+	}
 }
 
 %% Nastavení odkazů a záložek.
 \hypersetup{
-  linktocpage=true, pdfstartpage=1, pageanchor=true,
-  pdfstartview=FitV, breaklinks=true, pdfpagemode=UseNone, 
-  plainpages=false, bookmarksnumbered,
-  hypertexnames=true, pdfhighlight=/O,
-  urlcolor=upblue, linkcolor=upblue, 
-  citecolor=upblue
+	linktocpage=true, pdfstartpage=1, pageanchor=true,
+	pdfstartview=FitV, breaklinks=true, pdfpagemode=UseNone,
+	plainpages=false, bookmarksnumbered,
+	hypertexnames=true, pdfhighlight=/O,
+	urlcolor=upblue, linkcolor=upblue,
+	citecolor=upblue
 }
 
 \let\orghref=\href
@@ -313,11 +311,11 @@
 %% \renewcommand{\url}[1]{\orghref{#1}{#1}}
 
 \ifthenelse{\equal{\kib@printversion}{true}}{
-%% Odkazy s uvedením adresy v tiskové verzi dokumentu.
-  \renewcommand{\href}[2]{#2 (\orghref{#1}{#1})}
-  \newcommand{\mail}[2]{#2 (\orghref{mailto:#1}{#1})}
+	%% Odkazy s uvedením adresy v tiskové verzi dokumentu.
+	\renewcommand{\href}[2]{#2 (\orghref{#1}{#1})}
+	\newcommand{\mail}[2]{#2 (\orghref{mailto:#1}{#1})}
 }{
-%% Makro pro mail.
+	%% Makro pro mail.
 	\newcommand{\mail}[2]{\href{mailto:#1}{#2}}
 }
 
@@ -335,7 +333,7 @@
 
 	\let\orgprintglossary=\printglossary
 
-  %% Tisk seznamu zkratek od nové strany + záznam do obsahu.
+	%% Tisk seznamu zkratek od nové strany + záznam do obsahu.
 	\renewcommand{\printglossary}{
 		\clearpage
 		\phantomsection
@@ -343,7 +341,7 @@
 		\orgprintglossary[type=\acronymtype]
 	}
 }{
-  \renewcommand{\printglossary}{
+	\renewcommand{\printglossary}{
 		\relax
 	}
 }
@@ -368,29 +366,29 @@
 
 %% Předefinování prostředí pro sazbu rejstříku (podle starého stylu).
 \renewenvironment{theindex}{
-  \newpage
-  \bgroup
-  \section*{\@textindex\@mkboth{\@textindex}{\@textindex}}
-  \addcontentsline{toc}{section}{\@textindex}
-  \def\item{\par}
-  \def\subitem{\par---\kern1ex}
-  \def\subsubitem{\par---\kern1ex---\kern1ex}
-  \def\indexspace{\smallskip}
-  \setlength{\parindent}{-2em}
-  \setlength{\leftskip}{2em}
-  \begin{multicols*}{\indexcolumns}
-  } {
-\end{multicols*}
-\egroup
+	\newpage
+	\bgroup
+	\section*{\@textindex\@mkboth{\@textindex}{\@textindex}}
+	\addcontentsline{toc}{section}{\@textindex}
+	\def\item{\par}
+	\def\subitem{\par---\kern1ex}
+	\def\subsubitem{\par---\kern1ex---\kern1ex}
+	\def\indexspace{\smallskip}
+	\setlength{\parindent}{-2em}
+	\setlength{\leftskip}{2em}
+	\begin{multicols*}{\indexcolumns}
+		} {
+	\end{multicols*}
+	\egroup
 }
 
 \let\orgprintindex=\printindex
 
 %% Tisk rejstříku od nové strany.
 \renewcommand{\printindex}{
-  \clearpage
-  \phantomsection
-  \orgprintindex
+	\clearpage
+	\phantomsection
+	\orgprintindex
 }
 
 \ifthenelse{\equal{\kib@printversion}{true}}{
@@ -410,98 +408,98 @@
 
 %% BibLaTeX.
 \ifthenelse{\equal{\kib@biblatex}{true}}{
-  %% Volba backendu.
-  \newcommand{\kibibliobackend}{biber}
-  
-  %% Načtení BibLaTeXu.
-  %% Čestina.
-  \ifthenelse{\equal{\kib@language}{czech}}{
-    \RequirePackage[
-      natbib=true,
-      backend=\kibibliobackend,
-      sortcites=true,
-      style=\kib@bibstyle,
-      babel=other,
-      sortlocale=cs_CZ,
-      bibencoding=\kib@bibencoding
-    ]{biblatex}
-  }{
-    \relax
-  }
-  %% Angličtina.
-  \ifthenelse{\equal{\kib@language}{english}}{
-    \RequirePackage[
-      natbib=true,
-      backend=\kibibliobackend,
-      sortcites=true,
-      style=\kib@bibstyle,
-      babel=other,
-      sortlocale=en_GB,
-      bibencoding=\kib@bibencoding,
-      spacecolon=false
-    ]{biblatex}
-  }{
-    \relax
-  }
-  %% Slovenština.
-  \ifthenelse{\equal{\kib@language}{slovak}}{
-    \RequirePackage[
-      natbib=true,
-      backend=\kibibliobackend,
-      sortcites=true,
-      style=\kib@bibstyle,
-      babel=other,
-      sortlocale=sk_SK,
-      bibencoding=\kib@bibencoding
-    ]{biblatex}
-  }{
-    \relax
-  }
+	%% Volba backendu.
+	\newcommand{\kibibliobackend}{biber}
 
-  %% První řádek záznamu nechceme předsazovat.
-  \setlength{\bibhang}{0pt}
+	%% Načtení BibLaTeXu.
+	%% Čestina.
+	\ifthenelse{\equal{\kib@language}{czech}}{
+		\RequirePackage[
+			natbib=true,
+			backend=\kibibliobackend,
+			sortcites=true,
+			style=\kib@bibstyle,
+			babel=other,
+			sortlocale=cs_CZ,
+			bibencoding=\kib@bibencoding
+		]{biblatex}
+	}{
+		\relax
+	}
+	%% Angličtina.
+	\ifthenelse{\equal{\kib@language}{english}}{
+		\RequirePackage[
+			natbib=true,
+			backend=\kibibliobackend,
+			sortcites=true,
+			style=\kib@bibstyle,
+			babel=other,
+			sortlocale=en_GB,
+			bibencoding=\kib@bibencoding,
+			spacecolon=false
+		]{biblatex}
+	}{
+		\relax
+	}
+	%% Slovenština.
+	\ifthenelse{\equal{\kib@language}{slovak}}{
+		\RequirePackage[
+			natbib=true,
+			backend=\kibibliobackend,
+			sortcites=true,
+			style=\kib@bibstyle,
+			babel=other,
+			sortlocale=sk_SK,
+			bibencoding=\kib@bibencoding
+		]{biblatex}
+	}{
+		\relax
+	}
 
-  %% Přeformátovat číslo záznamu.
-  \ifthenelse{\equal{\kib@bibstyle}{iso-numeric}}{
-    \renewcommand\MethodFormat{\printtext[labelnumberwidth]{\mkbibbrackets{\printfield{prefixnumber}\printfield{labelnumber}}}}
-  } {
-    \relax  
-  }
+	%% První řádek záznamu nechceme předsazovat.
+	\setlength{\bibhang}{0pt}
 
-  \let\orgprintbibliography=\printbibliography
+	%% Přeformátovat číslo záznamu.
+	\ifthenelse{\equal{\kib@bibstyle}{iso-numeric}}{
+		\renewcommand\MethodFormat{\printtext[labelnumberwidth]{\mkbibbrackets{\printfield{prefixnumber}\printfield{labelnumber}}}}
+	} {
+		\relax
+	}
 
-  %% Tisk bibliografie od nové strany + záznam do obsahu.
-  \renewcommand{\printbibliography}{
-    \clearpage
-    \phantomsection
-    \addcontentsline{toc}{section}{\refname}
-    \orgprintbibliography
-  }
+	\let\orgprintbibliography=\printbibliography
 
-  %% Umlčení TeXu v případě "drobných" přetečení textu, která se v
-  %% bibliografii dějí běžně.
-  \setcounter{biburlnumpenalty}{9000}
-  \setcounter{biburlucpenalty}{9000}
-  \setcounter{biburllcpenalty}{9000}
+	%% Tisk bibliografie od nové strany + záznam do obsahu.
+	\renewcommand{\printbibliography}{
+		\clearpage
+		\phantomsection
+		\addcontentsline{toc}{section}{\refname}
+		\orgprintbibliography
+	}
+
+	%% Umlčení TeXu v případě "drobných" přetečení textu, která se v
+	%% bibliografii dějí běžně.
+	\setcounter{biburlnumpenalty}{9000}
+	\setcounter{biburlucpenalty}{9000}
+	\setcounter{biburllcpenalty}{9000}
 }{
-  \relax
+	\relax
 }
 
 %% Redefinice prostředí thebibliography (podle starého stylu).
 \renewenvironment{thebibliography}[1]{
-  \clearpage
+	\clearpage
 	\section*{\bibname
-    \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}}
+	  \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}}
 	\addcontentsline{toc}{section}{\bibname}
 	\list{\@biblabel{\@arabic\c@enumiv}}
 	{\settowidth\labelwidth{\@biblabel{#1}}
-          %% bez odsazeni (jako v BibLaTeXu)
-    \leftmargin0pt%\labelwidth
-%    \advance\leftmargin\labelsep
-    \@openbib@code
-    \usecounter{enumiv}
-    \let\p@enumiv\@empty
-    \renewcommand\theenumiv{\@arabic\c@enumiv}}
+		%% bez odsazeni (jako v BibLaTeXu)
+		\leftmargin0pt%\labelwidth
+		%    \advance\leftmargin\labelsep
+		\@openbib@code
+		\usecounter{enumiv}
+		\let\p@enumiv\@empty
+		\renewcommand\theenumiv{\@arabic\c@enumiv}}
 	\sloppy
 	\clubpenalty4000
 	\@clubpenalty \clubpenalty
@@ -510,7 +508,7 @@
 } {
 	\def\@noitemerr
 	{\@latex@warning{Empty `thebibliography' environment}}
-  	\endlist
+	\endlist
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -529,9 +527,9 @@
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 \newcommand{\subsubsubsection}{\@startsection{paragraph}{4}{0ex}
-   {-3.25ex plus -1ex minus -0.2ex}
-   {1.5ex plus 0.2ex}%
-   {\normalfont\normalsize\bfseries}}
+	{-3.25ex plus -1ex minus -0.2ex}
+	{1.5ex plus 0.2ex}%
+	{\normalfont\normalsize\bfseries}}
 
 \let\orgtableofcontents=\tableofcontents
 
@@ -556,63 +554,63 @@
 
 %% Modifikace originálních maker, aby respektovala jiný obsah.
 \lst@UserCommand\lstlistoflistings{\bgroup
-    \let\contentsname\lstlistlistingname
-    \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lol}}
-    \orgtableofcontents \egroup}
+	\let\contentsname\lstlistlistingname
+	\let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lol}}
+	\orgtableofcontents \egroup}
 
 %% Definice základního stylu sazby zdroj. kódů.
 \lstdefinestyle{kibasestyle}{
-	breaklines=true,
-	flexiblecolumns=true,
-	basicstyle=\footnotesize\ttfamily,
-	keywordstyle=\bfseries,
-	commentstyle=\color{gray},
-	stringstyle=\color{black},
-	numberbychapter=false,
-	escapeinside={£*}{*£},
-	firstnumber=1,
-	numbers=left,
-	captionpos=b,
-	numbersep=10pt,
-	inputencoding=\kib@encoding,
-	numberstyle=\scriptsize\ttfamily,
-	stepnumber=1,
-	showstringspaces=false,
-	tabsize=2,
-	extendedchars=true,
-	literate=
-        {á}{{\'a}}1
-        {í}{{\'i}}1
-        {é}{{\'e}}1
-        {ý}{{\'y}}1
-        {ú}{{\'u}}1
-        {ó}{{\'o}}1
-        {ě}{{\v{e}}}1
-        {š}{{\v{s}}}1
-        {č}{{\v{c}}}1
-        {ř}{{\v{r}}}1
-        {ž}{{\v{z}}}1
-        {ď}{{\v{d}}}1
-        {ť}{{\v{t}}}1
-        {ň}{{\v{n}}}1                
-        {ů}{{\r{u}}}1
-        {ô}{{\^o}}1
-        {Á}{{\'A}}1
-        {Í}{{\'I}}1
-        {É}{{\'E}}1
-        {Ý}{{\'Y}}1
-        {Ú}{{\'U}}1
-        {Ó}{{\'O}}1
-        {Ě}{{\v{E}}}1
-        {Š}{{\v{S}}}1
-        {Č}{{\v{C}}}1
-        {Ř}{{\v{R}}}1
-        {Ž}{{\v{Z}}}1
-        {Ď}{{\v{D}}}1
-        {Ť}{{\v{T}}}1
-        {Ň}{{\v{N}}}1                
-        {Ů}{{\r{U}}}1    
-        {Ô}{{\^o}}1
+breaklines=true,
+flexiblecolumns=true,
+basicstyle=\footnotesize\ttfamily,
+keywordstyle=\bfseries,
+commentstyle=\color{gray},
+stringstyle=\color{black},
+numberbychapter=false,
+escapeinside={£*}{*£},
+firstnumber=1,
+numbers=left,
+captionpos=b,
+numbersep=10pt,
+inputencoding=\kib@encoding,
+numberstyle=\scriptsize\ttfamily,
+stepnumber=1,
+showstringspaces=false,
+tabsize=2,
+extendedchars=true,
+literate=
+	{á}{{\'a}}1
+{í}{{\'i}}1
+{é}{{\'e}}1
+{ý}{{\'y}}1
+{ú}{{\'u}}1
+{ó}{{\'o}}1
+{ě}{{\v{e}}}1
+{š}{{\v{s}}}1
+{č}{{\v{c}}}1
+{ř}{{\v{r}}}1
+{ž}{{\v{z}}}1
+{ď}{{\v{d}}}1
+{ť}{{\v{t}}}1
+{ň}{{\v{n}}}1
+{ů}{{\r{u}}}1
+{ô}{{\^o}}1
+{Á}{{\'A}}1
+{Í}{{\'I}}1
+{É}{{\'E}}1
+{Ý}{{\'Y}}1
+{Ú}{{\'U}}1
+{Ó}{{\'O}}1
+{Ě}{{\v{E}}}1
+{Š}{{\v{S}}}1
+{Č}{{\v{C}}}1
+{Ř}{{\v{R}}}1
+{Ž}{{\v{Z}}}1
+{Ď}{{\v{D}}}1
+{Ť}{{\v{T}}}1
+{Ň}{{\v{N}}}1
+{Ů}{{\r{U}}}1
+{Ô}{{\^o}}1
 }
 
 %% Definice dodatečných jazyků.
@@ -627,8 +625,8 @@
 	sensitive=false,
 }
 
-\lstdefinelanguage{CSS}{	
-  morekeywords={accelerator,azimuth,background,background-attachment,background-color,background-image,background-position,background-position-x,background-position-y,background-repeat,behavior,border,border-bottom,border-bottom-color,border-bottom-style,border-bottom-width,border-collapse,border-color,border-left,border-left-color,border-left-style,border-left-width,border-right,border-right-color,border-right-style,border-right-width,border-spacing,border-style,border-top,border-top-color,border-top-style,border-top-width,border-width,bottom,caption-side,clear,clip,color,content,counter-increment,counter-reset,cue,cue-after,cue-before,cursor,direction,display,elevation,empty-cells,filter,float,font,font-family,font-size,font-size-adjust,font-stretch,font-style,font-variant,font-weight,height,ime-mode,include-source,layer-background-color,layer-background-image,layout-flow,layout-grid,layout-grid-char,layout-grid-char-spacing,layout-grid-line,layout-grid-mode,layout-grid-type,left,letter-spacing,line-break,line-height,list-style,list-style-image,list-style-position,list-style-type,margin,margin-bottom,margin-left,margin-right,margin-top,marker-offset,marks,max-height,max-width,min-height,min-width,-moz-binding,-moz-border-radius,-moz-border-radius-topleft,-moz-border-radius-topright,-moz-border-radius-bottomright,-moz-border-radius-bottomleft,-moz-border-top-colors,-moz-border-right-colors,-moz-border-bottom-colors,-moz-border-left-colors,-moz-opacity,-moz-outline,-moz-outline-color,-moz-outline-style,-moz-outline-width,-moz-user-focus,-moz-user-input,-moz-user-modify,-moz-user-select,orphans,outline,outline-color,outline-style,outline-width,overflow,overflow-X,overflow-Y,padding,padding-bottom,padding-left,padding-right,padding-top,page,page-break-after,page-break-before,page-break-inside,pause,pause-after,pause-before,pitch,pitch-range,play-during,position,quotes,-replace,richness,right,ruby-align,ruby-overhang,ruby-position,-set-link-source,size,speak,speak-header,speak-numeral,speak-punctuation,speech-rate,stress,scrollbar-arrow-color,scrollbar-base-color,scrollbar-dark-shadow-color,scrollbar-face-color,scrollbar-highlight-color,scrollbar-shadow-color,scrollbar-3d-light-color,scrollbar-track-color,table-layout,text-align,text-align-last,text-decoration,text-indent,text-justify,text-overflow,text-shadow,text-transform,text-autospace,text-kashida-space,text-underline-position,top,unicode-bidi,-use-link-source,vertical-align,visibility,voice-family,volume,white-space,widows,width,word-break,word-spacing,word-wrap,writing-mode,z-index,zoom,},
+\lstdefinelanguage{CSS}{
+	morekeywords={accelerator,azimuth,background,background-attachment,background-color,background-image,background-position,background-position-x,background-position-y,background-repeat,behavior,border,border-bottom,border-bottom-color,border-bottom-style,border-bottom-width,border-collapse,border-color,border-left,border-left-color,border-left-style,border-left-width,border-right,border-right-color,border-right-style,border-right-width,border-spacing,border-style,border-top,border-top-color,border-top-style,border-top-width,border-width,bottom,caption-side,clear,clip,color,content,counter-increment,counter-reset,cue,cue-after,cue-before,cursor,direction,display,elevation,empty-cells,filter,float,font,font-family,font-size,font-size-adjust,font-stretch,font-style,font-variant,font-weight,height,ime-mode,include-source,layer-background-color,layer-background-image,layout-flow,layout-grid,layout-grid-char,layout-grid-char-spacing,layout-grid-line,layout-grid-mode,layout-grid-type,left,letter-spacing,line-break,line-height,list-style,list-style-image,list-style-position,list-style-type,margin,margin-bottom,margin-left,margin-right,margin-top,marker-offset,marks,max-height,max-width,min-height,min-width,-moz-binding,-moz-border-radius,-moz-border-radius-topleft,-moz-border-radius-topright,-moz-border-radius-bottomright,-moz-border-radius-bottomleft,-moz-border-top-colors,-moz-border-right-colors,-moz-border-bottom-colors,-moz-border-left-colors,-moz-opacity,-moz-outline,-moz-outline-color,-moz-outline-style,-moz-outline-width,-moz-user-focus,-moz-user-input,-moz-user-modify,-moz-user-select,orphans,outline,outline-color,outline-style,outline-width,overflow,overflow-X,overflow-Y,padding,padding-bottom,padding-left,padding-right,padding-top,page,page-break-after,page-break-before,page-break-inside,pause,pause-after,pause-before,pitch,pitch-range,play-during,position,quotes,-replace,richness,right,ruby-align,ruby-overhang,ruby-position,-set-link-source,size,speak,speak-header,speak-numeral,speak-punctuation,speech-rate,stress,scrollbar-arrow-color,scrollbar-base-color,scrollbar-dark-shadow-color,scrollbar-face-color,scrollbar-highlight-color,scrollbar-shadow-color,scrollbar-3d-light-color,scrollbar-track-color,table-layout,text-align,text-align-last,text-decoration,text-indent,text-justify,text-overflow,text-shadow,text-transform,text-autospace,text-kashida-space,text-underline-position,top,unicode-bidi,-use-link-source,vertical-align,visibility,voice-family,volume,white-space,widows,width,word-break,word-spacing,word-wrap,writing-mode,z-index,zoom,},
 	sensitive=false,
 	morecomment=[s][commentstyle]{/*}{*/},
 }
@@ -642,7 +640,7 @@
 }
 
 \lstdefinelanguage{cpp}{
-  morekeywords={int,enum,struct,static,bool,return,for,if,void,ifndef,define,endif,class,constexpr,new,const,auto,double,public,private,protected,signals,slots},
+	morekeywords={int,enum,struct,static,bool,return,for,if,void,ifndef,define,endif,class,constexpr,new,const,auto,double,public,private,protected,signals,slots},
 	sensitive=false,
 	morecomment=[s][commentstyle]{/*}{*/},
 	morecomment=[l][commentstyle]{//},
@@ -670,7 +668,7 @@
 \newcommand{\kiinlinecode}[3]{\lstinline[style=kibasestyle,alsoletter={\{\}\\},language=#1]#2#3#2\ignorespacesafterend}
 
 \lstnewenvironment{kicode}[3]{
-  \lstset{language=#1,alsoletter={\{\}\\},float=ht,style=kibasestyle,firstnumber=1,caption={#3},label={#2},aboveskip=10px,belowskip=15px}
+	\lstset{language=#1,alsoletter={\{\}\\},float=ht,style=kibasestyle,firstnumber=1,caption={#3},label={#2},aboveskip=10px,belowskip=15px}
 }{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -732,7 +730,7 @@
 
 %% Seznam teorémů.
 \renewcommand{\listoftheorems}{
-  \orglistoftheorems[ignoreall,show={definition,consequence,lemma,remark,theorem,proof,example}]
+	\orglistoftheorems[ignoreall,show={definition,consequence,lemma,remark,theorem,proof,example}]
 }
 
 %% Čítání rovnic na základě sekcí.
@@ -743,51 +741,51 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\@printlists}{
-  \cleardoublepage
-  \ifthenelse{\equal{\kib@figures}{true}}{
-    \listoffigures
-    \ifthenelse{\equal{\kib@joinlists}{true}}{
-      \relax
-    }{
-      \clearpage
-    }
-  }{
-    \relax
-  }
-  
-  \ifthenelse{\equal{\kib@tables}{true}}{
-    \listoftables
-    \ifthenelse{\equal{\kib@joinlists}{true}}{
-      \relax
-    }{
-      \clearpage
-    }
-  }{
-    \relax
-  }
+	\cleardoublepage
+	\ifthenelse{\equal{\kib@figures}{true}}{
+		\listoffigures
+		\ifthenelse{\equal{\kib@joinlists}{true}}{
+			\relax
+		}{
+			\clearpage
+		}
+	}{
+		\relax
+	}
 
-  \ifthenelse{\equal{\kib@theorems}{true}}{
-    \listoftheorems
-    \ifthenelse{\equal{\kib@joinlists}{true}}{
-      \relax
-    }{
-      \clearpage
-    }
-  }{
-    \relax
-  }
+	\ifthenelse{\equal{\kib@tables}{true}}{
+		\listoftables
+		\ifthenelse{\equal{\kib@joinlists}{true}}{
+			\relax
+		}{
+			\clearpage
+		}
+	}{
+		\relax
+	}
 
-  \ifthenelse{\equal{\kib@sourcecodes}{true}}{
-    \lstlistoflistings
-    \ifthenelse{\equal{\kib@joinlists}{true}}{
-      \relax
-    }{
-      \clearpage
-    }
-  }{
-    \relax
-  }
-  \cleardoublepage
+	\ifthenelse{\equal{\kib@theorems}{true}}{
+		\listoftheorems
+		\ifthenelse{\equal{\kib@joinlists}{true}}{
+			\relax
+		}{
+			\clearpage
+		}
+	}{
+		\relax
+	}
+
+	\ifthenelse{\equal{\kib@sourcecodes}{true}}{
+		\lstlistoflistings
+		\ifthenelse{\equal{\kib@joinlists}{true}}{
+			\relax
+		}{
+			\clearpage
+		}
+	}{
+		\relax
+	}
+	\cleardoublepage
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
