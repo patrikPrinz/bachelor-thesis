@@ -130,7 +130,7 @@
 %% Balíky prostředí pro ukázky zdrojových kódů
 \usepackage{listings}
 \usepackage{xcolor}
-
+\usepackage{url}
 \lstset{
     breaklines=true,
     breakatwhitespace=true
@@ -207,8 +207,7 @@ V~rámci této práce jsem hledal a~procházel i~další software zaměřený na
 BibleGateway\cite{biblegateway} je webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a~neimplementuje funkcionality jako modlitební skupiny, nebo žaltář a~další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a~není v~souladu s~mými požadavky.
 
 \subsection{Beblia.com}
-Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překladů a~v~rámci projektu je k~dispozici i~databáze různých překladů
-v~XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
+Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překladů a~v~rámci projektu je k~dispozici i~databáze různých překladů v~XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora. Formát textů také není nijak zdokumentovaný. Proto jsem se rozhodl pro využití textů ve formátu Zefania XLM\footnote{Zefania je standardizované XML schéma pro uchovávání textů Bible\cite{zefania}}, které mají k dispozici dokumentaci a jsou často používané i v jiných projektech.
 
 \section{Analýza požadavků}
 Software je určen především pro Řeckokatolickou farnost v~Olomouci, její farníky a~osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a~informace pro členy společenství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v~budoucnu přínosem i~pro další řeckokatolíky v~České republice mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty, je velké množství a~některé z~nich se mění podle svátku a~období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
@@ -286,8 +285,11 @@ Vue.js má velmi přehlednou a~obsáhlou dokumentaci. Systém komponent a~mnoho 
 
 Před vývojem tohoto projektu jsem neměl mnoho zkušeností s~vývojem frontendu za použití obdobných frameworků. Hlavní volbou pro tuto variantu tak byl jednoduchý proces učení a~dostatek dostupné dokumentace spolu s~rozsáhlým ekosystémem kompatibilních knihoven a~rozšíření.
 
+\subsubsection{Vite}
+Vite\cite{vite} je sada nástrojů pro testování a sestavení moderních webových aplikací. Na této technologii jsou postavené i současné verze frameworku Vue.js. Vite poskytuje vývojový server, prostředí pro běh testů a nástroj pro sestavení artefaktů aplikace pro nasazení do provozu na webovém serveru. Ve svém projektu jsem Vite použil jako závislost Vue.js.
+
 \subsubsection{Pinia}
-Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují sdílet globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a~settery pro vlastnosti, které jsou ve storu uloženy.
+Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Pinia zajišťuje správu globálního stavu napříč aplikací. Poskytuje funkcionální rozhraní a typovou kontrolu. Takzvaný Pinia store, který je klíčovou entitou knihovny, poskytuje uživateli možnost vytvářet úložiště s gettery a settery, která jsou svou filosofií velmi podobná Vue.js komponentám.
 
 Pinia je v~současnosti doporučeným řešením pro správu globálního stavu v~aplikacích založených na Vue.js a~má oficiální podporu.
 \subsubsection{Elasticsearch}
@@ -389,7 +391,7 @@ V~databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou s
 \subsection{Monorepozitář}
 Kontejnery tvořící projekt se vytvářejí z~kódu a~konfigurací uložených v~monorepozitářové struktuře. Data jednotlivých kontejnerů jsou rozdělena do balíčků, které jsou reprezentovány podadresáři s~příslušnými názvy v~adresáři packages.
 
-Hlavní výhodou struktury monorepozitáře je přirozené sdružení více balíčků do jednoho projektu. To umožňuje jednodušší proces sestavení a~vydávání nových verzí. Dále je výhodná i~možnost sdílení konfigurace a~některých závislostí. Díky společnému umístění v~projektu lze velmi jednoduše spustit celý projekt v~testovacím prostředí a~ověřit správnou komunikaci balíčků mezi sebou a~případné odstranění chyb. Projekt je také velmi jednoduše přenositelný a~na novém zařízení vyžaduje jen minimální konfiguraci.
+Hlavní výhodou struktury monorepozitáře je přirozené sdružení více balíčků do jednoho projektu. To umožňuje jednodušší proces sestavení a~vydávání nových verzí. Dále je výhodná i~možnost sdílení konfigurace a~některých závislostí. Díky společnému umístění v~projektu lze velmi jednoduše spustit celý projekt v~testovacím prostředí a~ověřit správnou komunikaci jednotlivých komponent. Projekt je také velmi jednoduše přenositelný a~na novém zařízení vyžaduje jen minimální konfiguraci.
 
 \subsubsection{Nástroje pro správu projektu}
 Každý balíček má vlastní specifické konfigurace jednotlivých nástrojů. Společné konfigurace, které jsou globální pro projekt nebo sdílené více balíčky, jsou umístěny v~hlavním adresáři projektu.
@@ -406,7 +408,7 @@ Server poskytuje HTTP API pro manipulaci s~daty uloženými v~Elasticsearch a~Po
 
 Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšiřitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části domény aplikace. Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a~umožňuje udržet si přehled o~částech, které budou ovlivněny případnými změnami.
 
-Modulární monolit je kombinací výhodných vlastností mikroservisů a~tradiční monolitické architektury. Celá aplikace je tak tvořena sdílenými nástroji a~express serverem spolu s~moduly, do kterých je rozdělena doménová logika aplikace. Modulární monolitická architektura je pro návrh a~nastavení složitější, než běžná monolitická architektura, poskytuje však přirozenější rozdělení kódu podle domény, namísto podle technického určení. Zároveň je podstatně jednodušší na správu, než architektura mikroservisů i~když poskytuje některé stejné výhody.
+Modulární monolit je kombinací výhodných vlastností architektury mikroslužeb a~tradiční monolitické architektury. Celá aplikace je tak tvořena sdílenými nástroji a~express serverem spolu s~moduly, do kterých je rozdělena doménová logika aplikace. Modulární monolitická architektura je pro návrh a~nastavení složitější, než běžná monolitická architektura, poskytuje však přirozenější rozdělení kódu podle domény, namísto podle technického určení. Zároveň je podstatně jednodušší na správu, než architektura mikroslužeb i~když poskytuje některé stejné výhody.
 
 Tuto architekturu jsem zvolil i~s~ohledem na budoucí údržbu a~další rozvoj aplikace. V~takto strukturovaném kódu se jednodušeji provádějí úpravy, protože části, které jsou spojeny doménou, a~tedy zároveň i~na sobě závislé, se nacházejí na stejném místě.
 
@@ -464,9 +466,9 @@ export function requestValidator<T extends ZodType>(
 
 Validátor je implementován jako funkce vyššího řádu se dvěma parametry. První je zod schéma, které definuje žádaný formát objektu s~daty od uživatele. Druhý parametr je textový řetězec, který určuje, jak uživatel data předal. Data mohou být předána buď v~těle dotazu, jako součást url adresy, nebo jako HTTP parametry.
 
-Všechny tři možnosti jsou v~expressu reprezentovány jako objekt v~dotazu. Dotaz validátor přijímá v~parametru req. Pokud validace proběhne správně, middleware přetypuje dotaz na generický typ ValidatedRequest<T>, kde T je typ objektu validovaných dat. Typ ValidatedRequest obsahuje vlastnost validated, ve které jsou zvalidovaná data uložena. Díky tomu má již TypeScript typovou kontrolu nad uživatelskými daty a~je možné s~nimi bezpečně pracovat. Middleware v~tom případě volá funkci next, která reprezentuje další funkci, která má požadavek zpracovávat.
+Všechny tři možnosti jsou v~expressu reprezentovány jako objekt v~dotazu. Dotaz validátor přijímá v~parametru req. Pokud validace proběhne správně, middleware přetypuje dotaz na generický typ \texttt{ValidatedRequest<T>}, kde \texttt{T} je typ objektu validovaných dat. Typ \texttt{ValidatedRequest} obsahuje vlastnost \texttt{validated}, ve které jsou zvalidovaná data uložena. Díky tomu má již TypeScript typovou kontrolu nad uživatelskými daty a~je možné s~nimi bezpečně pracovat. Middleware v~tom případě volá funkci \texttt{next}, která reprezentuje další funkci, která má požadavek zpracovávat.
 
-Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce next s~výjimkou ValidationError, čímž dojde k~předání požadavku systému pro ošetření výjimek.
+Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce \texttt{next} s~výjimkou \texttt{ValidationError}, čímž dojde k~předání požadavku systému pro ošetření výjimek.
 
 Reálným omezením tohoto návrhu je skutečnost, že není možné předávat uživatelská data v~jednom požadavku více metodami zároveň. Vzhledem k~aktuálnímu rozsahu projektu jsem však nenarazil na to, že by pro mne byla tato možnost klíčová. V~budoucnu je možné tento nedostatek vyřešit přidáním vlastností, které reprezentují jednotlivé metody dovnitř vlastnosti validated.
 
@@ -639,7 +641,7 @@ Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spou�
 Uchování a~přístup k~logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a~zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v~terminálu.
 
 \subsection{Spuštění projektu}
-Výsledné obrazy je možné spustit pomocí souboru \texttt{docker-compose.yaml}, který je umístěn ve složce release. Ten automaticky stáhne obrazy pro nejnovější verzi projektu a~spustí je. Pro spuštění na libovolném zařízení s~nainstalovaným Dockerem tak stačí spustit ve složce se staženým konfiguračním souborem docker compose příkaz \texttt{docker compose up}.
+Výsledné obrazy lze spustit pomocí příkazu \texttt{docker compose up} (na operačním systému Linux). K úspěšnému spuštění pomocí Docker compose je potřeba konfigurační soubor \path{release/docker-compose.yaml} v aktuálním adresáři. Po spuštění se automaticky stáhnou obrazy označené štítkem \texttt{latest} (aktuální verze).
 
 Do nastavení projektu je možné zasáhnout pomocí proměnných prostředí. Těm jsem se blíže věnoval v~přiložené dokumentaci projektu.
 
