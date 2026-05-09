@@ -500,12 +500,18 @@ Aplikace je složena z~těchto modulů:
 \subsubsection{Struktura modulu}
 Každý modul sdružuje funkcionality, které spadají do stejné domény. Po technické stránce je hlavní struktura modulu jednotná. Hlavní součásti a~jejich určení jsou vždy stejné. Hlavní úlohou serveru je poskytovat uživateli přístup k~datům v~databázi prostřednictvím HTTP rozhraní. Tomu odpovídá i~struktura každého modulu.
 
-Stěžejní částí každého modulu je v~případě této aplikace takzvaný servis. Servis je třída, která reprezentuje jednotlivé operace v~dané části domény. Například pro záložky by šlo o~možnost vypsat všechny záložky, přidat novou, nebo upravit existující. Servis tak poskytuje rozhraní, které používá typy reprezentující jednotlivé entity ve zvolené doméně. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a~business logikou v~servisu, nebo servisy ostatních modulů. Tím je zajištěno, že při manipulaci s~daty z~jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i~refactoring kódu.
+Stěžejní částí každého modulu je v~případě této aplikace takzvaná služba (anglicky \emph{service}). Služba je třída, která reprezentuje jednotlivé operace v~dané části domény. Například pro záložky by šlo o~možnost vypsat všechny záložky, přidat novou, nebo upravit existující. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a~business logikou ve~službě, nebo službou jiného modulu. Tím je zajištěno, že při manipulaci s~daty z~jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i~refactoring kódu. Typické schéma komunikace v rámci aplikace a mezi jednotlivými moduly je zobrazeno na obrázku \ref{fig:modules}.
 
+\begin{figure}[H]
+    \center
+	\includegraphics[width=0.7\linewidth]{images/diagrams/modules.png}
+	\caption{Schéma komunikace mezi entitami aplikace a moduly}
+	\label{fig:modules}
+\end{figure}
 
 \begin{itemize}
 	\item \textbf{Router} mapuje HTTP požadavky na příslušné metody controlleru. Prostřednictvím middlewaru se zde také provádí ověření, jestli je uživatel přihlášený a~provádí se validace dat požadavku.
-	\item \textbf{Controller} validuje a~zpracovává data a~požadavky. Zajišťuje komunikaci s~routerem a~spouští servis. Controller se stará o~úlohy specifické pro express. Extrahuje data z~Request objektu a~nastavuje data, která jsou odeslána zpět uživateli.
+	\item \textbf{Controller} validuje a~zpracovává data a~požadavky. Zajišťuje komunikaci s~routerem a~spouští službu. Controller se stará o~úlohy specifické pro express. Extrahuje data z~Request objektu a~nastavuje data, která jsou odeslána zpět uživateli.
 	\item \textbf{Service} zajišťuje získání a~zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi.
 	\item \textbf{Repository} zajišťuje komunikaci s~databází prostřednictvím adaptéru a~poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a~typy, které reflektují strukturu databáze. Zajišťuje kontrolu a~validaci dat. Obstarává konzistenci dat v~databázi.
 \end{itemize}
