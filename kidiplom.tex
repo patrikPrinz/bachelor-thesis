@@ -62,7 +62,7 @@
 %  language=english,
 %  font=sans,
 %  figures=false,
-%  tables=false,
+  tables=false,
 %  theorems,
 %  sourcecodes,
   glossaries,
@@ -135,7 +135,8 @@
 \usepackage{xcolor}
 
 \lstset{
-    basicstyle=\footnotesize
+    breaklines=true,
+    breakatwhitespace=true
 }
 
 \usepackage{float}
@@ -272,20 +273,21 @@ Node.js\cite{nodejs} je běhové prostředí pro jazyk JavaScript. Node lze vyu�
 
 Tuto technologii jsem se rozhodl použít pro backend projektu, protože její volba mi umožňuje použít stejný jazyk pro vývoj frontendu i backendu. To mi usnadnilo nastavení nástrojů pro správu kvality kódu a typovou kontrolu. Všechny balíčky tak mohou sdílet velkou část nastavení. I když je rozdíl mezi funkcí JavaScriptu v prohlížeči a v Node.js, základní koncepty a mechanismy jazyka zůstávají stejné.
 \subsubsection{Pnpm}
-Pnpm\cite{pnpm} je správce balíčků pro Node.js. Pnpm má podobné rozhraní jako npm. Oproti tomuto správci však poskytuje mnoho optimalizací rychlosti instalace a využití místa na disku. Dále také poskytuje možnost správy závislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s monorepozitářem, který v projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují pouze jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a na tyto závislosti odkazuje. Důsledkem této optimalizace je značně efektivnější využití místa na disku.
+Pnpm\cite{pnpm} je správce balíčků pro Node.js. Pnpm má podobné rozhraní jako npm. Oproti tomuto správci však poskytuje mnoho optimalizací rychlosti instalace a využití místa na disku. Dále také poskytuje možnost správy závislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s monorepozitářem\footnote{Monorepozitář je způsob strukturování při vývoji software, kdy je více projektů spojeno do jednoho repozitáře a správa verzí se pro ně realizuje společně.}, který v projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují pouze jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a na tyto závislosti odkazuje. Důsledkem této optimalizace je značně efektivnější využití místa na disku.
 \subsubsection{TypeScript}
 TypeScript\cite{typescript} je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v prostředí výše zmíněného Node.js i na frontendu aplikace pro běh v prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a v případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
-\subsubsection{Express}
-Express.js\cite{express} je framework pro vývoj webových aplikací i API v JavaScriptu. Poskytuje základní nástroje pro práci s HTTP požadavky, jejich zpracování, poskytuje vlastní router a také lze integrovat s mnoha rozšířeními i dalšími balíčky, protože je minimalistický a nezavádí téměř žádné vlastní konvence struktury projektu.
 
-Jeho minimalističnost a zaměření pouze na úkoly, které má plnit, spolu se stabilitou a snadným použitím byly pro mě hlavním důvodem pro jeho volbu. Toto mi umožnilo jednoduše jej použít jako jádro serverové části aplikace, ale zároveň mi i nadále zůstal prostor pro vlastní návrh struktury zbylých částí serveru.
+\subsubsection{Express}
+Express.js\cite{express} je framework pro vývoj webových aplikací i API v JavaScriptu a TypeScriptu. Poskytuje vlastní implementaci routeru, nástroje pro práci s HTTP požadavky a jejich zpracování. Díky minimalistickému návrhu jej lze snadno integrovat s mnoha rozšířeními i dalšími balíčky. Express, na rozdíl od většiny frameworků podobného zaměření, nevynucuje téměř žádné vlastní konvence struktury projektu.
+
+Pro vývoj tohoto projektu jsem Express zvolil především díky jeho jednoduchosti použití a volnosti při návrhu, kterou nabízí. Express je také velmi rozšířený, stabilní a poskytuje snadno použitelné rozhraní.
 
 \subsubsection{Vue.js}
 Vue.js\cite{vuejs} je framework pro vytváření webových uživatelských rozhraní. Vue.js Umožňuje uživateli vyvíjet aplikace s architekturou MVVM\cite{vue-mvvm}. Vue.js samo o sobě implementuje ViewModel část jako obousměrné provázání dat aplikace s uživatelským rozhraním.
 
 Vue.js také usnadňuje rozdělení uživatelského rozhraní do komponent, které jsou základními stavebními bloky aplikace. Komponenta sdružuje HTML kód, JavaScriptový kód a CSS styl do jednoho souboru.
 
-Vue.js má velmi přehlednou a obsáhlou dokumentaci. Systém komponent a mnoho hotových komponent a knihoven, které jsou s Vue.js kompatibilní poskytuje velmi pohodlný vývoj aplikací. Vue.js poskytuje mnoho možností, které je možné učit se v průběhu vývoje.
+Vue.js má velmi přehlednou a obsáhlou dokumentaci. Systém komponent a mnoho hotových komponent a knihoven, které jsou s Vue.js kompatibilní, poskytují velmi pohodlný vývoj aplikací.
 
 Před vývojem tohoto projektu jsem neměl mnoho zkušeností s vývojem frontendu za použití obdobných frameworků. Hlavní volbou pro tuto variantu tak byl jednoduchý proces učení a dostatek dostupné dokumentace spolu s rozsáhlým ekosystémem kompatibilních knihoven a rozšíření.
 
@@ -297,6 +299,12 @@ Pinia je v současnosti doporučeným řešením pro správu globálního stavu 
 Elasticsearch\cite{elasticsearch} je vyhledávací engine, který jsem se rozhodl použít k indexaci a vyhledávání v textech Bible a k jejich uložení. Aplikace může obsahovat libovolné množství různých překladů a Elasticsearch usnadňuje vyhledávání v nich.
 \subsubsection{PostgreSQL}
 PostgreSQL\cite{postgresql} je v současnosti velmi oblíbenou volbou při výběru relační databáze. PostgreSQL je velmi výkonná a je bez problémů kompatibilní s ostatními technologiemi, které používám. Relační model dat je vhodný pro uložení dat o uživatelských účtech a jiných dat, která mají pevnou strukturu. PostgreSQL také umožňuje ukládání JSON dokumentů, což jsem také v projektu úspěšně využil.
+
+\subsubsection{Kysely}
+Kysely\cite{kysely} je knihovna, která zajišťuje vytváření dotazů a spravuje připojení k databázi. Je použitelná s různými SQL databázovými systémy. Jednoduše se dá vužít i pro připojení k databázi PostgreSQL.
+
+Knihovnu Kysely jsem zvolil pro její jednoduchou integraci do projektu. Poskytuje také dobrou dokumentaci a jednoduché objektové rozhraní pro vytváření dotazů. Pomocí typové kontroly TypeScriptu Kysely poskytuje i kontrolu názvů tabulek, sloupců a jejich typu, což značně usnadňuje vývoj.
+
 \subsubsection{Docker}
 Docker\cite{docker} je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k distribuci aplikací.
 
@@ -468,7 +476,15 @@ Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce next s v�
 Reálným omezením tohoto návrhu je skutečnost, že není možné předávat uživatelská data v jednom požadavku více metodami zároveň. Vzhledem k aktuálnímu rozsahu projektu jsem však nenarazil na to, že by pro mne byla tato možnost klíčová. V budoucnu je možné tento nedostatek vyřešit přidáním vlastností, které reprezentují jednotlivé metody dovnitř vlastnosti validated.
 
 \paragraph{Připojení k databázi}
-Aplikace komunikuje se dvěma databázemi.
+Aplikace komunikuje se dvěma databázemi. PostgreSQL i Elasticsearch mají vlastní správu připojení a rozhraní pro jednodušší vytváření dotazů.
+
+\subparagraph{PostgreSQL}
+Pro připojení k PostgreSQL databázi je použita knihovna Kysely. Knihovna samotná poskytuje jednoduchý přístup ke správě připojení a vytváření dotazů. Ve zbytku projektu je rozhraní knihovny používáno přímo.
+
+\subparagraph{Elasticsearch}
+Pro komunikaci mezi Node.js aplikací a instancí Elasticsearch existuje knihovna stejného názvu. Tato knihovna poskytuje velmi základní rozhraní, proto jsem vytvořil třídu \lstinline{ElasticAdapter}, která nad ní vytváří vrstvu abstrakce. Ve třídě \lstinline{ElasticAdapter} jsou implementovány metody, které zajišťují vyhledávání, agregaci dat, vkládání dat a další operace. Tyto metody jsou navrženy podle potřeb, které vyvstaly při vývoji projektu.
+
+Komunikace s Elasticsearch probíhá prostřednictvím HTTP požadavků. Knihovna elasticsearch pouze tyto dotazy realizuje a kontroluje jejich strukturu. Třída \lstinline{ElasticAdapter} tak zajišťuje ošetření chyb, kontrolu typů a také základní společné nastavení pro jednotlivé skupiny dotazů (např. vyhledávání, hromadné vkládání, vyhledávání s agregací, ...).
 
 \subsubsection{Inicializace aplikace}
 Vstupním bodem pro start aplikace je soubor \lstinline{index.ts} v adresáři src tohoto modulu. Odtud se volá funkce \lstinline{initializePostgres}. Tato funkce vytvoří v databázi uživatele s administrátorskými oprávněními, pokud v databázi ještě žádný uživatel není. Login a heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v souboru \lstinline{bootstrap.ts}.
