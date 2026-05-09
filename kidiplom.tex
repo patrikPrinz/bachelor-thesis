@@ -1,48 +1,46 @@
-%%%  Ukázkový text a dokumentace stylu pro text závěrečné (bakalářské a
-%%%  diplomové) práce na KI PřF UP v Olomouci
+%%%  Ukázkový text a~dokumentace stylu pro text závěrečné (bakalářské a~%%%  diplomové) práce na KI PřF UP v~Olomouci
 %%%  Copyright (C) 2012 Martin Rotter, <rotter.martinos@gmail.com>
 %%%  Copyright (C) 2014 Jan Outrata, <jan.outrata@upol.cz>
 
 
-%%  Pro získání PDF souboru dokumentu je třeba tento zdrojový text v
-%%  LaTeXu přeložit (dvakrát) programem pdfLaTeX.
+%%  Pro získání PDF souboru dokumentu je třeba tento zdrojový text v~%%  LaTeXu přeložit (dvakrát) programem pdfLaTeX.
 
-%%  V případě použití programu BibLaTeX pro tvorbu seznamu literatury
-%%  je poté ještě třeba spustit program Biber s parametrem jméno
-%%  souboru zdrojového textu bez přípony a následně opět (dvakrát)
+%%  V~případě použití programu BibLaTeX pro tvorbu seznamu literatury
+%%  je poté ještě třeba spustit program Biber s~parametrem jméno
+%%  souboru zdrojového textu bez přípony a~následně opět (dvakrát)
 %%  přeložit zdrojový text programem pdfLaTeX.
 
-%%  Postup získání Postscriptového souboru je popsán v dokumentaci.
+%%  Postup získání Postscriptového souboru je popsán v~dokumentaci.
 
 
 %%  Třída dokumentu implementující styl pro závěrečnou práci. Vybrané
-%%  nepovinné parametry (ostatní v dokumentaci):
+%%  nepovinné parametry (ostatní v~dokumentaci):
 
 %%  'master' pro sazbu diplomové práce, jinak se sází bakalářská práce
 
 %%  'program=kód' pro Váš studijní program/obor (specializaci), kódy
 %%  pro diplomovou práci 'infoi' pro Informatiku (Obecná informatika),
 %%  'infui' pro Informatiku (Umělá inteligence), 'ainfpst' pro
-%%  Aplikovanou informatiku (Počítačové systémy a technologie), 'uinf'
+%%  Aplikovanou informatiku (Počítačové systémy a~technologie), 'uinf'
 %%  pro Učitelství informatiky pro střední školy, 'binf' pro
 %%  Bioinformatiku, 'inf' pro Informatiku (bez specializací) a 'ainf'
 %%  pro Aplikovanou informatiku (bez specializací), jinak je výchozí
-%%  ainfvs pro Aplikovanou informatiku (Vývoj software), a pro
+%%  ainfvs pro Aplikovanou informatiku (Vývoj software), a~pro
 %%  bakalářskou práci 'infoi' pro Informatiku (Obecná informatika),
-%%  'itp' pro Informační technologie v prezenční formě, 'itk' pro
-%%  Informační technologie v kombinované formě, 'infv' pro Informatiku
+%%  'itp' pro Informační technologie v~prezenční formě, 'itk' pro
+%%  Informační technologie v~kombinované formě, 'infv' pro Informatiku
 %%  pro vzdělávání, 'binf' pro Bioinfomatiku, 'inf' pro Informatiku
 %%  (bez specializací), 'ainfp' pro Aplikovanou informatiku (bez
-%%  specializací) v prezenční formě, 'ainfk' pro Aplikovanou
-%%  informatiku (bez specializací) v kombinované formě, jinak je
-%%  výchozí infpvs pro Informatiku (Programování a vývoj software)
+%%  specializací) v~prezenční formě, 'ainfk' pro Aplikovanou
+%%  informatiku (bez specializací) v~kombinované formě, jinak je
+%%  výchozí infpvs pro Informatiku (Programování a~vývoj software)
 
-%%  'printversion' pro sazbu verze pro tisk (nebarevné logo a odkazy,
-%%  odkazy s uvedením adresy za odkazem, ne odkazy do rejstříku),
+%%  'printversion' pro sazbu verze pro tisk (nebarevné logo a~odkazy,
+%%  odkazy s~uvedením adresy za odkazem, ne odkazy do rejstříku),
 %%  jinak verze pro prohlížeč
 
 %%  'biblatex' pro zapnutí podpory pro sazbu bibliografie pomocí
-%%  BibLaTeXu, jinak je výchozí sazba v prostředí thebibliography
+%%  BibLaTeXu, jinak je výchozí sazba v~prostředí thebibliography
 
 %%  'language=jazyk' pro jazyk práce, jazyky english pro anglický,
 %%  slovak pro slovenský, jinak je výchozí czech pro český
@@ -50,9 +48,9 @@
 %%  'font=sans' pro bezpatkový font (Iwona Light), jinak je výchozí
 %%  serif pro patkový (Latin Modern)
 
-%%  'figures, tables, theorems a sourcecodes' pro sazbu seznamu
-%%  obrázků, tabulek, vět a zdrojových kódů, jinak při =false se
-%%  nesází (u theorems a sourcecodes výchozí)
+%%  'figures, tables, theorems a~sourcecodes' pro sazbu seznamu
+%%  obrázků, tabulek, vět a~zdrojových kódů, jinak při =false se
+%%  nesází (u~theorems a~sourcecodes výchozí)
 
 \documentclass[
 %  master,
@@ -69,20 +67,19 @@
   index
 ]{kidiplom}
 
-%% Informace pro úvodní strany. V jazyku práce (pokud není v komentáři
-%% uvedeno česky) a anglicky. Uveďte všechny, u kterých není v
-%% komentáři uvedeno, že jsou volitelné. Při neuvedení se použijí
+%% Informace pro úvodní strany. V~jazyku práce (pokud není v~komentáři
+%% uvedeno česky) a~anglicky. Uveďte všechny, u~kterých není v~%% komentáři uvedeno, že jsou volitelné. Při neuvedení se použijí
 %% výchozí texty. Text pro jiný než nastavený jazyk práce (nepovinným
 %% parametrem language makra \documentclass, výchozí český) se zadává
-%% použitím makra s uvedením jazyka jako nepovinného parametru.
+%% použitím makra s~uvedením jazyka jako nepovinného parametru.
 
-%% Název práce, česky a anglicky. Měl by se vysázet na jeden řádek.
-\title{Webová aplikace s texty Bible}
+%% Název práce, česky a~anglicky. Měl by se vysázet na jeden řádek.
+\title{Webová aplikace s~texty Bible}
 \title[english]{Web application with Bible texts}
 
-%% Volitelný podnázev práce, česky a anglicky. Měl by se vysázet na
+%% Volitelný podnázev práce, česky a~anglicky. Měl by se vysázet na
 %% jeden řádek. Výchozí je prázdný.
-%\subtitle{Ukázkový text a dokumentace stylu v \LaTeX{}u}
+%\subtitle{Ukázkový text a~dokumentace stylu v \LaTeX{}u}
 %\subtitle[english]{Sample text and documentation of the \LaTeX{} style}
 
 %% Jméno autora práce. Makro nemá nepovinný parametr pro uvedení
@@ -97,30 +94,30 @@
 %% rok. Makro nemá nepovinný parametr pro uvedení jazyka.
 %\yearofsubmit{\the\year}
 
-%% Anotace práce, včetně anglické (obvykle překlad z jazyka
+%% Anotace práce, včetně anglické (obvykle překlad z~jazyka
 %% práce). Jeden odstavec!
-\annotation{Text se zaměřuje na popis vývoje a fungování webové aplikace, která obsahuje texty Bible a žaltáře určené pro Řeckokatolickou farnost v Olomouci. Zaměřuje se na analýzu požadavků, realizaci projektu a blíže popisuje použité koncepty z oblasti DevOps.}
+\annotation{Text se zaměřuje na popis vývoje a~fungování webové aplikace, která obsahuje texty Bible a~žaltáře určené pro Řeckokatolickou farnost v~Olomouci. Zaměřuje se na analýzu požadavků, realizaci projektu a~blíže popisuje použité koncepty z~oblasti DevOps.}
 
-\annotation[english]{This text focuses on development and description of functions of web application with Bible and psalter texts. This application is intended for use by Easter catholic parish in Olomouc. It more closely describes a process of requirement analysis, realization of the project and usage of DevOps concepts during the development process. }
+\annotation[english]{This text focuses on development and description of functions of web application with Bible and psalter texts. This application is intended for use by Easter catholic parish in Olomouc. It more closely describes a~process of requirement analysis, realization of the project and usage of DevOps concepts during the development process. }
 
 %% Klíčová slova práce, včetně anglických. Oddělená (obvykle) středníkem.
 \keywords{webová aplikace; Bible; PWA; TypeScript; DevOps; CI/CD}
 \keywords[english]{web application; Bible; PWA; TypeScript; DevOps; CI/CD}
 
-%% Volitelná specifikace příloh textu práce, i anglicky. Výchozí je
-%% 'elektronická data v systému katedry informatiky / electronic data
+%% Volitelná specifikace příloh textu práce, i~anglicky. Výchozí je
+%% 'elektronická data v~systému katedry informatiky / electronic data
 %% in system of department of computer science'.
 %\supplements{nejlepší software všech dob}
 %\supplements[english]{the best software of all times}
 
 %% Volitelné poděkování. Stručné! Výchozí je prázdné. Makro nemá
 %% nepovinný parametr pro uvedení jazyka.
-\thanks{Tímto bych rád poděkoval vedoucímu mé práce, Mgr. Tomáši Urbanci PhD., za poskytnutý čas a cenné rady při jejím zpracování. Dále bych také chtěl poděkovat faráři Řeckokatolické farnosti v Olomouci, otci Petru Prinzovi za podporu při realizaci projektu a inspiraci k ní.}
+\thanks{Tímto bych rád poděkoval vedoucímu mé práce, Mgr. Tomáši Urbanci PhD., za poskytnutý čas a~cenné rady při jejím zpracování. Dále bych také chtěl poděkovat faráři Řeckokatolické farnosti v~Olomouci, otci Petru Prinzovi za podporu při realizaci projektu a~inspiraci k~ní.}
 
-%% Cesta k souboru s bibliografií pro její sazbu pomocí BibLaTeXu
+%% Cesta k~souboru s~bibliografií pro její sazbu pomocí BibLaTeXu
 %% (zvolenou nepovinným parametrem biblatex makra
 %% \documentclass). Použijte pouze při této sazbě, ne při (výchozí)
-%% sazbě v prostředí thebibliography.
+%% sazbě v~prostředí thebibliography.
 \usepackage[backend=biber,style=numeric]{biblatex}
 \bibliography{bibliografie.bib}
 
@@ -142,14 +139,12 @@
 \usepackage{float}
 
 \begin{document}
-%% Sazba úvodních stran -- titulní, s bibliografickými údaji, s
-%% anotací a klíčovými slovy, s poděkováním a prohlášením, s obsahem a
-%% se seznamy obrázků, tabulek, vět a zdrojových kódů (pokud jejich
+%% Sazba úvodních stran -- titulní, s~bibliografickými údaji, s~%% anotací a~klíčovými slovy, s~poděkováním a~prohlášením, s~obsahem a~%% se seznamy obrázků, tabulek, vět a~zdrojových kódů (pokud jejich
 %% sazba není vypnutá).
 \maketitle
 
 %% Vlastní text závěrečné práce. Pro povinné závěry, před přílohami,
-%% použijte prostředí kiconclusions. Povinná je i příloha s obsahem
+%% použijte prostředí kiconclusions. Povinná je i~příloha s~obsahem
 %% elektronických dat.
 
 %% -------------------------------------------------------------------
@@ -161,62 +156,62 @@
 %   a (značně) neúplná verze!!!}
 
 \section{Úvod}
-Tato kapitola se věnuje objasnění základních pojmů z domény projektu a dále vytyčuje cíl a motivaci práce.
+Tato kapitola se věnuje objasnění základních pojmů z~domény projektu a~dále vytyčuje cíl a~motivaci práce.
 
 \subsection{Slovníček pojmů}
-Vzhledem k oblasti, na kterou se text zaměřuje, budu používat pojmy, které jsou spojeny s církevním prostředím, různými modlitbami a liturgickými texty. Na úvod tedy uvádím sekci, která čtenáře s těmito pojmy stručně seznámí.
+Vzhledem k~oblasti, na kterou se text zaměřuje, budu používat pojmy, které jsou spojeny s~církevním prostředím, různými modlitbami a~liturgickými texty. Na úvod tedy uvádím sekci, která čtenáře s~těmito pojmy stručně seznámí.
 
 \subsubsection{Bible}
-\textbf{Bible} je klíčovou posvátnou knihou křesťanské církve. Jejímu studiu, výkladům, vytváření překladů a pojednání o ní je věnováno velké úsilí. Četba, studium a rozjímání textů Bible je důležitou součástí života každého křesťana. Proto existuje v překladech do mnoha jazyků a většina jazyků má překladů více.
+\textbf{Bible} je klíčovou posvátnou knihou křesťanské církve. Jejímu studiu, výkladům, vytváření překladů a~pojednání o~ní je věnováno velké úsilí. Četba, studium a~rozjímání textů Bible je důležitou součástí života každého křesťana. Proto existuje v~překladech do mnoha jazyků a~většina jazyků má překladů více.
 
-Bible je souborem knih různých autorů z historie křesťanství a judaismu. Tyto knihy jsou rozděleny do dvou částí - do \textbf{Starého a Nového  zákona}. Každá kniha je tvořena kapitolami a kapitoly jsou tvořeny verši.
+Bible je souborem knih různých autorů z~historie křesťanství a~judaismu. Tyto knihy jsou rozděleny do dvou částí - do \textbf{Starého a~Nového  zákona}. Každá kniha je tvořena kapitolami a~kapitoly jsou tvořeny verši.
 
-Významnými knihami jsou 4 evangelia, která popisují život Ježíše Krista a jsou často používány i při liturgických obřadech.
+Významnými knihami jsou 4~evangelia, která popisují život Ježíše Krista a~jsou často používány i~při liturgických obřadech.
 
-Další významnou knihou je kniha žalmů (takzvaný \textbf{žaltář}). Mezi východními křesťanskými církvemi se žaltář rozděluje do 20 částí, kterým se říká \textbf{kaftizmy}. Každá kaftizma obsahuje skupinu žalmů a další přidružené texty modliteb. Jednotlivé žalmy a kaftizmy jsou často používány jako samostatné modlitby.
+Další významnou knihou je kniha žalmů (takzvaný \textbf{žaltář}). Mezi východními křesťanskými církvemi se žaltář rozděluje do 20 částí, kterým se říká \textbf{kaftizmy}. Každá kaftizma obsahuje skupinu žalmů a~další přidružené texty modliteb. Jednotlivé žalmy a~kaftizmy jsou často používány jako samostatné modlitby.
 
 \subsection{Cíl práce}
-Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k modlitebním textům a textům Bible pro každodenní použití. Řeckokatolická farnost v Olomouci, pro kterou bude tato aplikace určena, používá v současné době systém, který neposkytuje dostatečný komfort pro správu obsahu z pohledu administrátora. Systém v současné podobě není dostatečně flexibilní, aby mohl být uspokojivě rozšířen.
+Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k~modlitebním textům a~textům Bible pro každodenní použití. Řeckokatolická farnost v~Olomouci, pro kterou bude tato aplikace určena, používá v~současné době systém, který neposkytuje dostatečný komfort pro správu obsahu z~pohledu administrátora. Systém v~současné podobě není dostatečně flexibilní, aby mohl být uspokojivě rozšířen.
 
 \subsection{Cílová skupina}
-Primární cílovou skupinou této aplikace jsou členové Řeckokatolické farnosti v Olomouci. Patří sem běžní farníci, lidé, kteří jsou různým způsobem zapojeni do chodu farnosti, a duchovní. Farnost je v současnosti vícenárodnostní a v posledních letech se značně
-rozrůstá. Nejpočetněji jsou zde zastoupeni farníci z Ukrajiny.
+Primární cílovou skupinou této aplikace jsou členové Řeckokatolické farnosti v~Olomouci. Patří sem běžní farníci, lidé, kteří jsou různým způsobem zapojeni do chodu farnosti, a~duchovní. Farnost je v~současnosti vícenárodnostní a~v~posledních letech se značně
+rozrůstá. Nejpočetněji jsou zde zastoupeni farníci z~Ukrajiny.
 
-Farnost má vlastní společenství, které se modlí modlitby žalmů a funguje od
+Farnost má vlastní společenství, které se modlí modlitby žalmů a~funguje od
 roku 2024. Každý člen společenství se během týdne modlí jednu část žaltáře zvanou kaftizma.
 
 \subsection{Doména}
-Hlavní doménou projektu jsou modlitby a církevní texty používané řeckokatolickou církví.
+Hlavní doménou projektu jsou modlitby a~církevní texty používané řeckokatolickou církví.
 
-Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti, existuje kalendář, který obsahuje i biblické texty pro každý den v roce. Každému dni v roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Evangelia tvoří pro katolickou církev nejvýznamnější část Bible. Dále je každému dni také přiřazen úryvek z jedné z ostatních knih Nového zákona. Při slavnostních bohoslužbách se biblických textů předčítá větší množství.
+Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti, existuje kalendář, který obsahuje i~biblické texty pro každý den v~roce. Každému dni v~roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Evangelia tvoří pro katolickou církev nejvýznamnější část Bible. Dále je každému dni také přiřazen úryvek z~jedné z~ostatních knih Nového zákona. Při slavnostních bohoslužbách se biblických textů předčítá větší množství.
 
-Biblické texty v církevních obřadech jsou často vázány ke svátkům, které jsou buď pevně svázány s datem, nebo jsou pohyblivé a připadají každý rok na jiné datum.
-Mnoho textů je také svázáno s konkrétním obřadem nebo událostí (např. křest, svěcení domu, ...).
+Biblické texty v~církevních obřadech jsou často vázány ke svátkům, které jsou buď pevně svázány s~datem, nebo jsou pohyblivé a~připadají každý rok na jiné datum.
+Mnoho textů je také svázáno s~konkrétním obřadem nebo událostí (např. křest, svěcení domu, ...).
 
 \subsection{Přínos práce}
-V rámci této práce se zaměřuji především na implementaci čtečky Bible a textů žaltáře. Aplikace poskytuje Bibli samotnou v různých překladech pro čtení a studium, a také poskytuje vizualizaci úryvků textu podle dostupného kalendáře. Dále je k dispozici i zobrazení textů žaltáře pro osobní modlitbu, nebo modlitbu ve společenství.
+V~rámci této práce se zaměřuji především na implementaci čtečky Bible a~textů žaltáře. Aplikace poskytuje Bibli samotnou v~různých překladech pro čtení a~studium, a~také poskytuje vizualizaci úryvků textu podle dostupného kalendáře. Dále je k~dispozici i~zobrazení textů žaltáře pro osobní modlitbu, nebo modlitbu ve společenství.
 
-Další částí je možnost vytváření skupin, které budou využity společenstvími ve farnosti a možnost sdílení příspěvků se členy těchto skupin. Tato aplikace má za cíl nahradit stávající systém\cite{grekokat-casoslov}, který je používán pro poskytování modlitebních textů.
+Další částí je možnost vytváření skupin, které budou využity společenstvími ve farnosti a~možnost sdílení příspěvků se členy těchto skupin. Tato aplikace má za cíl nahradit stávající systém\cite{grekokat-casoslov}, který je používán pro poskytování modlitebních textů.
 
-Mým dalším cílem je navrhnout aplikaci s ohledem na rozšiřitelnost, což by umožnilo v budoucnu přidávat další texty, které budou moci fungovat jako samostatné moduly aplikace. Textů je velké množství a celá řada z nich má mnoho složitých pravidel, podle kterých se skládají konkrétní texty pro specifický den, období nebo svátek.
+Mým dalším cílem je navrhnout aplikaci s~ohledem na rozšiřitelnost, což by umožnilo v~budoucnu přidávat další texty, které budou moci fungovat jako samostatné moduly aplikace. Textů je velké množství a~celá řada z~nich má mnoho složitých pravidel, podle kterých se skládají konkrétní texty pro specifický den, období nebo svátek.
 
-V této práci zaměřuji i na průzkum a využití konceptů z oblasti DevOps a CI/CD, které usnadní vývoj samotný. V dlouhodobém měřítku tyto koncepty urychlí integraci i samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a správnosti, nasazení software a sledování jeho stavu. I za cenu větší náročnosti přípravy a počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a rychlost nasazení nových verzí a také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i v jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a vidět i výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o kvalitě provedených změn a jejich kompatibilitě se zbytkem projektu.
+V~této práci zaměřuji i~na průzkum a~využití konceptů z~oblasti DevOps a~CI/CD, které usnadní vývoj samotný. V~dlouhodobém měřítku tyto koncepty urychlí integraci i~samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a~správnosti, nasazení software a~sledování jeho stavu. I~za cenu větší náročnosti přípravy a~počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a~rychlost nasazení nových verzí a~také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i~v~jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a~vidět i~výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o~kvalitě provedených změn a~jejich kompatibilitě se zbytkem projektu.
 
 \section{Podobné projekty}
-V rámci této práce jsem hledal a procházel i další software zaměřený na práci s texty Bible i dalšími liturgickými texty. Aplikací s tímto zaměřením existuje celá řada. Většina je však určena k jiným účelům a především pro osobní použití, ne pro použití ve farnosti samotné, případně v jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a studium biblických textů. Většina z projektů má také uzavřený zdrojový kód a proto je nelze upravit a přizpůsobit pro specifické potřeby, nebo je již zastaralá a dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v rámci této práce, sdružuje a implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
+V~rámci této práce jsem hledal a~procházel i~další software zaměřený na práci s~texty Bible i~dalšími liturgickými texty. Aplikací s~tímto zaměřením existuje celá řada. Většina je však určena k~jiným účelům a~především pro osobní použití, ne pro použití ve farnosti samotné, případně v~jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a~studium biblických textů. Většina z~projektů má také uzavřený zdrojový kód a~proto je nelze upravit a~přizpůsobit pro specifické potřeby, nebo je již zastaralá a~dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v~rámci této práce, sdružuje a~implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V~seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
 
 \subsection{Časoslov.sk}
-Časoslov.sk\cite{casoslov.sk} je projekt vyvíjený Radou pre mládež košickej eparchie na Slovensku. Poskytuje texty pro jednotlivé dny v roce. Má také knihovnu s různými připravenými texty k modlitbě. Nabízí webovou i mobilní aplikaci s obdobnými funkcionalitami. Časoslov.sk se zaměřuje především na samotné texty pro jednotlivé dny a obsahuje také knihovnu liturgických textů a různých modliteb, jejichž texty se nemění podle dne. Pro věřící v České republice je také klíčová možnost spravovat zároveň více překladů textů, kterou tato aplikace neposkytuje. Neposkytuje také možnost samostatného čtení a studia biblických textů, správu více překladů, ani funkcionalitu skupin.
+Časoslov.sk\cite{casoslov.sk} je projekt vyvíjený Radou pre mládež košickej eparchie na Slovensku. Poskytuje texty pro jednotlivé dny v~roce. Má také knihovnu s~různými připravenými texty k~modlitbě. Nabízí webovou i~mobilní aplikaci s~obdobnými funkcionalitami. Časoslov.sk se zaměřuje především na samotné texty pro jednotlivé dny a~obsahuje také knihovnu liturgických textů a~různých modliteb, jejichž texty se nemění podle dne. Pro věřící v~České republice je také klíčová možnost spravovat zároveň více překladů textů, kterou tato aplikace neposkytuje. Neposkytuje také možnost samostatného čtení a~studia biblických textů, správu více překladů, ani funkcionalitu skupin.
 
 \subsection{BibleGateway}
-BibleGateway\cite{biblegateway} je webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a neimplementuje funkcionality jako modlitební skupiny, nebo žaltář a další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a není v souladu s mými požadavky.
+BibleGateway\cite{biblegateway} je webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a~neimplementuje funkcionality jako modlitební skupiny, nebo žaltář a~další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a~není v~souladu s~mými požadavky.
 
 \subsection{Beblia.com}
-Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překladů a v rámci projektu je k dispozici i databáze různých překladů
-v XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
+Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překladů a~v~rámci projektu je k~dispozici i~databáze různých překladů
+v~XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora.
 
 \section{Analýza požadavků}
-Software je určen především pro Řeckokatolickou farnost v Olomouci, její farníky a osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a informace pro členy společenství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v budoucnu přínosem i pro další řeckokatolíky v České republice mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty, je velké množství a některé z nich se mění podle svátku a období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
+Software je určen především pro Řeckokatolickou farnost v~Olomouci, její farníky a~osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a~informace pro členy společenství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v~budoucnu přínosem i~pro další řeckokatolíky v~České republice mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty, je velké množství a~některé z~nich se mění podle svátku a~období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
 
 \subsection{Funkční požadavky}
 
@@ -225,18 +220,18 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 	\item Aplikace bude umožňovat zobrazení textů Bible.
 	\item Aplikace bude umožňovat administrátorům importovat překlady ve formátu Zefania XML.
 	\item Aplikace bude umožňovat přihlášeným uživatelům vytvářet si záložky.
-	\item Aplikace bude umožňovat přihlášeným uživatelům označovat verše a přidávat k nim poznámky.
+	\item Aplikace bude umožňovat přihlášeným uživatelům označovat verše a~přidávat k~nim poznámky.
 \end{itemize}
 \textbf{Uživatelské účty}
 \begin{itemize}
 	\item Aplikace bude implementovat uživatelské účty pro identifikaci uživatelů.
 	\item Aplikace bude implementovat správu rolí, pomocí kterých bude možné přiřazovat uživatelům oprávnění.
 	\item Uživatel si může vytvořit uživatelský účet.
-	\item Uživatel se může pomocí emailu a hesla přihlásit do aplikace.
+	\item Uživatel se může pomocí emailu a~hesla přihlásit do aplikace.
 \end{itemize}
 \textbf{Skupiny}
 \begin{itemize}
-	\item Oprávněný uživatel může vytvářet nové skupiny, přidávat do nich členy a přiřazovat jim role v rámci skupiny.
+	\item Oprávněný uživatel může vytvářet nové skupiny, přidávat do nich členy a~přiřazovat jim role v~rámci skupiny.
 	\item Oprávněný uživatel může přidávat příspěvky do skupiny.
 	\item Uživatelé mohou zobrazovat příspěvky ve skupině.
 \end{itemize}
@@ -247,7 +242,7 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 \textbf{Úryvky}
 \begin{itemize}
 	\item Aplikace bude umožňovat přihlášeným uživatelům spravovat svou knihovnu úryvků.
-	\item Oprávněný uživatel může spravovat úryvky, které jsou přiřazeny k jednotlivým dnům.
+	\item Oprávněný uživatel může spravovat úryvky, které jsou přiřazeny k~jednotlivým dnům.
 	\item Všichni uživatelé mohou zobrazovat texty vložené do kalendáře.
 \end{itemize}
 \textbf{Ostatní}
@@ -257,69 +252,69 @@ Software je určen především pro Řeckokatolickou farnost v Olomouci, její f
 
 \subsection{Nefunkční požadavky}
 \begin{itemize}
-	\item Aplikace by měla být snadno rozšířitelná a udržovatelná.
-	\item Aplikace by měla být schopna spravovat své závislosti a co nejméně záviset na prostředí a konfiguraci dané aktuálním stavem systému, na kterém bude spuštěna.
-	\item Aplikace by měla umožňovat snadnou úvodní konfiguraci a spuštění.
+	\item Aplikace by měla být snadno rozšířitelná a~udržovatelná.
+	\item Aplikace by měla být schopna spravovat své závislosti a~co nejméně záviset na prostředí a~konfiguraci dané aktuálním stavem systému, na kterém bude spuštěna.
+	\item Aplikace by měla umožňovat snadnou úvodní konfiguraci a~spuštění.
 \end{itemize}
 
 \section{Návrh řešení}
-V této sekci se věnuji technologiím a obecným konceptům, které jsem se rozhodl pro realizaci tohoto projektu použít.
+V~této sekci se věnuji technologiím a~obecným konceptům, které jsem se rozhodl pro realizaci tohoto projektu použít.
 
 \subsection{Použité technologie}
-Vzhledem k charakteru projektu a skutečnosti, že jsem se rozhodl pro využití DevOps postupů, jsem použil celou řadu nástrojů a knihoven, které vývoj značně usnadnily.
+Vzhledem k~charakteru projektu a~skutečnosti, že jsem se rozhodl pro využití DevOps postupů, jsem použil celou řadu nástrojů a~knihoven, které vývoj značně usnadnily.
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \subsubsection{Node.js}
-Node.js\cite{nodejs} je běhové prostředí pro jazyk JavaScript. Node lze využít pro spuštění JavaScriptu na jiných platformách než v prohlížeči, pro který byl jazyk původně určený.
+Node.js\cite{nodejs} je běhové prostředí pro jazyk JavaScript. Node lze využít pro spuštění JavaScriptu na jiných platformách než v~prohlížeči, pro který byl jazyk původně určený.
 
-Tuto technologii jsem se rozhodl použít pro backend projektu, protože její volba mi umožňuje použít stejný jazyk pro vývoj frontendu i backendu. To mi usnadnilo nastavení nástrojů pro správu kvality kódu a typovou kontrolu. Všechny balíčky tak mohou sdílet velkou část nastavení. I když je rozdíl mezi funkcí JavaScriptu v prohlížeči a v Node.js, základní koncepty a mechanismy jazyka zůstávají stejné.
+Tuto technologii jsem se rozhodl použít pro backend projektu, protože její volba mi umožňuje použít stejný jazyk pro vývoj frontendu i~backendu. To mi usnadnilo nastavení nástrojů pro správu kvality kódu a~typovou kontrolu. Všechny balíčky tak mohou sdílet velkou část nastavení. I~když je rozdíl mezi funkcí JavaScriptu v~prohlížeči a~v~Node.js, základní koncepty a~mechanismy jazyka zůstávají stejné.
 \subsubsection{Pnpm}
-Pnpm\cite{pnpm} je správce balíčků pro Node.js. Pnpm má podobné rozhraní jako npm. Oproti tomuto správci však poskytuje mnoho optimalizací rychlosti instalace a využití místa na disku. Dále také poskytuje možnost správy závislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s monorepozitářem\footnote{Monorepozitář je způsob strukturování při vývoji software, kdy je více projektů spojeno do jednoho repozitáře a správa verzí se pro ně realizuje společně.}, který v projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují pouze jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a na tyto závislosti odkazuje. Důsledkem této optimalizace je značně efektivnější využití místa na disku.
+Pnpm\cite{pnpm} je správce balíčků pro Node.js. Pnpm má podobné rozhraní jako npm. Oproti tomuto správci však poskytuje mnoho optimalizací rychlosti instalace a~využití místa na disku. Dále také poskytuje možnost správy závislostí vnořených balíčků (takzvané workspaces), což značně usnadňuje práci s~monorepozitářem\footnote{Monorepozitář je způsob strukturování při vývoji software, kdy je více projektů spojeno do jednoho repozitáře a~správa verzí se pro ně realizuje společně.}, který v~projektu používám. Závislosti je tak možné sdílet mezi balíčky, nebo nainstalovat jen pro konkrétní balíček. Pnpm zajišťuje, že závislosti použité vícekrát se nainstalují pouze jednou. Pnpm používá pro instalaci balíčků sdílený globální adresář a~na tyto závislosti odkazuje. Důsledkem této optimalizace je značně efektivnější využití místa na disku.
 \subsubsection{TypeScript}
-TypeScript\cite{typescript} je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v prostředí výše zmíněného Node.js i na frontendu aplikace pro běh v prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a s ním i typovou kontrolu, což v mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a v případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
+TypeScript\cite{typescript} je staticky typovaný jazyk, který se překládá do JavaScriptu. Jako hlavní jazyk, ve kterém jsem projekt vytvářel, jsem jej zvolil pro jeho univerzalitu. Po přeložení je vhodný pro použití na backendu v~prostředí výše zmíněného Node.js i~na frontendu aplikace pro běh v~prohlížeči. Typescript také na rozdíl od JavaScriptu poskytuje statické typování a~s~ním i~typovou kontrolu, což v~mnoha případech značně zjednodušuje vývoj, poskytuje vhodnější automatické doplňování kódu a~odhaluje řadu chyb, které při vytváření kódu vznikají, ale bez typové kontroly by se projevily až při běhu nebo testování. Typescript přidává nutnost kompilace projektu, což komplikuje počáteční nastavení projektu. Výsledná typová kontrola je však velmi výhodná a~v~případě projektu, který je rozsáhlejší, nebo se očekává delší doba životnosti, se počáteční komplikace mohou velmi vyplatit.
 
 \subsubsection{Express}
-Express.js\cite{express} je framework pro vývoj webových aplikací i API v JavaScriptu a TypeScriptu. Poskytuje vlastní implementaci routeru, nástroje pro práci s HTTP požadavky a jejich zpracování. Díky minimalistickému návrhu jej lze snadno integrovat s mnoha rozšířeními i dalšími balíčky. Express, na rozdíl od většiny frameworků podobného zaměření, nevynucuje téměř žádné vlastní konvence struktury projektu.
+Express.js\cite{express} je framework pro vývoj webových aplikací i~API v~JavaScriptu a~TypeScriptu. Poskytuje vlastní implementaci routeru, nástroje pro práci s~HTTP požadavky a~jejich zpracování. Díky minimalistickému návrhu jej lze snadno integrovat s~mnoha rozšířeními i~dalšími balíčky. Express, na rozdíl od většiny frameworků podobného zaměření, nevynucuje téměř žádné vlastní konvence struktury projektu.
 
-Pro vývoj tohoto projektu jsem Express zvolil především díky jeho jednoduchosti použití a volnosti při návrhu, kterou nabízí. Express je také velmi rozšířený, stabilní a poskytuje snadno použitelné rozhraní.
+Pro vývoj tohoto projektu jsem Express zvolil především díky jeho jednoduchosti použití a~volnosti při návrhu, kterou nabízí. Express je také velmi rozšířený, stabilní a~poskytuje snadno použitelné rozhraní.
 
 \subsubsection{Vue.js}
-Vue.js\cite{vuejs} je framework pro vytváření webových uživatelských rozhraní. Vue.js Umožňuje uživateli vyvíjet aplikace s architekturou MVVM\cite{vue-mvvm}. Vue.js samo o sobě implementuje ViewModel část jako obousměrné provázání dat aplikace s uživatelským rozhraním.
+Vue.js\cite{vuejs} je framework pro vytváření webových uživatelských rozhraní. Vue.js Umožňuje uživateli vyvíjet aplikace s~architekturou MVVM\cite{vue-mvvm}. Vue.js samo o~sobě implementuje ViewModel část jako obousměrné provázání dat aplikace s~uživatelským rozhraním.
 
-Vue.js také usnadňuje rozdělení uživatelského rozhraní do komponent, které jsou základními stavebními bloky aplikace. Komponenta sdružuje HTML kód, JavaScriptový kód a CSS styl do jednoho souboru.
+Vue.js také usnadňuje rozdělení uživatelského rozhraní do komponent, které jsou základními stavebními bloky aplikace. Komponenta sdružuje HTML kód, JavaScriptový kód a~CSS styl do jednoho souboru.
 
-Vue.js má velmi přehlednou a obsáhlou dokumentaci. Systém komponent a mnoho hotových komponent a knihoven, které jsou s Vue.js kompatibilní, poskytují velmi pohodlný vývoj aplikací.
+Vue.js má velmi přehlednou a~obsáhlou dokumentaci. Systém komponent a~mnoho hotových komponent a~knihoven, které jsou s~Vue.js kompatibilní, poskytují velmi pohodlný vývoj aplikací.
 
-Před vývojem tohoto projektu jsem neměl mnoho zkušeností s vývojem frontendu za použití obdobných frameworků. Hlavní volbou pro tuto variantu tak byl jednoduchý proces učení a dostatek dostupné dokumentace spolu s rozsáhlým ekosystémem kompatibilních knihoven a rozšíření.
+Před vývojem tohoto projektu jsem neměl mnoho zkušeností s~vývojem frontendu za použití obdobných frameworků. Hlavní volbou pro tuto variantu tak byl jednoduchý proces učení a~dostatek dostupné dokumentace spolu s~rozsáhlým ekosystémem kompatibilních knihoven a~rozšíření.
 
 \subsubsection{Pinia}
-Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují sdílet globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a settery pro vlastnosti, které jsou ve storu uloženy.
+Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Poskytuje takzvané story, které umožňují sdílet globální stav mezi jednotlivými komponentami, které jsou od sebe odděleny. Pinia store poskytuje funkce, které mohou být použity jako gettery a~settery pro vlastnosti, které jsou ve storu uloženy.
 
-Pinia je v současnosti doporučeným řešením pro správu globálního stavu v aplikacích založených na Vue.js a má oficiální podporu.
+Pinia je v~současnosti doporučeným řešením pro správu globálního stavu v~aplikacích založených na Vue.js a~má oficiální podporu.
 \subsubsection{Elasticsearch}
-Elasticsearch\cite{elasticsearch} je vyhledávací engine, který jsem se rozhodl použít k indexaci a vyhledávání v textech Bible a k jejich uložení. Aplikace může obsahovat libovolné množství různých překladů a Elasticsearch usnadňuje vyhledávání v nich.
+Elasticsearch\cite{elasticsearch} je vyhledávací engine, který jsem se rozhodl použít k~indexaci a~vyhledávání v~textech Bible a~k~jejich uložení. Aplikace může obsahovat libovolné množství různých překladů a~Elasticsearch usnadňuje vyhledávání v~nich.
 \subsubsection{PostgreSQL}
-PostgreSQL\cite{postgresql} je v současnosti velmi oblíbenou volbou při výběru relační databáze. PostgreSQL je velmi výkonná a je bez problémů kompatibilní s ostatními technologiemi, které používám. Relační model dat je vhodný pro uložení dat o uživatelských účtech a jiných dat, která mají pevnou strukturu. PostgreSQL také umožňuje ukládání JSON dokumentů, což jsem také v projektu úspěšně využil.
+PostgreSQL\cite{postgresql} je v~současnosti velmi oblíbenou volbou při výběru relační databáze. PostgreSQL je velmi výkonná a~je bez problémů kompatibilní s~ostatními technologiemi, které používám. Relační model dat je vhodný pro uložení dat o~uživatelských účtech a~jiných dat, která mají pevnou strukturu. PostgreSQL také umožňuje ukládání JSON dokumentů, což jsem také v~projektu úspěšně využil.
 
 \subsubsection{Kysely}
-Kysely\cite{kysely} je knihovna, která zajišťuje vytváření dotazů a spravuje připojení k databázi. Je použitelná s různými SQL databázovými systémy. Jednoduše se dá vužít i pro připojení k databázi PostgreSQL.
+Kysely\cite{kysely} je knihovna, která zajišťuje vytváření dotazů a~spravuje připojení k~databázi. Je použitelná s~různými SQL databázovými systémy. Jednoduše se dá vužít i~pro připojení k~databázi PostgreSQL.
 
-Knihovnu Kysely jsem zvolil pro její jednoduchou integraci do projektu. Poskytuje také dobrou dokumentaci a jednoduché objektové rozhraní pro vytváření dotazů. Pomocí typové kontroly TypeScriptu Kysely poskytuje i kontrolu názvů tabulek, sloupců a jejich typu, což značně usnadňuje vývoj.
+Knihovnu Kysely jsem zvolil pro její jednoduchou integraci do projektu. Poskytuje také dobrou dokumentaci a~jednoduché objektové rozhraní pro vytváření dotazů. Pomocí typové kontroly TypeScriptu Kysely poskytuje i~kontrolu názvů tabulek, sloupců a~jejich typu, což značně usnadňuje vývoj.
 
 \subsubsection{Docker}
-Docker\cite{docker} je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k distribuci aplikací.
+Docker\cite{docker} je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k~distribuci aplikací.
 
-Díky kontejnerizaci odpadá potřeba řešit manuálně všechny závislosti projektu a hlídat jejich verze a nastavení. Všechna potřebná konfigurace je obsažena v docker obrazu, jehož spuštěním vzniká samotný kontejner.
+Díky kontejnerizaci odpadá potřeba řešit manuálně všechny závislosti projektu a~hlídat jejich verze a~nastavení. Všechna potřebná konfigurace je obsažena v~docker obrazu, jehož spuštěním vzniká samotný kontejner.
 
-Díky tomu jsem mohl vývoj projektu provádět z více zařízení bez větších komplikací s nastavením vývojového prostředí. Podstatně snadnější je i nasazení aplikace do provozu díky integraci Dockeru do CI/CD pipeline, které se budu dále v textu věnovat.
+Díky tomu jsem mohl vývoj projektu provádět z~více zařízení bez větších komplikací s~nastavením vývojového prostředí. Podstatně snadnější je i~nasazení aplikace do provozu díky integraci Dockeru do CI/CD pipeline, které se budu dále v~textu věnovat.
 
-Souběh kontejnerů zajišťuje Docker Compose. Jde o nástroj, který konfiguruje a spouští kontejnery a další prvky infrastruktury Dockeru na základě jednoduchých konfiguračních souborů.
-\subsubsection{GitHub a GitHub Actions}
-GitHub jsem zvolil především pro jeho rozšířenost a řadu možností, které poskytuje. Mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
+Souběh kontejnerů zajišťuje Docker Compose. Jde o~nástroj, který konfiguruje a~spouští kontejnery a~další prvky infrastruktury Dockeru na základě jednoduchých konfiguračních souborů.
+\subsubsection{GitHub a~GitHub Actions}
+GitHub jsem zvolil především pro jeho rozšířenost a~řadu možností, které poskytuje. Mezi ně patří především služba GitHub Actions, kterou jsem použil pro vytvoření CI/CD pipeline.
 
-GitHub Actions\cite{github_actions} je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k rozšířenosti tohoto nástroje je k dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s ostatními nástroji, které jsem pro usnadnění vývoje použil.
+GitHub Actions\cite{github_actions} je flexibilní nástroj, který umožňuje spouštět akce, jako reakci na události v~repozitáři pomocí jednoduchých deklarativních konfigurací. Vzhledem k~rozšířenosti tohoto nástroje je k~dispozici rozsáhlý ekosystém komponent, které je možné do akcí zapracovat. GitHub Actions je díky tomu jednoduché integrovat s~ostatními nástroji, které jsem pro usnadnění vývoje použil.
 \addtocontents{toc}{\protect\setcounter{tocdepth}{4}}
 \subsection{Architektura projektu}
-Projekt je složen z 5 hlavních komponent, které zajišťují uchování dat a jejich manipulaci. Blokový diagram komponent projektu lze vidět na obrázku \ref{fig:block-diagram}. Jednotlivým komponentám se budu blíže věnovat v dalších sekcích.
+Projekt je složen z~5~hlavních komponent, které zajišťují uchování dat a~jejich manipulaci. Blokový diagram komponent projektu lze vidět na obrázku \ref{fig:block-diagram}. Jednotlivým komponentám se budu blíže věnovat v~dalších sekcích.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/block-diagram.png}
@@ -328,49 +323,49 @@ Projekt je složen z 5 hlavních komponent, které zajišťují uchování dat a
 \end{figure}
 
 \subsection{Návrh databáze}
-Aplikace je určena především k prezentaci uložených dat a jejich správě. Proto pro mne byla volba vhodného nástroje důležitá. Pro potřeby projektu jsem se rozhodl využít dva nástroje pro různé účely.
+Aplikace je určena především k~prezentaci uložených dat a~jejich správě. Proto pro mne byla volba vhodného nástroje důležitá. Pro potřeby projektu jsem se rozhodl využít dva nástroje pro různé účely.
 \subsubsection{PostgeSQL}
-PostgreSQL databázi jsem využil jako primární úložiště dat, která bude aplikace uchovávat. Jsou zde uložena data o uživatelích, skupinách, oprávněních, úryvcích biblických textů a další. Důležitějším částem databáze se budu v této části věnovat podrobněji.
+PostgreSQL databázi jsem využil jako primární úložiště dat, která bude aplikace uchovávat. Jsou zde uložena data o~uživatelích, skupinách, oprávněních, úryvcích biblických textů a~další. Důležitějším částem databáze se budu v~této části věnovat podrobněji.
 
 \paragraph{Uživatelské účty}
-Databáze obsahuje strukturu pro ukládání dat o uživatelských účtech a možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka \kiinlinecode{text}{!}{user\_details}, která obsahuje detaily o uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
+Databáze obsahuje strukturu pro ukládání dat o~uživatelských účtech a~možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka \kiinlinecode{text}{!}{user\_details}, která obsahuje detaily o~uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
 
 Struktura této části databáze je přizpůsobena tomu, aby bylo možné implementovat různé typy přihlašování.
 
-Další tabulkou je tabulka poskytovatelů autentizace. Zde je uložen název a zkratka poskytovatele.
+Další tabulkou je tabulka poskytovatelů autentizace. Zde je uložen název a~zkratka poskytovatele.
 
-Tabulka \kiinlinecode{text}{!}{authentication} obsahuje cizí klíče odkazující na záznam v tabulce poskytovatelů autentizace a dále na záznam z tabulky s detaily uživatele, jehož totožnost se ověřuje a identifikační kód poskytnutý autentizační službou.
+Tabulka \kiinlinecode{text}{!}{authentication} obsahuje cizí klíče odkazující na záznam v~tabulce poskytovatelů autentizace a~dále na záznam z~tabulky s~detaily uživatele, jehož totožnost se ověřuje a~identifikační kód poskytnutý autentizační službou.
 
-Pro přihlášení pomocí hesla existuje tabulka \kiinlinecode{text}{!}{credentials}. Zde se ukládá uživatelské heslo. Hodnota \lstinline{provider_account_identifier} je poskytována externím poskytovatelem. Pro lokální přihlášení pomocí emailu a hesla je hodnota \lstinline{provider_account_identifier} nastavena na \lstinline{local<user_id>}.
+Pro přihlášení pomocí hesla existuje tabulka \kiinlinecode{text}{!}{credentials}. Zde se ukládá uživatelské heslo. Hodnota \lstinline{provider_account_identifier} je poskytována externím poskytovatelem. Pro lokální přihlášení pomocí emailu a~hesla je hodnota \lstinline{provider_account_identifier} nastavena na \lstinline{local<user_id>}.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/db-user.png}
-	\caption{Schéma tabulek pro správu uživatelského účtu a přihlášení}
+	\caption{Schéma tabulek pro správu uživatelského účtu a~přihlášení}
 	\label{fig:db-user}
 \end{figure}
 
 \paragraph{Uživatelská metadata Bible}
-Další část databáze tvoří tabulky pro ukládání metadat Bible (ukázka schématu je na obrázku \ref{fig:db-user-metadata}). Tato metadata zahrnují záložky, poznámky k veršům Bible a zvýraznění veršů. Všechna tato metadata jsou vyhrazena pro přístup pouze pro jejich autora. Metadata jsou uzpůsobena tak, aby korespondovala s mentálním modelem záložek a poznámek v papírové knize. Tomu odpovídá i reprezentace v databázi a následná práce s nimi.
+Další část databáze tvoří tabulky pro ukládání metadat Bible (ukázka schématu je na obrázku \ref{fig:db-user-metadata}). Tato metadata zahrnují záložky, poznámky k~veršům Bible a~zvýraznění veršů. Všechna tato metadata jsou vyhrazena pro přístup pouze pro jejich autora. Metadata jsou uzpůsobena tak, aby korespondovala s~mentálním modelem záložek a~poznámek v~papírové knize. Tomu odpovídá i~reprezentace v~databázi a~následná práce s~nimi.
 
-Záložka představuje pojmenované místo v Bibli. Záložky jsou uzpůsobeny k přesouvání mezi verši a předpokládá se, že název se nemění. S jedním veršem může být v jednu chvíli spojeno i několik záložek.
+Záložka představuje pojmenované místo v~Bibli. Záložky jsou uzpůsobeny k~přesouvání mezi verši a~předpokládá se, že název se nemění. S~jedním veršem může být v~jednu chvíli spojeno i~několik záložek.
 
-Ostatní metadata jsou vázána staticky ke konkrétním veršům a není možné je přesunout k jinému verši. V tom případě dochází k jejich odstranění a opětovnému vytvoření. Ke každému místu a autorovi smí v danou chvíli patřit jen jeden záznam v databázi. Proto, že poznámka i zvýraznění jsou vázána ke konkrétnímu verši, jsou uloženy ve stejném záznamu, pokud mají stejné umístění.
+Ostatní metadata jsou vázána staticky ke konkrétním veršům a~není možné je přesunout k~jinému verši. V~tom případě dochází k~jejich odstranění a~opětovnému vytvoření. Ke každému místu a~autorovi smí v~danou chvíli patřit jen jeden záznam v~databázi. Proto, že poznámka i~zvýraznění jsou vázána ke konkrétnímu verši, jsou uloženy ve stejném záznamu, pokud mají stejné umístění.
 
-Data jsou rozdělena do dvou tabulek. První z nich obsahuje data o záložkách. Záznam v databázi obsahuje informaci o poloze záložky v textu, id autora a název. Druhá tabulka obsahuje data o poznámkách a zvýrazněných verších. V této tabulce je stejná část popisující autora a umístění. Dále tabulka obsahuje možnost vložit kód barvy zvýraznění, nebo hodnotu NULL a dále také volitelný text poznámky.
+Data jsou rozdělena do dvou tabulek. První z~nich obsahuje data o~záložkách. Záznam v~databázi obsahuje informaci o~poloze záložky v~textu, id autora a~název. Druhá tabulka obsahuje data o~poznámkách a~zvýrazněných verších. V~této tabulce je stejná část popisující autora a~umístění. Dále tabulka obsahuje možnost vložit kód barvy zvýraznění, nebo hodnotu NULL a~dále také volitelný text poznámky.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/db-user-metadata.png}
-	\caption{Schéma tabulek pro správu uživatelských poznámek a záložek k Bibli}
+	\caption{Schéma tabulek pro správu uživatelských poznámek a~záložek k~Bibli}
 	\label{fig:db-user-metadata}
 \end{figure}
 
 \subsubsection{Elasticsearch}
-Pro uložení textů, ve kterých se bude vyhledávat jsem použil Elasticsearch. Elasticsearch je určený primárně k indexaci dat a vyhledávání v nich. Pro účely práce jsem do něj uložil data tvořená větším množstvím textu, ve kterých budu provádět vyhledávání.
+Pro uložení textů, ve kterých se bude vyhledávat jsem použil Elasticsearch. Elasticsearch je určený primárně k~indexaci dat a~vyhledávání v~nich. Pro účely práce jsem do něj uložil data tvořená větším množstvím textu, ve kterých budu provádět vyhledávání.
 
 \paragraph{Texty Bible}
 Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje zdrojový kód \ref{code:bible-index}.
 
-V databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou strukturu kvůli lepší indexaci ukládám po jednotlivých verších s jejich přesným umístěním. Záznam tak obsahuje kód překladu, ke kterému patří, číslo knihy, kapitoly a verše. Dále obsahuje samotný text, který se indexuje a vlastnost \lstinline{is_header}, která určuje, jestli se jedná o nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i v databázi.
+V~databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou strukturu kvůli lepší indexaci ukládám po jednotlivých verších s~jejich přesným umístěním. Záznam tak obsahuje kód překladu, ke kterému patří, číslo knihy, kapitoly a~verše. Dále obsahuje samotný text, který se indexuje a~vlastnost \lstinline{is_header}, která určuje, jestli se jedná o~nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i~v~databázi.
 
 \begin{kicode}{JavaScript}{code:bible-index}{Index Bible}
 	{
@@ -392,63 +387,63 @@ V databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou s
 Části projektu jsou rozděleny do samostatných kontejnerů, které spolu komunikují prostředním lokální sítě Dockeru.
 
 \subsection{Monorepozitář}
-Kontejnery tvořící projekt se vytvářejí z kódu a konfigurací uložených v monorepozitářové struktuře. Data jednotlivých kontejnerů jsou rozdělena do balíčků, které jsou reprezentovány podadresáři s příslušnými názvy v adresáři packages.
+Kontejnery tvořící projekt se vytvářejí z~kódu a~konfigurací uložených v~monorepozitářové struktuře. Data jednotlivých kontejnerů jsou rozdělena do balíčků, které jsou reprezentovány podadresáři s~příslušnými názvy v~adresáři packages.
 
-Hlavní výhodou struktury monorepozitáře je přirozené sdružení více balíčků do jednoho projektu. To umožňuje jednodušší proces sestavení a vydávání nových verzí. Dále je výhodná i možnost sdílení konfigurace a některých závislostí. Díky společnému umístění v projektu lze velmi jednoduše spustit celý projekt v testovacím prostředí a ověřit správnou komunikaci balíčků mezi sebou a případné odstranění chyb. Projekt je také velmi jednoduše přenositelný a na novém zařízení vyžaduje jen minimální konfiguraci.
+Hlavní výhodou struktury monorepozitáře je přirozené sdružení více balíčků do jednoho projektu. To umožňuje jednodušší proces sestavení a~vydávání nových verzí. Dále je výhodná i~možnost sdílení konfigurace a~některých závislostí. Díky společnému umístění v~projektu lze velmi jednoduše spustit celý projekt v~testovacím prostředí a~ověřit správnou komunikaci balíčků mezi sebou a~případné odstranění chyb. Projekt je také velmi jednoduše přenositelný a~na novém zařízení vyžaduje jen minimální konfiguraci.
 
 \subsubsection{Nástroje pro správu projektu}
-Každý balíček má vlastní specifické konfigurace jednotlivých nástrojů. Společné konfigurace, které jsou globální pro projekt nebo sdílené více balíčky, jsou umístěny v hlavním adresáři projektu.
+Každý balíček má vlastní specifické konfigurace jednotlivých nástrojů. Společné konfigurace, které jsou globální pro projekt nebo sdílené více balíčky, jsou umístěny v~hlavním adresáři projektu.
 
-Společná konfigurace zahrnuje především docker compose soubory. Dále zde nalezneme také  konfiguraci TypeScriptu pro typovou kontrolu a sestavení projektu a nástrojů pro kontrolu kvality kódu a testování.
+Společná konfigurace zahrnuje především docker compose soubory. Dále zde nalezneme také  konfiguraci TypeScriptu pro typovou kontrolu a~sestavení projektu a~nástrojů pro kontrolu kvality kódu a~testování.
 
 \paragraph{GIT}
-Nástroj GIT jsem použil pro správu verzí projektu. V CI/CD je verzování klíčové a řídí procesy kontroly kvality a doručení připravených artefaktů uživateli. Více se budu konvencím verzování v projektu věnovat dále v textu.
+Nástroj GIT jsem použil pro správu verzí projektu. V~CI/CD je verzování klíčové a~řídí procesy kontroly kvality a~doručení připravených artefaktů uživateli. Více se budu konvencím verzování v~projektu věnovat dále v~textu.
 \paragraph{Pnpm}
-Pnpm jsem použil pro správu závislostí projektu a pro vytvoření pnpm skriptů, které usnadňují spouštění složitých příkazů specifických pro projekt. Tuto možnost jsem využil pro zjednodušení přístupu k nástrojům pro kontrolu kódu, kompilaci a spuštění docker compose.
+Pnpm jsem použil pro správu závislostí projektu a~pro vytvoření pnpm skriptů, které usnadňují spouštění složitých příkazů specifických pro projekt. Tuto možnost jsem využil pro zjednodušení přístupu k~nástrojům pro kontrolu kódu, kompilaci a~spuštění docker compose.
 
 \subsection{Server}
-Server poskytuje HTTP API pro manipulaci s daty uloženými v Elasticsearch a PostgreSQL databázích. Poskytuje možnost správy uživatelů, sezení, kontrolu oprávnění a implementaci business logiky.
+Server poskytuje HTTP API pro manipulaci s~daty uloženými v~Elasticsearch a~PostgreSQL databázích. Poskytuje možnost správy uživatelů, sezení, kontrolu oprávnění a~implementaci business logiky.
 
-Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšiřitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části domény aplikace. Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a umožňuje udržet si přehled o částech, které budou ovlivněny případnými změnami.
+Klíčovým aspektem při návrhu architektury pro mě byla budoucí rozšiřitelnost aplikace. Proto jsem se rozhodl pro využití modulární monolitické architektury, která aplikaci rozděluje do více modulů, které reprezentují jednotlivé části domény aplikace. Moduly jsou od sebe odděleny, což usnadňuje vývoj samotný a~umožňuje udržet si přehled o~částech, které budou ovlivněny případnými změnami.
 
-Modulární monolit je kombinací výhodných vlastností mikroservisů a tradiční monolitické architektury. Celá aplikace je tak tvořena sdílenými nástroji a express serverem spolu s moduly, do kterých je rozdělena doménová logika aplikace. Modulární monolitická architektura je pro návrh a nastavení složitější, než běžná monolitická architektura, poskytuje však přirozenější rozdělení kódu podle domény, namísto podle technického určení. Zároveň je podstatně jednodušší na správu, než architektura mikroservisů i když poskytuje některé stejné výhody.
+Modulární monolit je kombinací výhodných vlastností mikroservisů a~tradiční monolitické architektury. Celá aplikace je tak tvořena sdílenými nástroji a~express serverem spolu s~moduly, do kterých je rozdělena doménová logika aplikace. Modulární monolitická architektura je pro návrh a~nastavení složitější, než běžná monolitická architektura, poskytuje však přirozenější rozdělení kódu podle domény, namísto podle technického určení. Zároveň je podstatně jednodušší na správu, než architektura mikroservisů i~když poskytuje některé stejné výhody.
 
-Tuto architekturu jsem zvolil i s ohledem na budoucí údržbu a další rozvoj aplikace. V takto strukturovaném kódu se jednodušeji provádějí úpravy, protože části, které jsou spojeny doménou, a tedy zároveň i na sobě závislé, se nacházejí na stejném místě.
+Tuto architekturu jsem zvolil i~s~ohledem na budoucí údržbu a~další rozvoj aplikace. V~takto strukturovaném kódu se jednodušeji provádějí úpravy, protože části, které jsou spojeny doménou, a~tedy zároveň i~na sobě závislé, se nacházejí na stejném místě.
 
 \subsubsection{Globální nástroje}
-Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a používají se na více místech napříč aplikací.
+Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a~používají se na více místech napříč aplikací.
 
 Tyto nástroje jsou uloženy ve složce shared.
 
 Patří sem:
 \begin{itemize}
 	\item Middleware pro ošetření chyb
-	\item Validátor uživatelských dat v požadavku
+	\item Validátor uživatelských dat v~požadavku
 	\item Adaptér pro Elasticsearch
 	\item Adaptér pro PostgreSQL
 	\item Logger
 \end{itemize}
 
-Některým z nich se níže věnuji podrobněji.
+Některým z~nich se níže věnuji podrobněji.
 
 \paragraph{Ošetření chyb}
-Express.js má vestavěný mechanismus pro ošetření chyb. Pokud dojde k chybě při zpracování HTTP požadavku, zavolá se automaticky výchozí middleware pro ošetření chyb. Pro potřeby tohoto projektu jsem implementoval middleware, který zajišťuje ošetření chyb a jejich převedení na stavové HTTP kódy, které jsou důležité pro uživatele. Vytvořil jsem systém výjimek, které odpovídají stavovým kódům pro odpověď. Všechny tyto výjimky dědí ze třídy AppError. K výjimce je možné přidat také textovou zprávu.
+Express.js má vestavěný mechanismus pro ošetření chyb. Pokud dojde k~chybě při zpracování HTTP požadavku, zavolá se automaticky výchozí middleware pro ošetření chyb. Pro potřeby tohoto projektu jsem implementoval middleware, který zajišťuje ošetření chyb a~jejich převedení na stavové HTTP kódy, které jsou důležité pro uživatele. Vytvořil jsem systém výjimek, které odpovídají stavovým kódům pro odpověď. Všechny tyto výjimky dědí ze třídy AppError. K~výjimce je možné přidat také textovou zprávu.
 
-Výjimky mohou reprezentovat různé stavy, kdy server požadavek nemůže správně zpracovat. Pro potřeby aplikace jsem využil tyto stavové kódy pro různé nežádoucí stavy. Jejich sémantiku jsem interpretoval podle dokumentace z Mozilla Developer Network\cite{mdn-status}:
+Výjimky mohou reprezentovat různé stavy, kdy server požadavek nemůže správně zpracovat. Pro potřeby aplikace jsem využil tyto stavové kódy pro různé nežádoucí stavy. Jejich sémantiku jsem interpretoval podle dokumentace z~Mozilla Developer Network\cite{mdn-status}:
 \begin{itemize}
-	\item AppError(500): výchozí výjimka, je možné u ní změnit kód, čehož využívají ostatní výjimky, které z této dědí. Měnit kód ručně je nežádoucí, protože každá z výjimek nese nějakou informaci a tato je nejobecnější. Proto by se měla používat pro neočekávané chyby serveru.
-	\item ValidationError(400): Používá se především v middlewaru pro validaci uživatelských požadavků. Je vrácena, pokud uživatelův požadavek neodpovídá očekávanému formátu.
-	\item AuthError(401): Oznamuje uživateli, že se pokouší bez platného přihlášení přistoupit k datům, která jsou dostupná jen přihlášeným uživatelům.
-	\item PermissionError(403): Informuje o skutečnosti, že server zná identitu klienta a odmítá mu poskytnout požadovaná data z důvodu nedostatečných oprávnění.
+	\item AppError(500): výchozí výjimka, je možné u~ní změnit kód, čehož využívají ostatní výjimky, které z~této dědí. Měnit kód ručně je nežádoucí, protože každá z~výjimek nese nějakou informaci a~tato je nejobecnější. Proto by se měla používat pro neočekávané chyby serveru.
+	\item ValidationError(400): Používá se především v~middlewaru pro validaci uživatelských požadavků. Je vrácena, pokud uživatelův požadavek neodpovídá očekávanému formátu.
+	\item AuthError(401): Oznamuje uživateli, že se pokouší bez platného přihlášení přistoupit k~datům, která jsou dostupná jen přihlášeným uživatelům.
+	\item PermissionError(403): Informuje o~skutečnosti, že server zná identitu klienta a~odmítá mu poskytnout požadovaná data z~důvodu nedostatečných oprávnění.
 	\item NotFoundError(404): Tato výjimka je vrácena, pokud nelze najít žádný výsledek, který by odpovídal požadavku.
-	\item ConflictError(409): K této výjimce dojde, pokud uživatel požaduje platnou akci, není však možné ji provést vzhledem k aktuálnímu stavu databáze. Například pokud se pokouší vytvořit záznam v databázi, který by porušoval unikátnost.
+	\item ConflictError(409): K~této výjimce dojde, pokud uživatel požaduje platnou akci, není však možné ji provést vzhledem k~aktuálnímu stavu databáze. Například pokud se pokouší vytvořit záznam v~databázi, který by porušoval unikátnost.
 \end{itemize}
 
-Pokud dojde k vyvolání výjimky, přijme ji middleware pro obsluhu chyb, který ověří, jestli jde o instanci třídy AppError a pokud ano, vloží data z výjimky do odpovědi. Pokud nejde o instanci AppError, vytvoří se odpověď, která ukazuje, že jde o neočekávanou chybu serveru.
+Pokud dojde k~vyvolání výjimky, přijme ji middleware pro obsluhu chyb, který ověří, jestli jde o~instanci třídy AppError a~pokud ano, vloží data z~výjimky do odpovědi. Pokud nejde o~instanci AppError, vytvoří se odpověď, která ukazuje, že jde o~neočekávanou chybu serveru.
 
 
 \paragraph{Middleware pro validaci požadavků}
-Každý HTTP požadavek může obsahovat data od uživatele. Před předání k dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu (vizte zdrojový kód \ref{code:validator}).
+Každý HTTP požadavek může obsahovat data od uživatele. Před předání k~dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K~tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu (vizte zdrojový kód \ref{code:validator}).
 
 \begin{kicode}{JavaScript}{code:validator}{Middleware pro validaci požadavků}
 export function requestValidator<T extends ZodType>(
@@ -467,115 +462,115 @@ export function requestValidator<T extends ZodType>(
 }
 \end{kicode}
 
-Validátor je implementován jako funkce vyššího řádu se dvěma parametry. První je zod schéma, které definuje žádaný formát objektu s daty od uživatele. Druhý parametr je textový řetězec, který určuje, jak uživatel data předal. Data mohou být předána buď v těle dotazu, jako součást url adresy, nebo jako HTTP parametry.
+Validátor je implementován jako funkce vyššího řádu se dvěma parametry. První je zod schéma, které definuje žádaný formát objektu s~daty od uživatele. Druhý parametr je textový řetězec, který určuje, jak uživatel data předal. Data mohou být předána buď v~těle dotazu, jako součást url adresy, nebo jako HTTP parametry.
 
-Všechny tři možnosti jsou v expressu reprezentovány jako objekt v dotazu. Dotaz validátor přijímá v parametru req. Pokud validace proběhne správně, middleware přetypuje dotaz na generický typ ValidatedRequest<T>, kde T je typ objektu validovaných dat. Typ ValidatedRequest obsahuje vlastnost validated, ve které jsou zvalidovaná data uložena. Díky tomu má již TypeScript typovou kontrolu nad uživatelskými daty a je možné s nimi bezpečně pracovat. Middleware v tom případě volá funkci next, která reprezentuje další funkci, která má požadavek zpracovávat.
+Všechny tři možnosti jsou v~expressu reprezentovány jako objekt v~dotazu. Dotaz validátor přijímá v~parametru req. Pokud validace proběhne správně, middleware přetypuje dotaz na generický typ ValidatedRequest<T>, kde T je typ objektu validovaných dat. Typ ValidatedRequest obsahuje vlastnost validated, ve které jsou zvalidovaná data uložena. Díky tomu má již TypeScript typovou kontrolu nad uživatelskými daty a~je možné s~nimi bezpečně pracovat. Middleware v~tom případě volá funkci next, která reprezentuje další funkci, která má požadavek zpracovávat.
 
-Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce next s výjimkou ValidationError, čímž dojde k předání požadavku systému pro ošetření výjimek.
+Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce next s~výjimkou ValidationError, čímž dojde k~předání požadavku systému pro ošetření výjimek.
 
-Reálným omezením tohoto návrhu je skutečnost, že není možné předávat uživatelská data v jednom požadavku více metodami zároveň. Vzhledem k aktuálnímu rozsahu projektu jsem však nenarazil na to, že by pro mne byla tato možnost klíčová. V budoucnu je možné tento nedostatek vyřešit přidáním vlastností, které reprezentují jednotlivé metody dovnitř vlastnosti validated.
+Reálným omezením tohoto návrhu je skutečnost, že není možné předávat uživatelská data v~jednom požadavku více metodami zároveň. Vzhledem k~aktuálnímu rozsahu projektu jsem však nenarazil na to, že by pro mne byla tato možnost klíčová. V~budoucnu je možné tento nedostatek vyřešit přidáním vlastností, které reprezentují jednotlivé metody dovnitř vlastnosti validated.
 
-\paragraph{Připojení k databázi}
-Aplikace komunikuje se dvěma databázemi. PostgreSQL i Elasticsearch mají vlastní správu připojení a rozhraní pro jednodušší vytváření dotazů.
+\paragraph{Připojení k~databázi}
+Aplikace komunikuje se dvěma databázemi. PostgreSQL i~Elasticsearch mají vlastní správu připojení a~rozhraní pro jednodušší vytváření dotazů.
 
 \subparagraph{PostgreSQL}
-Pro připojení k PostgreSQL databázi je použita knihovna Kysely. Knihovna samotná poskytuje jednoduchý přístup ke správě připojení a vytváření dotazů. Ve zbytku projektu je rozhraní knihovny používáno přímo.
+Pro připojení k~PostgreSQL databázi je použita knihovna Kysely. Knihovna samotná poskytuje jednoduchý přístup ke správě připojení a~vytváření dotazů. Ve zbytku projektu je rozhraní knihovny používáno přímo.
 
 \subparagraph{Elasticsearch}
-Pro komunikaci mezi Node.js aplikací a instancí Elasticsearch existuje knihovna stejného názvu. Tato knihovna poskytuje velmi základní rozhraní, proto jsem vytvořil třídu \lstinline{ElasticAdapter}, která nad ní vytváří vrstvu abstrakce. Ve třídě \lstinline{ElasticAdapter} jsou implementovány metody, které zajišťují vyhledávání, agregaci dat, vkládání dat a další operace. Tyto metody jsou navrženy podle potřeb, které vyvstaly při vývoji projektu.
+Pro komunikaci mezi Node.js aplikací a~instancí Elasticsearch existuje knihovna stejného názvu. Tato knihovna poskytuje velmi základní rozhraní, proto jsem vytvořil třídu \lstinline{ElasticAdapter}, která nad ní vytváří vrstvu abstrakce. Ve třídě \lstinline{ElasticAdapter} jsou implementovány metody, které zajišťují vyhledávání, agregaci dat, vkládání dat a~další operace. Tyto metody jsou navrženy podle potřeb, které vyvstaly při vývoji projektu.
 
-Komunikace s Elasticsearch probíhá prostřednictvím HTTP požadavků. Knihovna elasticsearch pouze tyto dotazy realizuje a kontroluje jejich strukturu. Třída \lstinline{ElasticAdapter} tak zajišťuje ošetření chyb, kontrolu typů a také základní společné nastavení pro jednotlivé skupiny dotazů (např. vyhledávání, hromadné vkládání, vyhledávání s agregací, ...).
+Komunikace s~Elasticsearch probíhá prostřednictvím HTTP požadavků. Knihovna elasticsearch pouze tyto dotazy realizuje a~kontroluje jejich strukturu. Třída \lstinline{ElasticAdapter} tak zajišťuje ošetření chyb, kontrolu typů a~také základní společné nastavení pro jednotlivé skupiny dotazů (např. vyhledávání, hromadné vkládání, vyhledávání s~agregací, ...).
 
 \subsubsection{Inicializace aplikace}
-Vstupním bodem pro start aplikace je soubor \lstinline{index.ts} v adresáři src tohoto modulu. Odtud se volá funkce \lstinline{initializePostgres}. Tato funkce vytvoří v databázi uživatele s administrátorskými oprávněními, pokud v databázi ještě žádný uživatel není. Login a heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v souboru \lstinline{bootstrap.ts}.
+Vstupním bodem pro start aplikace je soubor \lstinline{index.ts} v~adresáři src tohoto modulu. Odtud se volá funkce \lstinline{initializePostgres}. Tato funkce vytvoří v~databázi uživatele s~administrátorskými oprávněními, pokud v~databázi ještě žádný uživatel není. Login a~heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v~souboru \lstinline{bootstrap.ts}.
 
 \subsubsection{Moduly}
-Aplikace je složena z těchto modulů:
+Aplikace je složena z~těchto modulů:
 \begin{itemize}
-	\item \textbf{auth: } Zajišťuje registraci, přihlášení a odhlášení uživatele. Dále také správu uživatelských rolí a ověření, jestli je uživatel přihlášený, případně jestli má přiřazenou zvolenou roli.
-	\item \textbf{bible: } Tento modul poskytuje rozhraní pro přidávání a zobrazování textů Bible a také pro správu úryvků.
-	\item \textbf{group: } Zajišťuje správu skupin a jejich členů.
-	\item \textbf{psalter: } Zajišťuje práci s texty žaltáře.
-	\item \textbf{user: } Slouží ke správě uživatelských dat, což jsou záložky a metadata veršů. Metadata slouží k přidávání poznámek a zvýraznění veršů Bible.
+	\item \textbf{auth: } Zajišťuje registraci, přihlášení a~odhlášení uživatele. Dále také správu uživatelských rolí a~ověření, jestli je uživatel přihlášený, případně jestli má přiřazenou zvolenou roli.
+	\item \textbf{bible: } Tento modul poskytuje rozhraní pro přidávání a~zobrazování textů Bible a~také pro správu úryvků.
+	\item \textbf{group: } Zajišťuje správu skupin a~jejich členů.
+	\item \textbf{psalter: } Zajišťuje práci s~texty žaltáře.
+	\item \textbf{user: } Slouží ke správě uživatelských dat, což jsou záložky a~metadata veršů. Metadata slouží k~přidávání poznámek a~zvýraznění veršů Bible.
 \end{itemize}
 
 \subsubsection{Struktura modulu}
-Každý modul sdružuje funkcionality, které spadají do stejné domény. Po technické stránce je hlavní struktura modulu jednotná. Hlavní součásti a jejich určení jsou vždy stejné. Hlavní úlohou serveru je poskytovat uživateli přístup k datům v databázi prostřednictvím HTTP rozhraní. Tomu odpovídá i struktura každého modulu.
+Každý modul sdružuje funkcionality, které spadají do stejné domény. Po technické stránce je hlavní struktura modulu jednotná. Hlavní součásti a~jejich určení jsou vždy stejné. Hlavní úlohou serveru je poskytovat uživateli přístup k~datům v~databázi prostřednictvím HTTP rozhraní. Tomu odpovídá i~struktura každého modulu.
 
-Stěžejní částí každého modulu je v případě této aplikace takzvaný servis. Servis je třída, která reprezentuje jednotlivé operace v dané části domény. Například pro záložky by šlo o možnost vypsat všechny záložky, přidat novou, nebo upravit existující. Servis tak poskytuje rozhraní, které používá typy reprezentující jednotlivé entity ve zvolené doméně. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a business logikou v servisu, nebo servisy ostatních modulů. Tím je zajištěno, že při manipulaci s daty z jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i refactoring kódu.
+Stěžejní částí každého modulu je v~případě této aplikace takzvaný servis. Servis je třída, která reprezentuje jednotlivé operace v~dané části domény. Například pro záložky by šlo o~možnost vypsat všechny záložky, přidat novou, nebo upravit existující. Servis tak poskytuje rozhraní, které používá typy reprezentující jednotlivé entity ve zvolené doméně. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a~business logikou v~servisu, nebo servisy ostatních modulů. Tím je zajištěno, že při manipulaci s~daty z~jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i~refactoring kódu.
 
 
 \begin{itemize}
-	\item \textbf{Router} mapuje HTTP požadavky na příslušné metody controlleru. Prostřednictvím middlewaru se zde také provádí ověření, jestli je uživatel přihlášený a provádí se validace dat požadavku.
-	\item \textbf{Controller} validuje a zpracovává data a požadavky. Zajišťuje komunikaci s routerem a spouští servis. Controller se stará o úlohy specifické pro express. Extrahuje data z Request objektu a nastavuje data, která jsou odeslána zpět uživateli.
-	\item \textbf{Service} zajišťuje získání a zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi.
-	\item \textbf{Repository} zajišťuje komunikaci s databází prostřednictvím adaptéru a poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a typy, které reflektují strukturu databáze. Zajišťuje kontrolu a validaci dat. Obstarává konzistenci dat v databázi.
+	\item \textbf{Router} mapuje HTTP požadavky na příslušné metody controlleru. Prostřednictvím middlewaru se zde také provádí ověření, jestli je uživatel přihlášený a~provádí se validace dat požadavku.
+	\item \textbf{Controller} validuje a~zpracovává data a~požadavky. Zajišťuje komunikaci s~routerem a~spouští servis. Controller se stará o~úlohy specifické pro express. Extrahuje data z~Request objektu a~nastavuje data, která jsou odeslána zpět uživateli.
+	\item \textbf{Service} zajišťuje získání a~zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi.
+	\item \textbf{Repository} zajišťuje komunikaci s~databází prostřednictvím adaptéru a~poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a~typy, které reflektují strukturu databáze. Zajišťuje kontrolu a~validaci dat. Obstarává konzistenci dat v~databázi.
 \end{itemize}
 
 \subsection{Frontend}
-Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slouží k prezentaci dat z API a k jejich snadnější manipulaci.
+Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slouží k~prezentaci dat z~API a~k~jejich snadnější manipulaci.
 
 \subsubsection{Progresivní webová aplikace}
-Technologie progresivních webových aplikací (dále PWA) umožňuje z webové aplikace vytvořit aplikaci spustitelnou na různých platformách. Hlavním cílem pro tuto práci bylo vytvořit aplikaci, která bude pro uživatele snadněji dostupná, což je usnadněno možností provozovat aplikaci v režimu, který je obdobný nativním mobilním aplikacím.
+Technologie progresivních webových aplikací (dále PWA) umožňuje z~webové aplikace vytvořit aplikaci spustitelnou na různých platformách. Hlavním cílem pro tuto práci bylo vytvořit aplikaci, která bude pro uživatele snadněji dostupná, což je usnadněno možností provozovat aplikaci v~režimu, který je obdobný nativním mobilním aplikacím.
 
-Konfiguraci PWA jsem realizoval prostřednictvím knihovny \lstinline{vite-plugin-pwa}\cite{vite-plugin-pwa}. Tento plugin se nastavuje v konfiguračním souboru pro Vite.
+Konfiguraci PWA jsem realizoval prostřednictvím knihovny \lstinline{vite-plugin-pwa}\cite{vite-plugin-pwa}. Tento plugin se nastavuje v~konfiguračním souboru pro Vite.
 
-Minimálními požadavky\cite{pwa-installation}, aby bylo možné PWA nainstalovat z prohlížeče Google Chrome, je přítomnost následujících atributů v konfiguračním objektu:
+Minimálními požadavky\cite{pwa-installation}, aby bylo možné PWA nainstalovat z~prohlížeče Google Chrome, je přítomnost následujících atributů v~konfiguračním objektu:
 \begin{itemize}
 	\item \lstinline{name}, nebo \lstinline{short_name}: Používá se pro pojmenování aplikace po nainstalování.
-	\item \lstinline{icons}: Obsahuje pole cest k ikonám spojeným s aplikací. Pro instalaci jsou zapotřebí alespoň 2 ikonky čtvercového tvaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a pro obrazovku, kdy se aplikace načítá po spuštění.
-	\item \lstinline{display}, nebo \lstinline{display_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v režimu, který vypadá jako prohlížeč, nebo se skrytými ovládacími prvky prohlížeče.
+	\item \lstinline{icons}: Obsahuje pole cest k~ikonám spojeným s~aplikací. Pro instalaci jsou zapotřebí alespoň 2~ikonky čtvercového tvaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a~pro obrazovku, kdy se aplikace načítá po spuštění.
+	\item \lstinline{display}, nebo \lstinline{display_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v~režimu, který vypadá jako prohlížeč, nebo se skrytými ovládacími prvky prohlížeče.
 	\item \lstinline{start_url}: Označuje výchozí adresu aplikace. Tato stránka je načtena, když uživatel aplikaci otevře.
-	\item \lstinline{prefer_related_applications}: Pokud existuje nativní aplikace, jejíž instalace je preferována před PWA, touto hodnotou lze toto chování nastavit. Je k tomu vyžadován seznam preferovaných aplikací ve vlastnosti \lstinline{related_applications}.
+	\item \lstinline{prefer_related_applications}: Pokud existuje nativní aplikace, jejíž instalace je preferována před PWA, touto hodnotou lze toto chování nastavit. Je k~tomu vyžadován seznam preferovaných aplikací ve vlastnosti \lstinline{related_applications}.
 \end{itemize}
 
 \subsubsection{Struktura balíčku}
 Balíček frontend je také rozdělen do modulů. Zde jsem se rozhodl pro méně striktní oddělení jednotlivých modulů, ale pokusil jsem se dodržet rozčlenění podle domény, které přibližně odpovídá rozdělení na straně backendu.
 
-Moduly zde představují logické seskupení funckionalit, které k sobě patří podle domény, moduly však mohou importovat části z jiných modulů. Pro uchování částí, které jsou velmi často často používány z různých míst projektu jsem vytvořil složku shared. Zde je umístěn například HTTP klient, vytvořený pomocí knihovny Axios. Dále se zde nachází část s konfigurací internacionalizace.
+Moduly zde představují logické seskupení funckionalit, které k~sobě patří podle domény, moduly však mohou importovat části z~jiných modulů. Pro uchování částí, které jsou velmi často často používány z~různých míst projektu jsem vytvořil složku shared. Zde je umístěn například HTTP klient, vytvořený pomocí knihovny Axios. Dále se zde nachází část s~konfigurací internacionalizace.
 
-Vzhledem k tomu, že nejdůležitější funkcí tohoto balíčku je zajistit uživatelské rozhraní pro komunikaci s backendem, každý modul obsahuje vlastního HTTP klienta, který používá sdílenou nakonfigurovanou instanci Axios. Klienti jednotlivých modulů definují metody, které vytváří jasně definované rozhraní pro realizaci jednotlivých HTTP požadavků (např. přihlášení, načtení knih Bible, vložení záložky,...).
+Vzhledem k~tomu, že nejdůležitější funkcí tohoto balíčku je zajistit uživatelské rozhraní pro komunikaci s~backendem, každý modul obsahuje vlastního HTTP klienta, který používá sdílenou nakonfigurovanou instanci Axios. Klienti jednotlivých modulů definují metody, které vytváří jasně definované rozhraní pro realizaci jednotlivých HTTP požadavků (např. přihlášení, načtení knih Bible, vložení záložky,...).
 
-Částí specifickou pro Vue.js je takzvaný store. Story jsou do Vue.js přidány pomocí knihovny Pinia. Story slouží k ukládání a globálnímu sdílení stavu a jeho mutaci (např. uložení informací o uživatelském účtu, oprávnění uživatele, možnosti odhlášení, nebo přihlášení uživatele). V případě tohoto projektu je informace ve storu často propojena s daty v databázi. Proto jsem často využíval přístup, kdy store tvoří rozhraní nad HTTP klientem. Při změně globálního stavu na frontendu tak zároveň posílá požadavek backendu.
+Částí specifickou pro Vue.js je takzvaný store. Story jsou do Vue.js přidány pomocí knihovny Pinia. Story slouží k~ukládání a~globálnímu sdílení stavu a~jeho mutaci (např. uložení informací o~uživatelském účtu, oprávnění uživatele, možnosti odhlášení, nebo přihlášení uživatele). V~případě tohoto projektu je informace ve storu často propojena s~daty v~databázi. Proto jsem často využíval přístup, kdy store tvoří rozhraní nad HTTP klientem. Při změně globálního stavu na frontendu tak zároveň posílá požadavek backendu.
 
-Tento postup lze snadno demonstrovat například na modulu zajišťujícím autentizaci. Funkce \lstinline{login}, umístěná v souboru \lstinline{authStore.ts} provádí pokus o přihlášení uživatele. Přihlášení je silně závislé na validaci ze strany serveru. Metoda přijímá přihlašovací jméno a heslo. Pošle serveru požadavek na přihlášení uživatele. Pokud požadavek proběhne úspěšně a přihlašovací údaje jsou platné, načte funkce ze serveru podrobnosti o uživateli a uloží je do storu.
+Tento postup lze snadno demonstrovat například na modulu zajišťujícím autentizaci. Funkce \lstinline{login}, umístěná v~souboru \lstinline{authStore.ts} provádí pokus o~přihlášení uživatele. Přihlášení je silně závislé na validaci ze strany serveru. Metoda přijímá přihlašovací jméno a~heslo. Pošle serveru požadavek na přihlášení uživatele. Pokud požadavek proběhne úspěšně a~přihlašovací údaje jsou platné, načte funkce ze serveru podrobnosti o~uživateli a~uloží je do storu.
 
-Vue.js používá pro skládání uživatelského rozhraní takzvané komponenty. Komponenta je celek, který sdružuje HTLM kód, logiku, pro manipulaci s HTML elementy a CSS styl elementů komponenty. Při implementaci jsem nevyužil možnost vkládat CSS kód. Pro stylování jsem použil knihovnu Tailwind, která používá sadu předpřipravených stylů, které se elementům přiřazují pomocí HTML tříd.
+Vue.js používá pro skládání uživatelského rozhraní takzvané komponenty. Komponenta je celek, který sdružuje HTLM kód, logiku, pro manipulaci s~HTML elementy a~CSS styl elementů komponenty. Při implementaci jsem nevyužil možnost vkládat CSS kód. Pro stylování jsem použil knihovnu Tailwind, která používá sadu předpřipravených stylů, které se elementům přiřazují pomocí HTML tříd.
 
 \subsection{Initializer}
-Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro Elasticsearch vytvoří všechny dosud neexistující indexy.
+Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o~požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro Elasticsearch vytvoří všechny dosud neexistující indexy.
 
 
-\section{DevOps a CI/CD}
-V této kapitole se budu věnovat popisu prvků z oblasti DevOps a CI/CD, které jsem v této práci použil.
+\section{DevOps a~CI/CD}
+V~této kapitole se budu věnovat popisu prvků z~oblasti DevOps a~CI/CD, které jsem v~této práci použil.
 
-DevOps je filosofie, která je postavena na propojení procesů vývoje, nasazení a provozu software s důrazem na automatizaci.
+DevOps je filosofie, která je postavena na propojení procesů vývoje, nasazení a~provozu software s~důrazem na automatizaci.
 
-V tomto projektu jsem se zaměřil především na CI/CD (continuous integration and continuous delivery), což je proces automatizace integrace provedených změn do projektu a automatizované doručení změn zákazníkovi.
+V~tomto projektu jsem se zaměřil především na CI/CD (continuous integration and continuous delivery), což je proces automatizace integrace provedených změn do projektu a~automatizované doručení změn zákazníkovi.
 
-Podle myšlenek DevOps jsem zautomatizoval proces sestavení projektu, vytvořil jsem automatizované testy a výpočet pokrytí kódu těmito testy. Do projektu jsem integroval mechanismy pro ověření kvality kódu. Všechny tyto nástroje je možné spustit v projektu pomocí jednoho příkazu. Dále jsem zajistil i vytváření a ukládání logů. Ve zbytku kapitoly se budu věnovat především CI/CD.
+Podle myšlenek DevOps jsem zautomatizoval proces sestavení projektu, vytvořil jsem automatizované testy a~výpočet pokrytí kódu těmito testy. Do projektu jsem integroval mechanismy pro ověření kvality kódu. Všechny tyto nástroje je možné spustit v~projektu pomocí jednoho příkazu. Dále jsem zajistil i~vytváření a~ukládání logů. Ve zbytku kapitoly se budu věnovat především CI/CD.
 
 \subsection{CI/CD pipeline}
-CI/CD pipeline v mém projektu zajišťuje automatizaci kontroly kódu, sestavení artefaktů nové verze a jejich přidání do kontejnerového repozitáře. Díky tomu je celý proces začleňování změn do projektu rychlejší a spolehlivější.
+CI/CD pipeline v~mém projektu zajišťuje automatizaci kontroly kódu, sestavení artefaktů nové verze a~jejich přidání do kontejnerového repozitáře. Díky tomu je celý proces začleňování změn do projektu rychlejší a~spolehlivější.
 
-Základní částí CI/CD pipeline je kontrola kvality kódu. Ta sestává z kontroly formátování kódu, lintování a provedení automatizovaných testů. Pro jednoduchost a přehlednost a také vzhledem k malé velikosti projektu jsem všechny testy nechal spustit při každé kontrole projektu.
+Základní částí CI/CD pipeline je kontrola kvality kódu. Ta sestává z~kontroly formátování kódu, lintování a~provedení automatizovaných testů. Pro jednoduchost a~přehlednost a~také vzhledem k~malé velikosti projektu jsem všechny testy nechal spustit při každé kontrole projektu.
 
-Všechny tyto části kontroly může uživatel spustit ručně v lokálním vývojovém prostředí, nebo se spouštějí automaticky při každém přidání změn do vzdáleného GitHub repozitáře.
+Všechny tyto části kontroly může uživatel spustit ručně v~lokálním vývojovém prostředí, nebo se spouštějí automaticky při každém přidání změn do vzdáleného GitHub repozitáře.
 
-Provedené změny lze do repozitáře přidat pomocí pushe (běžné přidání změn, které může provést každý, kdo má oprávnění vkládat změny do dané větve, neprobíhá zde žádný schvalovací proces). Po přidání změn dostane uživatel zpětnou vazbu, jestli kontrola proběhla úspěšně. Dvě hlavní větve (dev a main) jsou však proti tomuto postupu chráněny. Pro přidání změn do těchto větví je potřeba otevřít takzvaný pull-request. Při tom vznikne žádost o začlenění změn, kterou musí správce projektu potvrdit, aby mohla být přidána.
+Provedené změny lze do repozitáře přidat pomocí pushe (běžné přidání změn, které může provést každý, kdo má oprávnění vkládat změny do dané větve, neprobíhá zde žádný schvalovací proces). Po přidání změn dostane uživatel zpětnou vazbu, jestli kontrola proběhla úspěšně. Dvě hlavní větve (dev a~main) jsou však proti tomuto postupu chráněny. Pro přidání změn do těchto větví je potřeba otevřít takzvaný pull-request. Při tom vznikne žádost o~začlenění změn, kterou musí správce projektu potvrdit, aby mohla být přidána.
 
-Proces schvalování pull-requestů je momentálně poněkud zdlouhavý a ne zcela dobře využitý vzhledem k tomu, že na projektu pracuji sám. Tak v tuto chvíli pouze sám potvrzuji vlastní změny. Do budoucna však může být výhodný a pro práci ve vícečlenném týmu je velmi důležitý.
+Proces schvalování pull-requestů je momentálně poněkud zdlouhavý a~ne zcela dobře využitý vzhledem k~tomu, že na projektu pracuji sám. Tak v~tuto chvíli pouze sám potvrzuji vlastní změny. Do budoucna však může být výhodný a~pro práci ve vícečlenném týmu je velmi důležitý.
 
-Větve dev a main mají v repozitáři zvláštní roli. Zatímco ostatní větve slouží pro běžný vývoj, opravování chyb a přidávání nových možností, větev dev slouží ke kompletaci těchto změn dohromady. Dokončená změna z některé z ostatních větví tak může být přidána pomocí pull-requestu do větve dev.
+Větve dev a~main mají v~repozitáři zvláštní roli. Zatímco ostatní větve slouží pro běžný vývoj, opravování chyb a~přidávání nových možností, větev dev slouží ke kompletaci těchto změn dohromady. Dokončená změna z~některé z~ostatních větví tak může být přidána pomocí pull-requestu do větve dev.
 
-Proces vydání nové verze je z části ruční, ověření kvality a sestavení však probíhá automatizovaně. Autor nové verze tak musí vzít změny z větve dev a na na nové větvi provede změnu číslování verze. Změna se provádí v package.json souborech jednotlivých balíčků projektu, včetně kořenového balíčku. Dále přidá krátkou zprávu shrnující změny v dané verzi do souboru \lstinline{docs/changelog.md}.
+Proces vydání nové verze je z~části ruční, ověření kvality a~sestavení však probíhá automatizovaně. Autor nové verze tak musí vzít změny z~větve dev a~na na nové větvi provede změnu číslování verze. Změna se provádí v~package.json souborech jednotlivých balíčků projektu, včetně kořenového balíčku. Dále přidá krátkou zprávu shrnující změny v~dané verzi do souboru \lstinline{docs/changelog.md}.
 
-S takto provedenými změnami se provede pull-request do větve main. Zde je možné jednotlivé změny označit štítkem. Pokud má štítek správný název, provede se sestavení nové verze a jednotlivé obrazy docker kontejnerů jsou přidány do kontejnerového repozitáře, odkud mohou být staženy.
+S~takto provedenými změnami se provede pull-request do větve main. Zde je možné jednotlivé změny označit štítkem. Pokud má štítek správný název, provede se sestavení nové verze a~jednotlivé obrazy docker kontejnerů jsou přidány do kontejnerového repozitáře, odkud mohou být staženy.
 
-K dispozici jsou dva typy štítků. Jeden typ označuje kandidáta na novou verzi. Při jeho přidání se sestaveným obrazům přidá pouze štítek s označením dané verze. Pokud je přidán běžný štítek verze, přidá se obrazům také štítek latest. Po stažení se tak obrazy automaticky aktualizují na novou verzi všem uživatelům, kteří tento štítek používají.
+K~dispozici jsou dva typy štítků. Jeden typ označuje kandidáta na novou verzi. Při jeho přidání se sestaveným obrazům přidá pouze štítek s~označením dané verze. Pokud je přidán běžný štítek verze, přidá se obrazům také štítek latest. Po stažení se tak obrazy automaticky aktualizují na novou verzi všem uživatelům, kteří tento štítek používají.
 
 \subsection{Verzování}
-Verzování je důležitou součástí CI/CD pipeline, protože jednotlivé události se určují právě podle vytvořených objektů ve verzovacím systému. Jde především o commity, větve, pull-requesty a štítky.
+Verzování je důležitou součástí CI/CD pipeline, protože jednotlivé události se určují právě podle vytvořených objektů ve verzovacím systému. Jde především o~commity, větve, pull-requesty a~štítky.
 
 Níže budu popisovat jednotlivé konvence, které jsem pro projekt zavedl.
 
@@ -583,16 +578,16 @@ Níže budu popisovat jednotlivé konvence, které jsem pro projekt zavedl.
 
 Větev obsahuje větší množství ucelených změn, které mají společný účel. Může sloužit například pro vývoj celého konkrétního modulu, pro dokumentaci, úpravy infrastruktury, nebo refactoring balíčku, případně pro vývoj konkrétního doménového prvku.
 
-Zvláštní roli mají větve dev a main, které jsou chráněny před přímým přidáváním commitů. Změny do nich lze přidávat jen pomocí pull-requestů. Větev dev slouží ke kompletaci změn z ostatních větví. Změny, které jsou přidány do větve main jsou určeny k vydání. Vydání nové verze se provede automaticky po oštítkování commitu.
+Zvláštní roli mají větve dev a~main, které jsou chráněny před přímým přidáváním commitů. Změny do nich lze přidávat jen pomocí pull-requestů. Větev dev slouží ke kompletaci změn z~ostatních větví. Změny, které jsou přidány do větve main jsou určeny k~vydání. Vydání nové verze se provede automaticky po oštítkování commitu.
 
 Každá větev je pojmenována ve formátu \lstinline{<typ>/<nazev>}, kde \lstinline{<nazev>} popisuje společný účel změn ve větvi (např. server-authentication). \lstinline{<typ>} přibližuje, jaký technický charakter změny mají.
 
 Povolené typy větví jsou následující:
 \begin{itemize}
-	\item \textbf{chore:} Slouží pro údržbu projektu, závislostí, infrastruktury. Nepřidává další funkcionalitu, ani neopravuje chyby v kódu
+	\item \textbf{chore:} Slouží pro údržbu projektu, závislostí, infrastruktury. Nepřidává další funkcionalitu, ani neopravuje chyby v~kódu
 	\item \textbf{feature:} Přidává skupinu funkcionalit do projektu (čtečka Bible, modlitební skupiny, ...)
-	\item \textbf{release:} Stará se o poslední změny před vydáním nové verze. Typicky se zde provádí přidání change logu a zvýšení čísla verze.
-	\item \textbf{docs:} Provádí se zde přidání a údržba přiložené dokumentace projektu.
+	\item \textbf{release:} Stará se o~poslední změny před vydáním nové verze. Typicky se zde provádí přidání change logu a~zvýšení čísla verze.
+	\item \textbf{docs:} Provádí se zde přidání a~údržba přiložené dokumentace projektu.
 \end{itemize}
 
 
@@ -600,76 +595,76 @@ Povolené typy větví jsou následující:
 
 Jednotlivé commity obsahují menší ucelené změny. Jeden commit by neměl obsahovat více změn, které spolu přímo nesouvisí (tematicky, nebo umístěním).
 
-Pojmenování commitu je vždy ve formátu \lstinline{<typ>: <popis>}, kde \lstinline{<popis>} stručně vysvětluje hlavní provedené změny v rámci daného commitu. Dále zpráva ke commitu obsahuje i podrobnější popis provedených změn.
+Pojmenování commitu je vždy ve formátu \lstinline{<typ>: <popis>}, kde \lstinline{<popis>} stručně vysvětluje hlavní provedené změny v~rámci daného commitu. Dále zpráva ke commitu obsahuje i~podrobnější popis provedených změn.
 
-Typy commitů jsou určeny pro budoucí implementaci automatického sémantického verzování. Usnadňují také orientaci ve změnách a upřesňují technický význam commitů. Povolené typy jsou tyto:
+Typy commitů jsou určeny pro budoucí implementaci automatického sémantického verzování. Usnadňují také orientaci ve změnách a~upřesňují technický význam commitů. Povolené typy jsou tyto:
 \begin{itemize}
 	\item \textbf{feature:} přidává novou funkcionalitu
-	\item \textbf{fix:} opravuje chybu v kódu
+	\item \textbf{fix:} opravuje chybu v~kódu
 	\item \textbf{test:} přidává automatizované testy pro již existující kód
 	\item \textbf{docs:} upravuje dokumentaci
-	\item \textbf{build:} změny v nastavení projektu, infrastruktuře a závislostech
+	\item \textbf{build:} změny v~nastavení projektu, infrastruktuře a~závislostech
 \end{itemize}
 
 \subsubsection{Štítky}
-GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \lstinline{v0.1.0}) a dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o kandidáta na verzi (release candidate). Jednotliví kandidáti mají v názvu pořadové číslo. Označení kandidáta na verzi může být např. \lstinline{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k otestování, že se všechny artefakty vytvořily správně a jsou použitelné.
+GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \lstinline{v0.1.0}) a~dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o~kandidáta na verzi (release candidate). Jednotliví kandidáti mají v~názvu pořadové číslo. Označení kandidáta na verzi může být např. \lstinline{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k~otestování, že se všechny artefakty vytvořily správně a~jsou použitelné.
 
 \subsection{Sestavení kontejneru}
-Pro chod aplikace jsou potřeba celkem 3 kontejnery, které jsem vytvořil v rámci tohoto projektu. V této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demonstrovat na backendu aplikace.
+Pro chod aplikace jsou potřeba celkem 3~kontejnery, které jsem vytvořil v~rámci tohoto projektu. V~této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demonstrovat na backendu aplikace.
 
-Celý postup je uložen v soubodu Dockerfile. Proces sestavení obrazu kontejneru je rozdělen do několika stupňů, z nichž každý provádí část procesu. Tyto stupně jsou znovupoužitelné a využívají se podle toho, jestli jde o sestavení produkčního artefaktu, nebo jestli je sestavení prováděno pro účely vývoje a testování.
+Celý postup je uložen v~soubodu Dockerfile. Proces sestavení obrazu kontejneru je rozdělen do několika stupňů, z~nichž každý provádí část procesu. Tyto stupně jsou znovupoužitelné a~využívají se podle toho, jestli jde o~sestavení produkčního artefaktu, nebo jestli je sestavení prováděno pro účely vývoje a~testování.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/dockerfile-stages.png}
-	\caption{Diagram závislostí stupňů v Dockerfile}
+	\caption{Diagram závislostí stupňů v~Dockerfile}
 	\label{fig:dockerfile-stages}
 \end{figure}
 
-Dockerfile je tvořen celkem 5 stupni. Stupně a jejich závislosti je možné vidět na obrázku \ref{fig:dockerfile-stages}. Stupně jsou rozvrženy tak, aby přehledně oddělovaly jednotlivé části procesu a zároveň efektivněji využívaly cachování. Stupně build i dev dědí ze stupně dependencies, což zajistí, že většina uloženého postupu zůstane uložena z posledního sestavení, pokud zde nedojde ke změnám. Docker umí s těmito změnami pracovat efektivně a kroky, ve kterých nedošlo ke změně si ponechává v cache.
+Dockerfile je tvořen celkem 5~stupni. Stupně a~jejich závislosti je možné vidět na obrázku \ref{fig:dockerfile-stages}. Stupně jsou rozvrženy tak, aby přehledně oddělovaly jednotlivé části procesu a~zároveň efektivněji využívaly cachování. Stupně build i~dev dědí ze stupně dependencies, což zajistí, že většina uloženého postupu zůstane uložena z~posledního sestavení, pokud zde nedojde ke změnám. Docker umí s~těmito změnami pracovat efektivně a~kroky, ve kterých nedošlo ke změně si ponechává v~cache.
 
 Zde je popis jednotlivých stupňů:
 \begin{itemize}
-	\item \textbf{base:} Základní stupeň dědí z oficiálního image pro node.js. Provádí konfiguraci a instalaci pnpm pro správu balíčků.
-	\item \textbf{dependencies:} Tento stupeň dědí ze stupně base. Provádí se zde kopírování konfiguračních souborů a instalace závislostí pro vývojové prostředí a kompilaci.
-	\item \textbf{build:} V tomto stupni probíhá kopírování zdrojového kódu a jeho kompilace.
+	\item \textbf{base:} Základní stupeň dědí z~oficiálního image pro node.js. Provádí konfiguraci a~instalaci pnpm pro správu balíčků.
+	\item \textbf{dependencies:} Tento stupeň dědí ze stupně base. Provádí se zde kopírování konfiguračních souborů a~instalace závislostí pro vývojové prostředí a~kompilaci.
+	\item \textbf{build:} V~tomto stupni probíhá kopírování zdrojového kódu a~jeho kompilace.
 	\item \textbf{dev:} Zde se provádí spuštění vývojového serveru. Pro tuto variantu je vyžadováno mít pomocí Dockeru připojený souborový systém obsahující zdrojový kód.
-	\item \textbf{runtime:} V tomto stupni probíhá instalace závislostí pro produkční běh a nastavení Nginx serveru.
+	\item \textbf{runtime:} V~tomto stupni probíhá instalace závislostí pro produkční běh a~nastavení Nginx serveru.
 \end{itemize}
 
-Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z proměnných prostředí. Vite, který zajišťuje sestavení frontendu v kombinaci s Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a sestavení kontejneru a ne z \lstinline{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značný nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
+Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z~proměnných prostředí. Vite, který zajišťuje sestavení frontendu v~kombinaci s~Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a~sestavení kontejneru a~ne z \lstinline{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značný nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
 
-Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spouští bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v kódu odkazují vlastnosti proměnné \lstinline{import.meta.env}. Ve svém projektu a podle instrukcí poskytnutých v repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a nahrazeny skutečnými hodnotami, které poskytne uživatel.
+Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spouští bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v~kódu odkazují vlastnosti proměnné \lstinline{import.meta.env}. Ve svém projektu a~podle instrukcí poskytnutých v~repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a~nahrazeny skutečnými hodnotami, které poskytne uživatel.
 
 \subsection{Logování}
-Uchování a přístup k logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v terminálu.
+Uchování a~přístup k~logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a~zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v~terminálu.
 
 \subsection{Spuštění projektu}
-Výsledné obrazy je možné spustit pomocí souboru \lstinline{docker-compose.yaml}, který je umístěn ve složce release. Ten automaticky stáhne obrazy pro nejnovější verzi projektu a spustí je. Pro spuštění na libovolném zařízení s nainstalovaným Dockerem tak stačí spustit ve složce se staženým konfiguračním souborem docker compose příkaz \lstinline{docker compose up}.
+Výsledné obrazy je možné spustit pomocí souboru \lstinline{docker-compose.yaml}, který je umístěn ve složce release. Ten automaticky stáhne obrazy pro nejnovější verzi projektu a~spustí je. Pro spuštění na libovolném zařízení s~nainstalovaným Dockerem tak stačí spustit ve složce se staženým konfiguračním souborem docker compose příkaz \lstinline{docker compose up}.
 
-Do nastavení projektu je možné zasáhnout pomocí proměnných prostředí. Těm jsem se blíže věnoval v přiložené dokumentaci projektu.
+Do nastavení projektu je možné zasáhnout pomocí proměnných prostředí. Těm jsem se blíže věnoval v~přiložené dokumentaci projektu.
 
 \section{Ukázka aplikace}
-V této sekci budou popsány funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z pohledu globálního administrátora. Pro ostatní uživatele s nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
+V~této sekci budou popsány funkce, které aplikace poskytuje. Ukázky jsou zpravidla popsány z~pohledu globálního administrátora. Pro ostatní uživatele s~nižšími oprávněními je uživatelské rozhraní obdobné, pouze některé funkcionality nejsou dostupné.
 
 \subsection{Navigace}
-Hlavním ovládacím prvkem je horní lišta (vizte obrázek \ref{fig:top-bar}), na které se nachází název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil, a tlačítko pro otevření bočního menu.
+Hlavním ovládacím prvkem je horní lišta (vizte obrázek \ref{fig:top-bar}), na které se nachází název aplikace, který funguje také jako odkaz na domovskou stránku. Důležitými ovládacími prvky jsou přepínač jazyka rozhraní, tlačítko, které zobrazuje nabídku pro uživatelský profil, a~tlačítko pro otevření bočního menu.
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/ui/top-bar.png}
 	\caption{Ukázka horní lišty}
 	\label{fig:top-bar}
 \end{figure}
 
-Pomocí ikonky menu na pravé straně horní lišty lze otevřít boční menu (vizte obrázek \ref{fig:navigation}), které obsahuje přepínač tmavého a světlého motivu rozhraní. Dále jsou zde odkazy na jednotlivé důležité části aplikace. Nabídku lze zavřít pomocí stejného tlačítka, kterým byla otevřena, nebo kliknutím do prostoru okna.
+Pomocí ikonky menu na pravé straně horní lišty lze otevřít boční menu (vizte obrázek \ref{fig:navigation}), které obsahuje přepínač tmavého a~světlého motivu rozhraní. Dále jsou zde odkazy na jednotlivé důležité části aplikace. Nabídku lze zavřít pomocí stejného tlačítka, kterým byla otevřena, nebo kliknutím do prostoru okna.
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/ui/navigation.png}
 	\caption{Ukázka boční nabídky}
 	\label{fig:navigation}
 \end{figure}
 
-\subsection{Registrace a přihlášení}
-Část funkcionalit aplikace je dostupná i nepřihlášeným uživatelům. Nepřihlášení uživatelé mohou procházet globálně dostupné texty (texty Bible, žaltář, úryvky na den). Řada funkcionalit však vyžaduje ukládání uživatelských dat a proto i identifikaci a autentizaci uživatele, aby bylo možné jeho data sdílet mezi zařízeními a ověřovat jeho oprávnění.
+\subsection{Registrace a~přihlášení}
+Část funkcionalit aplikace je dostupná i~nepřihlášeným uživatelům. Nepřihlášení uživatelé mohou procházet globálně dostupné texty (texty Bible, žaltář, úryvky na den). Řada funkcionalit však vyžaduje ukládání uživatelských dat a~proto i~identifikaci a~autentizaci uživatele, aby bylo možné jeho data sdílet mezi zařízeními a~ověřovat jeho oprávnění.
 
-Vytvoření uživatelského účtu lze provést prostřednictvím formuláře registrace (vizte obrázek \ref{fig:registration}). V tomto formuláři stačí vyplnit jen email, který funguje jako unikátní identifikátor uživatelského účtu, a poté vepsat heslo a potvrdit jej opětovným vepsáním do dalšího políčka.
+Vytvoření uživatelského účtu lze provést prostřednictvím formuláře registrace (vizte obrázek \ref{fig:registration}). V~tomto formuláři stačí vyplnit jen email, který funguje jako unikátní identifikátor uživatelského účtu, a~poté vepsat heslo a~potvrdit jej opětovným vepsáním do dalšího políčka.
 
 \begin{figure}[H]
 	\centering
@@ -678,32 +673,32 @@ Vytvoření uživatelského účtu lze provést prostřednictvím formuláře re
 	\label{fig:registration}
 \end{figure}
 
-Po registraci je uživatel přesměrován na obrazovku pro přihlášení. Přihlašovací formulář je velmi podobný formuláři pro registraci. Přihlášený uživatel může  např. vytvářet vlastní úryvky Bible, vést si poznámky k biblickým textům nebo vytvářet záložky. Může také být členem skupin, ve kterých se zobrazují příspěvky správců skupiny. Pokud jsou mu přidělena administrátorská oprávnění, může mít přístup také ke správě překladů Bible, kalendáře nebo dalších skupin a uživatelských účtů.
+Po registraci je uživatel přesměrován na obrazovku pro přihlášení. Přihlašovací formulář je velmi podobný formuláři pro registraci. Přihlášený uživatel může  např. vytvářet vlastní úryvky Bible, vést si poznámky k~biblickým textům nebo vytvářet záložky. Může také být členem skupin, ve kterých se zobrazují příspěvky správců skupiny. Pokud jsou mu přidělena administrátorská oprávnění, může mít přístup také ke správě překladů Bible, kalendáře nebo dalších skupin a~uživatelských účtů.
 
 \subsection{Čtečka Bible}
-Převážnou část obrazovky s texty Bible vyplňuje samotný zobrazovaný text Bible. Důležitými ovládacími prvky jsou navigační šipky na začátku i na konci textu. Pomocí těch je možné přepínat mezi zobrazenými kapitolami, případně přejít nahoru v Biblické hierarchii (přepnutí na výběr kapitol, nebo knih).
+Převážnou část obrazovky s~texty Bible vyplňuje samotný zobrazovaný text Bible. Důležitými ovládacími prvky jsou navigační šipky na začátku i~na konci textu. Pomocí těch je možné přepínat mezi zobrazenými kapitolami, případně přejít nahoru v~Biblické hierarchii (přepnutí na výběr kapitol, nebo knih).
 
-Hlavním ovládacím prvkem čtečky Bible je dolní lišta. V pravém dolním rohu obsahuje tlačítko pro zobrazení nabídky, ve které je možné změnit překlad Bible, nebo přejít do seznamu záložek uživatele.
+Hlavním ovládacím prvkem čtečky Bible je dolní lišta. V~pravém dolním rohu obsahuje tlačítko pro zobrazení nabídky, ve které je možné změnit překlad Bible, nebo přejít do seznamu záložek uživatele.
 
-Do textu mohou přihlášení uživatelé přidávat poznámky k veršům, zvýrazňovat verše a vytvářet pojmenované záložky, ke kterým se mohou později vrátit. Všechny tyto entity jsou spojeny s konkrétním veršem. Pro jejich vytvoření, nebo upravení je nejdříve třeba vybrat z textu konkrétní verš. Poté se aktivují tlačítka v levé části dolní lišty (vizte obrázek \ref{fig:bible-bottom-bar}). Pomocí nich je možné otevřít okna pro správu těchto možností.
+Do textu mohou přihlášení uživatelé přidávat poznámky k~veršům, zvýrazňovat verše a~vytvářet pojmenované záložky, ke kterým se mohou později vrátit. Všechny tyto entity jsou spojeny s~konkrétním veršem. Pro jejich vytvoření, nebo upravení je nejdříve třeba vybrat z~textu konkrétní verš. Poté se aktivují tlačítka v~levé části dolní lišty (vizte obrázek \ref{fig:bible-bottom-bar}). Pomocí nich je možné otevřít okna pro správu těchto možností.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{images/ui/bible-bottom-bar.png}
-	\caption{Ukázka boční nabídky a vybraného verše}
+	\caption{Ukázka boční nabídky a~vybraného verše}
 	\label{fig:bible-bottom-bar}
 \end{figure}
 
 \subsection{Úryvky Bible}
-Aplikace obsahuje rozhraní pro tvorbu a upravování úryvků Bible. Každý úryvek je tvořený jednou, nebo více částmi. Začátek a konec každé části se stanovují číslem verše a kapitoly. Kniha Bible je stanovena pro celý úryvek. Úryvky jsou nezávislé na překladu Bible. Překlad se volí podle preferencí uživatele.
+Aplikace obsahuje rozhraní pro tvorbu a~upravování úryvků Bible. Každý úryvek je tvořený jednou, nebo více částmi. Začátek a~konec každé části se stanovují číslem verše a~kapitoly. Kniha Bible je stanovena pro celý úryvek. Úryvky jsou nezávislé na překladu Bible. Překlad se volí podle preferencí uživatele.
 
 \subsubsection{Uživatelské úryvky}
-Přihlášený uživatel může vytvářet a spravovat vlastní úryvky. Seznam úryvků se zobrazí po otevření sekce \enquote{Moje úryvky} v boční nabídce. V horní části seznamu úryvků se nachází tlačítko pro vytvoření nového úryvku. Po kliknutí na úryvek se zobrazí pouze vybraný úryvek na samostatné stránce. Odtud je možné dostat se do editoru úryvků stejně jako po kliknutí na tlačítko přidání úryvku.
+Přihlášený uživatel může vytvářet a~spravovat vlastní úryvky. Seznam úryvků se zobrazí po otevření sekce \enquote{Moje úryvky} v~boční nabídce. V~horní části seznamu úryvků se nachází tlačítko pro vytvoření nového úryvku. Po kliknutí na úryvek se zobrazí pouze vybraný úryvek na samostatné stránce. Odtud je možné dostat se do editoru úryvků stejně jako po kliknutí na tlačítko přidání úryvku.
 
 \subsubsection{Editor úryvků}
-Další důležitou částí je editor úryvků (vizte obrázek \ref{fig:passage-editor}). Stránka pro upravování úryvků je rozdělena na dvě části. V levé části obrazovky je formulář, do kterého se vepisují hodnoty, podle kterých se úryvky vytváří. V pravé části je náhled textu, který se aktualizuje podle změn v editoru.
+Další důležitou částí je editor úryvků (vizte obrázek \ref{fig:passage-editor}). Stránka pro upravování úryvků je rozdělena na dvě části. V~levé části obrazovky je formulář, do kterého se vepisují hodnoty, podle kterých se úryvky vytváří. V~pravé části je náhled textu, který se aktualizuje podle změn v~editoru.
 
-U úryvku je možné nastavit název, knihu a datum. Datum může nastavit pouze uživatel s příslušnými oprávněními. Pokud je datum nastavené, úryvek se bude zobrazovat v kalendáři pro daný den. Pod tlačítkem pro uložení se nachází sekce, ve které lze spravovat jednotlivé části úryvků. Jednotlivé části lze přidávat i odstraňovat. Jejich počet není omezen. U každé části se vyplňuje počáteční a koncový verš a kapitola. Koncová kapitola může zůstat bez hodnoty. V takovém případě aplikace používá stejnou hodnotu jako pro počáteční kapitolu.
+U~úryvku je možné nastavit název, knihu a~datum. Datum může nastavit pouze uživatel s~příslušnými oprávněními. Pokud je datum nastavené, úryvek se bude zobrazovat v~kalendáři pro daný den. Pod tlačítkem pro uložení se nachází sekce, ve které lze spravovat jednotlivé části úryvků. Jednotlivé části lze přidávat i~odstraňovat. Jejich počet není omezen. U~každé části se vyplňuje počáteční a~koncový verš a~kapitola. Koncová kapitola může zůstat bez hodnoty. V~takovém případě aplikace používá stejnou hodnotu jako pro počáteční kapitolu.
 
 \begin{figure}[H]
 	\centering
@@ -713,14 +708,14 @@ U úryvku je možné nastavit název, knihu a datum. Datum může nastavit pouze
 \end{figure}
 
 \subsection{Žaltář}
-Z bočního menu se lze dostat také do sekce žaltáře. Po kliknutí na odkaz v bočním menu se zobrazí výchozí stránka, na které lze vybrat kaftizmu ze seznamu. V horní části se nachází odkaz na stránku s možností výběru jednotlivých žalmů.
+Z~bočního menu se lze dostat také do sekce žaltáře. Po kliknutí na odkaz v~bočním menu se zobrazí výchozí stránka, na které lze vybrat kaftizmu ze seznamu. V~horní části se nachází odkaz na stránku s~možností výběru jednotlivých žalmů.
 
-Zobrazení kaftizmy obsahuje jednotlivé žalmy společně s přidruženými modlitbami.
+Zobrazení kaftizmy obsahuje jednotlivé žalmy společně s~přidruženými modlitbami.
 
 \subsection{Administrace}
-Sekce administrace umožňuje administrátorům spravovat uživatele, jejich role a skupiny, a přidávat překlady textů.
+Sekce administrace umožňuje administrátorům spravovat uživatele, jejich role a~skupiny, a~přidávat překlady textů.
 
-V sekci pro správu uživatelů je možné vytvářet nové uživatele nebo již existujícím uživatelům přidávat a odebírat role. Všichni uživatelé jsou zobrazeni v tabulce. V posledních sloupcích tabulky se nachází tlačítka pro správu rolí uživatele a pro obnovení hesla. Tlačítko pro správu rolí otevře okno se seznamem rolí, které mohou být uživateli přiřazeny (vizte obrázek \ref{fig:role-modal}). K jednotlivým rolím v seznamu je přiřazeno tlačítko s akcí, které indikuje, jestli bude kliknutím role přiřazena, nebo odebrána (tím i jestli je momentálně přidělena, nebo ne).
+V~sekci pro správu uživatelů je možné vytvářet nové uživatele nebo již existujícím uživatelům přidávat a~odebírat role. Všichni uživatelé jsou zobrazeni v~tabulce. V~posledních sloupcích tabulky se nachází tlačítka pro správu rolí uživatele a~pro obnovení hesla. Tlačítko pro správu rolí otevře okno se seznamem rolí, které mohou být uživateli přiřazeny (vizte obrázek \ref{fig:role-modal}). K~jednotlivým rolím v~seznamu je přiřazeno tlačítko s~akcí, které indikuje, jestli bude kliknutím role přiřazena, nebo odebrána (tím i~jestli je momentálně přidělena, nebo ne).
 
 \begin{figure}[H]
 	\centering
@@ -732,13 +727,13 @@ V sekci pro správu uživatelů je možné vytvářet nové uživatele nebo již
 Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje tabulku, ve které jsou vypsány jednotlivé skupiny.
 
 \begin{kiconclusions}
-	V rámci této práce jsem vypracoval webovou aplikaci, která slouží k zobrazení a správě textů Bible a žaltáře. Aplikace také umožňuje vytvářet úryvky z textů Bible, dělat v nich poznámky a záložky. Aplikace obsahuje také sekci pro správu uživatelů a skupin, které umožňují vytváření příspěvků a jejich sdílení s vybranými uživateli.
+	V~rámci této práce jsem vypracoval webovou aplikaci, která slouží k~zobrazení a~správě textů Bible a~žaltáře. Aplikace také umožňuje vytvářet úryvky z~textů Bible, dělat v~nich poznámky a~záložky. Aplikace obsahuje také sekci pro správu uživatelů a~skupin, které umožňují vytváření příspěvků a~jejich sdílení s~vybranými uživateli.
 
-	Hlavním přínosem pro farnost bude možnost přistupovat centralizovaně k těmto textům a dále s nimi pracovat. Pro společenství bude dále také výhodné, že různé překlady textů i uživatelského rozhraní se dají spravovat velmi jednoduše, což v původním řešení, které farnost používala, nebylo uspokojivě zajištěno. V současnosti je žaltář ve farnosti velmi často využíván. Díky této aplikaci bude i spolu s texty Bible dostupný na jednom místě pro všechny farníky i v jejich preferovaném jazyce.
+	Hlavním přínosem pro farnost bude možnost přistupovat centralizovaně k~těmto textům a~dále s~nimi pracovat. Pro společenství bude dále také výhodné, že různé překlady textů i~uživatelského rozhraní se dají spravovat velmi jednoduše, což v~původním řešení, které farnost používala, nebylo uspokojivě zajištěno. V~současnosti je žaltář ve farnosti velmi často využíván. Díky této aplikaci bude i~spolu s~texty Bible dostupný na jednom místě pro všechny farníky i~v~jejich preferovaném jazyce.
 
-	Důraz při vývoji jsem kladl zejména na prvky z oblasti DevOps. Do projektu jsem integroval CI/CD pipeline, automatizované testy, sestavení obrazů kontejnerů a kontrolu kvality kódu, což přispívá k jednoduššímu vývoji a vydávání nových verzí. Také aktualizace aplikace za běhu a nasazení na novém zařízení je díky těmto prvkům značně jednodušší.
+	Důraz při vývoji jsem kladl zejména na prvky z~oblasti DevOps. Do projektu jsem integroval CI/CD pipeline, automatizované testy, sestavení obrazů kontejnerů a~kontrolu kvality kódu, což přispívá k~jednoduššímu vývoji a~vydávání nových verzí. Také aktualizace aplikace za běhu a~nasazení na novém zařízení je díky těmto prvkům značně jednodušší.
 
-	V budoucnu se nabízí řada rozšíření aplikace především v oblasti přidání dalších textů modliteb. Textů modliteb řeckokatolické církve je velmi mnoho a i s ohledem na tuto skutečnost jsem se aplikaci snažil navrhnout modulárně. V dalších verzích by mohly být přítomné další bohoslužebné texty i modlitby, které se věřící modlí během dne, nebo kalendář svátků. Pro přidání textů je nejdříve třeba získat jejich potřebné překlady a převést do vhodného formátu, což je značně časově náročné a vyžaduje to spolupráci více lidí. Proto jsem dosud vytvořil jen ukázkovou sadu překladů, která se bude v budoucnu spolu s aplikací rozrůstat.
+	V~budoucnu se nabízí řada rozšíření aplikace především v~oblasti přidání dalších textů modliteb. Textů modliteb řeckokatolické církve je velmi mnoho a~i~s~ohledem na tuto skutečnost jsem se aplikaci snažil navrhnout modulárně. V~dalších verzích by mohly být přítomné další bohoslužebné texty i~modlitby, které se věřící modlí během dne, nebo kalendář svátků. Pro přidání textů je nejdříve třeba získat jejich potřebné překlady a~převést do vhodného formátu, což je značně časově náročné a~vyžaduje to spolupráci více lidí. Proto jsem dosud vytvořil jen ukázkovou sadu překladů, která se bude v~budoucnu spolu s~aplikací rozrůstat.
 \end{kiconclusions}
 
 
@@ -749,25 +744,25 @@ Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje t
 %% práce!
 \section{Obsah elektronických dat} \label{sec:ObsahData}
 
-K textu je přiložena elektronická příloha. Ta obsahuje tato data:
+K~textu je přiložena elektronická příloha. Ta obsahuje tato data:
 
 \begin{description}
 
 	\item[\texttt{README.md}] \hfill \\
-		Obsahem tohoto souboru je popis spuštění projektu a importu připravených ukázkových dat.
+		Obsahem tohoto souboru je popis spuštění projektu a~importu připravených ukázkových dat.
 
 	\item[\texttt{text/}] \hfill \\
-		Adresář s textem práce ve formátu PDF, vytvořený s~použitím
+		Adresář s~textem práce ve formátu PDF, vytvořený s~použitím
 		závazného stylu KI PřF UP v~Olomouci pro závěrečné práce, včetně
 		všech (textových) příloh, a~všechny soubory potřebné pro
 		bezproblémové vytvoření PDF dokumentu textu (případně v~ZIP
-		archivu), tj.~zdrojový text textu a příloh, vložené obrázky, apod.
+		archivu), tj.~zdrojový text textu a~příloh, vložené obrázky, apod.
 
 	\item[\texttt{vera/}] \hfill \\
-		Adresář se soubory projektu. Obsahuje zdrojové kódy a dokumentaci a konfigurační soubory projektu, které jsou nutné ke zprovoznění a sestavení aplikace.
+		Adresář se soubory projektu. Obsahuje zdrojové kódy a~dokumentaci a~konfigurační soubory projektu, které jsou nutné ke zprovoznění a~sestavení aplikace.
 
 	\item[\texttt{vera-data/}] \hfill \\
-		Tento adresář obsahuje soubory s ukázkovými daty, které je možné importovat do aplikace. Postup je popsán v textu práce.
+		Tento adresář obsahuje soubory s~ukázkovými daty, které je možné importovat do aplikace. Postup je popsán v~textu práce.
 
 \end{description}
 
@@ -775,11 +770,11 @@ K textu je přiložena elektronická příloha. Ta obsahuje tato data:
 
 %% Sazba volitelného seznamu zkratek, za přílohami.
 
-%% Sazba povinné bibliografie, za přílohami (případně i za seznamem
+%% Sazba povinné bibliografie, za přílohami (případně i~za seznamem
 %% zkratek). Při použití BibLaTeXu použijte makro
 %% \printbibliography. jinak prostředí thebibliography. Ne obojí!
 
-%% Sazba i v textu necitovaných zdrojů, při použití
+%% Sazba i~v~textu necitovaných zdrojů, při použití
 %% BibLaTeXu. Volitelné.
 \nocite{*}
 %% Vlastní sazba bibliografie při použití BibLaTeXu.
