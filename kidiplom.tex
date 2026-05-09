@@ -328,15 +328,15 @@ Aplikace je určena především k~prezentaci uložených dat a~jejich správě.
 PostgreSQL databázi jsem využil jako primární úložiště dat, která bude aplikace uchovávat. Jsou zde uložena data o~uživatelích, skupinách, oprávněních, úryvcích biblických textů a~další. Důležitějším částem databáze se budu v~této části věnovat podrobněji.
 
 \paragraph{Uživatelské účty}
-Databáze obsahuje strukturu pro ukládání dat o~uživatelských účtech a~možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka \kiinlinecode{text}{!}{user\_details}, která obsahuje detaily o~uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
+Databáze obsahuje strukturu pro ukládání dat o~uživatelských účtech a~možnostech přihlášení uživatele (vizte obrázek \ref{fig:db-user}). Klíčovou tabulkou je tabulka \texttt{user\_details}, která obsahuje detaily o~uživateli. Je zde uložen email, který slouží jako identifikátor uživatele.
 
 Struktura této části databáze je přizpůsobena tomu, aby bylo možné implementovat různé typy přihlašování.
 
 Další tabulkou je tabulka poskytovatelů autentizace. Zde je uložen název a~zkratka poskytovatele.
 
-Tabulka \kiinlinecode{text}{!}{authentication} obsahuje cizí klíče odkazující na záznam v~tabulce poskytovatelů autentizace a~dále na záznam z~tabulky s~detaily uživatele, jehož totožnost se ověřuje a~identifikační kód poskytnutý autentizační službou.
+Tabulka \texttt{authentication} obsahuje cizí klíče odkazující na záznam v~tabulce poskytovatelů autentizace a~dále na záznam z~tabulky s~detaily uživatele, jehož totožnost se ověřuje a~identifikační kód poskytnutý autentizační službou.
 
-Pro přihlášení pomocí hesla existuje tabulka \kiinlinecode{text}{!}{credentials}. Zde se ukládá uživatelské heslo. Hodnota \lstinline{provider_account_identifier} je poskytována externím poskytovatelem. Pro lokální přihlášení pomocí emailu a~hesla je hodnota \lstinline{provider_account_identifier} nastavena na \lstinline{local<user_id>}.
+Pro přihlášení pomocí hesla existuje tabulka \texttt{credentials}. Zde se ukládá uživatelské heslo. Hodnota \texttt{provider\_account\_identifier} je poskytována externím poskytovatelem. Pro lokální přihlášení pomocí emailu a~hesla je hodnota \texttt{provider\_account\_identifier} nastavena na \texttt{local<user\_id>}.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/db-user.png}
@@ -365,7 +365,7 @@ Pro uložení textů, ve kterých se bude vyhledávat jsem použil Elasticsearch
 \paragraph{Texty Bible}
 Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje zdrojový kód \ref{code:bible-index}.
 
-V~databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou strukturu kvůli lepší indexaci ukládám po jednotlivých verších s~jejich přesným umístěním. Záznam tak obsahuje kód překladu, ke kterému patří, číslo knihy, kapitoly a~verše. Dále obsahuje samotný text, který se indexuje a~vlastnost \lstinline{is_header}, která určuje, jestli se jedná o~nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i~v~databázi.
+V~databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou strukturu kvůli lepší indexaci ukládám po jednotlivých verších s~jejich přesným umístěním. Záznam tak obsahuje kód překladu, ke kterému patří, číslo knihy, kapitoly a~verše. Dále obsahuje samotný text, který se indexuje a~vlastnost \texttt{is\_header}, která určuje, jestli se jedná o~nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i~v~databázi.
 
 \begin{kicode}{JavaScript}{code:bible-index}{Index Bible}
 	{
@@ -477,12 +477,12 @@ Aplikace komunikuje se dvěma databázemi. PostgreSQL i~Elasticsearch mají vlas
 Pro připojení k~PostgreSQL databázi je použita knihovna Kysely. Knihovna samotná poskytuje jednoduchý přístup ke správě připojení a~vytváření dotazů. Ve zbytku projektu je rozhraní knihovny používáno přímo.
 
 \subparagraph{Elasticsearch}
-Pro komunikaci mezi Node.js aplikací a~instancí Elasticsearch existuje knihovna stejného názvu. Tato knihovna poskytuje velmi základní rozhraní, proto jsem vytvořil třídu \lstinline{ElasticAdapter}, která nad ní vytváří vrstvu abstrakce. Ve třídě \lstinline{ElasticAdapter} jsou implementovány metody, které zajišťují vyhledávání, agregaci dat, vkládání dat a~další operace. Tyto metody jsou navrženy podle potřeb, které vyvstaly při vývoji projektu.
+Pro komunikaci mezi Node.js aplikací a~instancí Elasticsearch existuje knihovna stejného názvu. Tato knihovna poskytuje velmi základní rozhraní, proto jsem vytvořil třídu \texttt{ElasticAdapter}, která nad ní vytváří vrstvu abstrakce. Ve třídě \texttt{ElasticAdapter} jsou implementovány metody, které zajišťují vyhledávání, agregaci dat, vkládání dat a~další operace. Tyto metody jsou navrženy podle potřeb, které vyvstaly při vývoji projektu.
 
-Komunikace s~Elasticsearch probíhá prostřednictvím HTTP požadavků. Knihovna elasticsearch pouze tyto dotazy realizuje a~kontroluje jejich strukturu. Třída \lstinline{ElasticAdapter} tak zajišťuje ošetření chyb, kontrolu typů a~také základní společné nastavení pro jednotlivé skupiny dotazů (např. vyhledávání, hromadné vkládání, vyhledávání s~agregací, ...).
+Komunikace s~Elasticsearch probíhá prostřednictvím HTTP požadavků. Knihovna elasticsearch pouze tyto dotazy realizuje a~kontroluje jejich strukturu. Třída \texttt{ElasticAdapter} tak zajišťuje ošetření chyb, kontrolu typů a~také základní společné nastavení pro jednotlivé skupiny dotazů (např. vyhledávání, hromadné vkládání, vyhledávání s~agregací, ...).
 
 \subsubsection{Inicializace aplikace}
-Vstupním bodem pro start aplikace je soubor \lstinline{index.ts} v~adresáři src tohoto modulu. Odtud se volá funkce \lstinline{initializePostgres}. Tato funkce vytvoří v~databázi uživatele s~administrátorskými oprávněními, pokud v~databázi ještě žádný uživatel není. Login a~heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v~souboru \lstinline{bootstrap.ts}.
+Vstupním bodem pro start aplikace je soubor \texttt{index.ts} v~adresáři src tohoto modulu. Odtud se volá funkce \texttt{initializePostgres}. Tato funkce vytvoří v~databázi uživatele s~administrátorskými oprávněními, pokud v~databázi ještě žádný uživatel není. Login a~heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v~souboru \texttt{bootstrap.ts}.
 
 \subsubsection{Moduly}
 Aplikace je složena z~těchto modulů:
@@ -513,15 +513,15 @@ Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slou�
 \subsubsection{Progresivní webová aplikace}
 Technologie progresivních webových aplikací (dále PWA) umožňuje z~webové aplikace vytvořit aplikaci spustitelnou na různých platformách. Hlavním cílem pro tuto práci bylo vytvořit aplikaci, která bude pro uživatele snadněji dostupná, což je usnadněno možností provozovat aplikaci v~režimu, který je obdobný nativním mobilním aplikacím.
 
-Konfiguraci PWA jsem realizoval prostřednictvím knihovny \lstinline{vite-plugin-pwa}\cite{vite-plugin-pwa}. Tento plugin se nastavuje v~konfiguračním souboru pro Vite.
+Konfiguraci PWA jsem realizoval prostřednictvím knihovny vite-plugin-pwa\cite{vite-plugin-pwa}. Tento plugin se nastavuje v~konfiguračním souboru pro Vite.
 
 Minimálními požadavky\cite{pwa-installation}, aby bylo možné PWA nainstalovat z~prohlížeče Google Chrome, je přítomnost následujících atributů v~konfiguračním objektu:
 \begin{itemize}
-	\item \lstinline{name}, nebo \lstinline{short_name}: Používá se pro pojmenování aplikace po nainstalování.
-	\item \lstinline{icons}: Obsahuje pole cest k~ikonám spojeným s~aplikací. Pro instalaci jsou zapotřebí alespoň 2~ikonky čtvercového tvaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a~pro obrazovku, kdy se aplikace načítá po spuštění.
-	\item \lstinline{display}, nebo \lstinline{display_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v~režimu, který vypadá jako prohlížeč, nebo se skrytými ovládacími prvky prohlížeče.
-	\item \lstinline{start_url}: Označuje výchozí adresu aplikace. Tato stránka je načtena, když uživatel aplikaci otevře.
-	\item \lstinline{prefer_related_applications}: Pokud existuje nativní aplikace, jejíž instalace je preferována před PWA, touto hodnotou lze toto chování nastavit. Je k~tomu vyžadován seznam preferovaných aplikací ve vlastnosti \lstinline{related_applications}.
+	\item \texttt{name}, nebo \texttt{short\_name}: Používá se pro pojmenování aplikace po nainstalování.
+	\item \texttt{icons}: Obsahuje pole cest k~ikonám spojeným s~aplikací. Pro instalaci jsou zapotřebí alespoň 2~ikonky čtvercového tvaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a~pro obrazovku, kdy se aplikace načítá po spuštění.
+	\item \texttt{display}, nebo \texttt{display\_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v~režimu, který vypadá jako prohlížeč, nebo se skrytými ovládacími prvky prohlížeče.
+	\item \texttt{start\_url}: Označuje výchozí adresu aplikace. Tato stránka je načtena, když uživatel aplikaci otevře.
+	\item \texttt{prefer\_related\_applications}: Pokud existuje nativní aplikace, jejíž instalace je preferována před PWA, touto hodnotou lze toto chování nastavit. Je k~tomu vyžadován seznam preferovaných aplikací ve vlastnosti \texttt{related\_applications}.
 \end{itemize}
 
 \subsubsection{Struktura balíčku}
@@ -533,7 +533,7 @@ Vzhledem k~tomu, že nejdůležitější funkcí tohoto balíčku je zajistit u�
 
 Částí specifickou pro Vue.js je takzvaný store. Story jsou do Vue.js přidány pomocí knihovny Pinia. Story slouží k~ukládání a~globálnímu sdílení stavu a~jeho mutaci (např. uložení informací o~uživatelském účtu, oprávnění uživatele, možnosti odhlášení, nebo přihlášení uživatele). V~případě tohoto projektu je informace ve storu často propojena s~daty v~databázi. Proto jsem často využíval přístup, kdy store tvoří rozhraní nad HTTP klientem. Při změně globálního stavu na frontendu tak zároveň posílá požadavek backendu.
 
-Tento postup lze snadno demonstrovat například na modulu zajišťujícím autentizaci. Funkce \lstinline{login}, umístěná v~souboru \lstinline{authStore.ts} provádí pokus o~přihlášení uživatele. Přihlášení je silně závislé na validaci ze strany serveru. Metoda přijímá přihlašovací jméno a~heslo. Pošle serveru požadavek na přihlášení uživatele. Pokud požadavek proběhne úspěšně a~přihlašovací údaje jsou platné, načte funkce ze serveru podrobnosti o~uživateli a~uloží je do storu.
+Tento postup lze snadno demonstrovat například na modulu zajišťujícím autentizaci. Funkce \texttt{login}, umístěná v~souboru \texttt{authStore.ts} provádí pokus o~přihlášení uživatele. Přihlášení je silně závislé na validaci ze strany serveru. Metoda přijímá přihlašovací jméno a~heslo. Pošle serveru požadavek na přihlášení uživatele. Pokud požadavek proběhne úspěšně a~přihlašovací údaje jsou platné, načte funkce ze serveru podrobnosti o~uživateli a~uloží je do storu.
 
 Vue.js používá pro skládání uživatelského rozhraní takzvané komponenty. Komponenta je celek, který sdružuje HTLM kód, logiku, pro manipulaci s~HTML elementy a~CSS styl elementů komponenty. Při implementaci jsem nevyužil možnost vkládat CSS kód. Pro stylování jsem použil knihovnu Tailwind, která používá sadu předpřipravených stylů, které se elementům přiřazují pomocí HTML tříd.
 
@@ -563,7 +563,7 @@ Proces schvalování pull-requestů je momentálně poněkud zdlouhavý a~ne zce
 
 Větve dev a~main mají v~repozitáři zvláštní roli. Zatímco ostatní větve slouží pro běžný vývoj, opravování chyb a~přidávání nových možností, větev dev slouží ke kompletaci těchto změn dohromady. Dokončená změna z~některé z~ostatních větví tak může být přidána pomocí pull-requestu do větve dev.
 
-Proces vydání nové verze je z~části ruční, ověření kvality a~sestavení však probíhá automatizovaně. Autor nové verze tak musí vzít změny z~větve dev a~na na nové větvi provede změnu číslování verze. Změna se provádí v~package.json souborech jednotlivých balíčků projektu, včetně kořenového balíčku. Dále přidá krátkou zprávu shrnující změny v~dané verzi do souboru \lstinline{docs/changelog.md}.
+Proces vydání nové verze je z~části ruční, ověření kvality a~sestavení však probíhá automatizovaně. Autor nové verze tak musí vzít změny z~větve dev a~na na nové větvi provede změnu číslování verze. Změna se provádí v~package.json souborech jednotlivých balíčků projektu, včetně kořenového balíčku. Dále přidá krátkou zprávu shrnující změny v~dané verzi do souboru \texttt{docs/changelog.md}.
 
 S~takto provedenými změnami se provede pull-request do větve main. Zde je možné jednotlivé změny označit štítkem. Pokud má štítek správný název, provede se sestavení nové verze a~jednotlivé obrazy docker kontejnerů jsou přidány do kontejnerového repozitáře, odkud mohou být staženy.
 
@@ -580,7 +580,7 @@ Větev obsahuje větší množství ucelených změn, které mají společný ú
 
 Zvláštní roli mají větve dev a~main, které jsou chráněny před přímým přidáváním commitů. Změny do nich lze přidávat jen pomocí pull-requestů. Větev dev slouží ke kompletaci změn z~ostatních větví. Změny, které jsou přidány do větve main jsou určeny k~vydání. Vydání nové verze se provede automaticky po oštítkování commitu.
 
-Každá větev je pojmenována ve formátu \lstinline{<typ>/<nazev>}, kde \lstinline{<nazev>} popisuje společný účel změn ve větvi (např. server-authentication). \lstinline{<typ>} přibližuje, jaký technický charakter změny mají.
+Každá větev je pojmenována ve formátu \texttt{<typ>/<nazev>}, kde \texttt{<nazev>} popisuje společný účel změn ve větvi (např. server-authentication). \texttt{<typ>} přibližuje, jaký technický charakter změny mají.
 
 Povolené typy větví jsou následující:
 \begin{itemize}
@@ -595,7 +595,7 @@ Povolené typy větví jsou následující:
 
 Jednotlivé commity obsahují menší ucelené změny. Jeden commit by neměl obsahovat více změn, které spolu přímo nesouvisí (tematicky, nebo umístěním).
 
-Pojmenování commitu je vždy ve formátu \lstinline{<typ>: <popis>}, kde \lstinline{<popis>} stručně vysvětluje hlavní provedené změny v~rámci daného commitu. Dále zpráva ke commitu obsahuje i~podrobnější popis provedených změn.
+Pojmenování commitu je vždy ve formátu \texttt{<typ>: <popis>}, kde \texttt{<popis>} stručně vysvětluje hlavní provedené změny v~rámci daného commitu. Dále zpráva ke commitu obsahuje i~podrobnější popis provedených změn.
 
 Typy commitů jsou určeny pro budoucí implementaci automatického sémantického verzování. Usnadňují také orientaci ve změnách a~upřesňují technický význam commitů. Povolené typy jsou tyto:
 \begin{itemize}
@@ -607,7 +607,7 @@ Typy commitů jsou určeny pro budoucí implementaci automatického sémantické
 \end{itemize}
 
 \subsubsection{Štítky}
-GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \lstinline{v0.1.0}) a~dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o~kandidáta na verzi (release candidate). Jednotliví kandidáti mají v~názvu pořadové číslo. Označení kandidáta na verzi může být např. \lstinline{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k~otestování, že se všechny artefakty vytvořily správně a~jsou použitelné.
+GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \texttt{v0.1.0}) a~dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o~kandidáta na verzi (release candidate). Jednotliví kandidáti mají v~názvu pořadové číslo. Označení kandidáta na verzi může být např. \texttt{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k~otestování, že se všechny artefakty vytvořily správně a~jsou použitelné.
 
 \subsection{Sestavení kontejneru}
 Pro chod aplikace jsou potřeba celkem 3~kontejnery, které jsem vytvořil v~rámci tohoto projektu. V~této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demonstrovat na backendu aplikace.
@@ -631,15 +631,15 @@ Zde je popis jednotlivých stupňů:
 	\item \textbf{runtime:} V~tomto stupni probíhá instalace závislostí pro produkční běh a~nastavení Nginx serveru.
 \end{itemize}
 
-Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z~proměnných prostředí. Vite, který zajišťuje sestavení frontendu v~kombinaci s~Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a~sestavení kontejneru a~ne z \lstinline{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značný nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
+Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z~proměnných prostředí. Vite, který zajišťuje sestavení frontendu v~kombinaci s~Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a~sestavení kontejneru a~ne z \texttt{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značný nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
 
-Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spouští bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v~kódu odkazují vlastnosti proměnné \lstinline{import.meta.env}. Ve svém projektu a~podle instrukcí poskytnutých v~repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a~nahrazeny skutečnými hodnotami, které poskytne uživatel.
+Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spouští bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v~kódu odkazují vlastnosti proměnné \texttt{import.meta.env}. Ve svém projektu a~podle instrukcí poskytnutých v~repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a~nahrazeny skutečnými hodnotami, které poskytne uživatel.
 
 \subsection{Logování}
 Uchování a~přístup k~logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a~zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v~terminálu.
 
 \subsection{Spuštění projektu}
-Výsledné obrazy je možné spustit pomocí souboru \lstinline{docker-compose.yaml}, který je umístěn ve složce release. Ten automaticky stáhne obrazy pro nejnovější verzi projektu a~spustí je. Pro spuštění na libovolném zařízení s~nainstalovaným Dockerem tak stačí spustit ve složce se staženým konfiguračním souborem docker compose příkaz \lstinline{docker compose up}.
+Výsledné obrazy je možné spustit pomocí souboru \texttt{docker-compose.yaml}, který je umístěn ve složce release. Ten automaticky stáhne obrazy pro nejnovější verzi projektu a~spustí je. Pro spuštění na libovolném zařízení s~nainstalovaným Dockerem tak stačí spustit ve složce se staženým konfiguračním souborem docker compose příkaz \texttt{docker compose up}.
 
 Do nastavení projektu je možné zasáhnout pomocí proměnných prostředí. Těm jsem se blíže věnoval v~přiložené dokumentaci projektu.
 
@@ -734,6 +734,10 @@ Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje t
 	Důraz při vývoji jsem kladl zejména na prvky z~oblasti DevOps. Do projektu jsem integroval CI/CD pipeline, automatizované testy, sestavení obrazů kontejnerů a~kontrolu kvality kódu, což přispívá k~jednoduššímu vývoji a~vydávání nových verzí. Také aktualizace aplikace za běhu a~nasazení na novém zařízení je díky těmto prvkům značně jednodušší.
 
 	V~budoucnu se nabízí řada rozšíření aplikace především v~oblasti přidání dalších textů modliteb. Textů modliteb řeckokatolické církve je velmi mnoho a~i~s~ohledem na tuto skutečnost jsem se aplikaci snažil navrhnout modulárně. V~dalších verzích by mohly být přítomné další bohoslužebné texty i~modlitby, které se věřící modlí během dne, nebo kalendář svátků. Pro přidání textů je nejdříve třeba získat jejich potřebné překlady a~převést do vhodného formátu, což je značně časově náročné a~vyžaduje to spolupráci více lidí. Proto jsem dosud vytvořil jen ukázkovou sadu překladů, která se bude v~budoucnu spolu s~aplikací rozrůstat.
+\end{kiconclusions}
+
+\begin{kiconclusions}[english]
+	Hello there.
 \end{kiconclusions}
 
 
