@@ -511,7 +511,7 @@ Stěžejní částí každého modulu je v~případě této aplikace takzvaná s
 
 \begin{itemize}
 	\item \textbf{Router} mapuje HTTP požadavky na příslušné metody controlleru. Prostřednictvím middlewaru se zde také provádí ověření, jestli je uživatel přihlášený a~provádí se validace dat požadavku.
-	\item \textbf{Controller} validuje a~zpracovává data a~požadavky. Zajišťuje komunikaci s~routerem a~spouští službu. Controller se stará o~úlohy specifické pro express. Extrahuje data z~Request objektu a~nastavuje data, která jsou odeslána zpět uživateli.
+	\item \textbf{Controller} validuje a~zpracovává data a~požadavky. Zajišťuje komunikaci s~routerem a~spouští službu. Controller se stará o~úlohy specifické pro express. Extrahuje data z~\texttt{Request} objektu a~nastavuje data, která jsou odeslána zpět uživateli.
 	\item \textbf{Service} zajišťuje získání a~zpracování dat na základě požadavku. Výsledek vrací controlleru. Zajišťuje komunikaci mezi jednotlivými použitými závislostmi.
 	\item \textbf{Repository} zajišťuje komunikaci s~databází prostřednictvím adaptéru a~poskytuje metody specifické pro danou doménu. Provádí překlad mezi doménovými typy a~typy, které reflektují strukturu databáze. Zajišťuje kontrolu a~validaci dat. Obstarává konzistenci dat v~databázi.
 \end{itemize}
