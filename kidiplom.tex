@@ -207,7 +207,7 @@ V~rámci této práce jsem hledal a~procházel i~další software zaměřený na
 BibleGateway\cite{biblegateway} je webová aplikace sloužící ke studiu biblických textů. Její doména se omezuje pouze na samotné procházení textů Bible a~neimplementuje funkcionality jako modlitební skupiny, nebo žaltář a~další modlitby. Aplikace na mnoha místech nabízí uživateli placenou verzi, což působí rušivě a~není v~souladu s~mými požadavky.
 
 \subsection{Beblia.com}
-Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překladů a~v~rámci projektu je k~dispozici i~databáze různých překladů v~XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora. Formát textů také není nijak zdokumentovaný. Proto jsem se rozhodl pro využití textů ve formátu Zefania XLM\footnote{Zefania je standardizované XML schéma pro uchovávání textů Bible\cite{zefania}}, které mají k dispozici dokumentaci a jsou často používané i v jiných projektech.
+Beblia.com\cite{beblia} je další webová aplikace, která nabízí čtečku Biblických textů. Obsahuje také velké množství překladů a~v~rámci projektu je k~dispozici i~databáze různých překladů v~XML formátu. Texty však nemají přiloženou žádnou licenci, takže není možné je volně používat bez souhlasu autora. Formát textů také není nijak zdokumentovaný. Proto jsem se rozhodl pro využití textů ve formátu Zefania XLM\footnote{Zefania je standardizované XML schéma pro uchovávání textů Bible\cite{zefania}}, které mají k~dispozici dokumentaci a~jsou často používané i~v~jiných projektech.
 
 \section{Analýza požadavků}
 Software je určen především pro Řeckokatolickou farnost v~Olomouci, její farníky a~osoby, které se podílejí na chodu života farnosti. Hlavním cílem je vytvořit platformu, která bude sdružovat Biblické texty, modlitby a~informace pro členy společenství, což usnadní práci všech, kteří se na chodu jednotlivých společenství podílejí. Možnost vytvoření kalendáře může být v~budoucnu přínosem i~pro další řeckokatolíky v~České republice mimo tuto farnost. Sekce modliteb by měla být do budoucna rozšířitelná, protože modliteb, které mohou být zahrnuty, je velké množství a~některé z~nich se mění podle svátku a~období, což může značně komplikovat jejich strukturu. Vzhledem ke složení farnosti je také důležitá možnost použití jazykových mutací.
@@ -284,10 +284,10 @@ Vue.js má velmi přehlednou a~obsáhlou dokumentaci. Systém komponent a~mnoho 
 Před vývojem tohoto projektu jsem neměl mnoho zkušeností s~vývojem frontendu za použití obdobných frameworků. Hlavní volbou pro tuto variantu tak byl jednoduchý proces učení a~dostatek dostupné dokumentace spolu s~rozsáhlým ekosystémem kompatibilních knihoven a~rozšíření.
 
 \subsubsection{Vite}
-Vite\cite{vite} je sada nástrojů pro testování a sestavení moderních webových aplikací. Na této technologii jsou postavené i současné verze frameworku Vue.js. Vite poskytuje vývojový server, prostředí pro běh testů a nástroj pro sestavení artefaktů aplikace pro nasazení do provozu na webovém serveru. Ve svém projektu jsem Vite použil jako závislost Vue.js.
+Vite\cite{vite} je sada nástrojů pro testování a~sestavení moderních webových aplikací. Na této technologii jsou postavené i~současné verze frameworku Vue.js. Vite poskytuje vývojový server, prostředí pro běh testů a~nástroj pro sestavení artefaktů aplikace pro nasazení do provozu na webovém serveru. Ve svém projektu jsem Vite použil jako závislost Vue.js.
 
 \subsubsection{Pinia}
-Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Pinia zajišťuje správu globálního stavu napříč aplikací. Poskytuje funkcionální rozhraní a typovou kontrolu. Takzvaný Pinia store, který je klíčovou entitou knihovny, poskytuje uživateli možnost vytvářet úložiště s gettery a settery, která jsou svou filosofií velmi podobná Vue.js komponentám.
+Pinia\cite{pinia} je knihovna rozšiřující Vue.js. Pinia zajišťuje správu globálního stavu napříč aplikací. Poskytuje funkcionální rozhraní a~typovou kontrolu. Takzvaný Pinia store, který je klíčovou entitou knihovny, poskytuje uživateli možnost vytvářet úložiště s~gettery a~settery, která jsou svou filosofií velmi podobná Vue.js komponentám.
 
 Pinia je v~současnosti doporučeným řešením pro správu globálního stavu v~aplikacích založených na Vue.js a~má oficiální podporu.
 \subsubsection{Elasticsearch}
@@ -363,7 +363,7 @@ Data jsou rozdělena do dvou tabulek. První z~nich obsahuje data o~záložkách
 \subsubsection{Elasticsearch}
 Pro uložení textů, ve kterých se bude vyhledávat, jsem použil Elasticsearch. Elasticsearch je určený primárně k~indexaci dat a~vyhledávání v~nich. Pro účely práce jsem do něj uložil data tvořená větším množstvím textu, ve kterých budu provádět vyhledávání.
 
-Jde v první řadě o texty Bible, které jsou rozděleny do veršů. S pomocí Elasticsearch je možné nad daty provádět vyhledávání s mnoha nastavitelnými parametry. Data se v Elasticsearch rozdělují do indexů podle podobné struktury nebo významu. Index může mít přiřazené schéma (tzv.~mapping). Pokud schéma není indexu přiřazeno, vytváří se automaticky na základě vložených dat.
+Jde v~první řadě o~texty Bible, které jsou rozděleny do veršů. S~pomocí Elasticsearch je možné nad daty provádět vyhledávání s~mnoha nastavitelnými parametry. Data se v~Elasticsearch rozdělují do indexů podle podobné struktury nebo významu. Index může mít přiřazené schéma (tzv.~mapping). Pokud schéma není indexu přiřazeno, vytváří se automaticky na základě vložených dat.
 
 \paragraph{Texty Bible}
 Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje zdrojový kód \ref{code:bible-index}.
@@ -500,12 +500,12 @@ Aplikace je složena z~těchto modulů:
 \subsubsection{Struktura modulu}
 Každý modul sdružuje funkcionality, které spadají do stejné domény. Po technické stránce je hlavní struktura modulu jednotná. Hlavní součásti a~jejich určení jsou vždy stejné. Hlavní úlohou serveru je poskytovat uživateli přístup k~datům v~databázi prostřednictvím HTTP rozhraní. Tomu odpovídá i~struktura každého modulu.
 
-Stěžejní částí každého modulu je v~případě této aplikace takzvaná služba (anglicky \emph{service}). Služba je třída, která reprezentuje jednotlivé operace v~dané části domény. Například pro záložky by šlo o~možnost vypsat všechny záložky, přidat novou, nebo upravit existující. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a~business logikou ve~službě, nebo službou jiného modulu. Tím je zajištěno, že při manipulaci s~daty z~jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i~refactoring kódu. Typické schéma komunikace v rámci aplikace a mezi jednotlivými moduly je zobrazeno na obrázku \ref{fig:modules}.
+Stěžejní částí každého modulu je v~případě této aplikace takzvaná služba (anglicky \emph{service}). Služba je třída, která reprezentuje jednotlivé operace v~dané části domény. Například pro záložky by šlo o~možnost vypsat všechny záložky, přidat novou, nebo upravit existující. Toto rozhraní využívá buď controller daného modulu, který zajišťuje mezivrstvu mezi express routerem a~business logikou ve~službě, nebo službou jiného modulu. Tím je zajištěno, že při manipulaci s~daty z~jiného modulu není potřeba soustředit se na business logiku této sekce. Zároveň jsou tak závislosti mezi jednotlivými moduly značně méně komplikované, což usnadňuje testování i~refactoring kódu. Typické schéma komunikace v~rámci aplikace a~mezi jednotlivými moduly je zobrazeno na obrázku \ref{fig:modules}.
 
 \begin{figure}[H]
     \center
 	\includegraphics[width=0.7\linewidth]{images/diagrams/modules.png}
-	\caption{Schéma komunikace mezi entitami aplikace a moduly}
+	\caption{Schéma komunikace mezi entitami aplikace a~moduly}
 	\label{fig:modules}
 \end{figure}
 
@@ -648,7 +648,7 @@ Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spou�
 Uchování a~přístup k~logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a~zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v~terminálu.
 
 \subsection{Spuštění projektu}
-Výsledné obrazy lze spustit pomocí příkazu \texttt{docker compose up} (na operačním systému Linux). K úspěšnému spuštění pomocí Docker compose je potřeba konfigurační soubor \path{release/docker-compose.yaml} v aktuálním adresáři. Po spuštění se automaticky stáhnou obrazy označené štítkem \texttt{latest} (aktuální verze).
+Výsledné obrazy lze spustit pomocí příkazu \texttt{docker compose up} (na operačním systému Linux). K~úspěšnému spuštění pomocí Docker compose je potřeba konfigurační soubor \path{release/docker-compose.yaml} v~aktuálním adresáři. Po spuštění se automaticky stáhnou obrazy označené štítkem \texttt{latest} (aktuální verze).
 
 Do nastavení projektu je možné zasáhnout pomocí proměnných prostředí. Těm jsem se blíže věnoval v~přiložené dokumentaci projektu.
 
@@ -746,13 +746,13 @@ Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje t
 \end{kiconclusions}
 
 \begin{kiconclusions}[english]
-	As part of this thesis, I developed a web application, which serves as a tool for viewing and managing texts of the Bible and the Psalter. The application also enables users to create Bible passages and place notes and bookmarks into the texts. The application also includes a section for user and group management. In groups users can create posts and share them with other group members.
+	As part of this thesis, I~developed a~web application, which serves as a~tool for viewing and managing texts of the Bible and the Psalter. The application also enables users to create Bible passages and place notes and bookmarks into the texts. The application also includes a~section for user and group management. In groups users can create posts and share them with other group members.
 
 	The main benefit for the Eastern Catholic parish in Olomouc will be an option to access and manage texts and prayers, which are centralized in this project. It will also be beneficial for the community that various texts and user interface in several translations can be managed easily, which was not possible in the original solution that the parish was using. Currently the Psalter texts are frequently used in the parish. Thanks to this application they will be accessible alongside the Bible texts for all members of the community in their preferred language.
 
-	During development I focused on DevOps elements. I integrated CI/CD pipeline, automated tests, container build and code quality checks into the project, which helps to make the process of development and release of new versions easier. It also simplifies deployment and updates of the application.
+	During development I~focused on DevOps elements. I~integrated CI/CD pipeline, automated tests, container build and code quality checks into the project, which helps to make the process of development and release of new versions easier. It also simplifies deployment and updates of the application.
 
-	In the future I would like to add more liturgical texts into the app. There is a huge amount of Eastern catholic prayer texts. With respect to this fact I tried to make the project modular. This will enable me to add more texts in future versions. Also I will be able to add prayers, which change according to day in liturgical calendar. To add the texts, it is necessary to acquire their translations and convert them into the right format first. This is the main reason, why I created only a small set of texts for demonstration purposes. This set will grow over time.
+	In the future I~would like to add more liturgical texts into the app. There is a~huge amount of Eastern catholic prayer texts. With respect to this fact I~tried to make the project modular. This will enable me to add more texts in future versions. Also I~will be able to add prayers, which change according to day in liturgical calendar. To add the texts, it is necessary to acquire their translations and convert them into the right format first. This is the main reason, why I~created only a~small set of texts for demonstration purposes. This set will grow over time.
 \end{kiconclusions}
 
 
