@@ -416,7 +416,7 @@ Tuto architekturu jsem zvolil i~s~ohledem na budoucí údržbu a~další rozvoj 
 \subsubsection{Globální nástroje}
 Jádrem aplikace je sada globálně dostupných nástrojů, které implementují funkcionality, které jsou nezávislé na doméně a~používají se na více místech napříč aplikací.
 
-Tyto nástroje jsou uloženy ve složce shared.
+Tyto nástroje jsou uloženy ve složce \texttt{shared}.
 
 Patří sem:
 \begin{itemize}
@@ -430,7 +430,7 @@ Patří sem:
 Některým z~nich se níže věnuji podrobněji.
 
 \paragraph{Ošetření chyb}
-Express.js má vestavěný mechanismus pro ošetření chyb. Pokud dojde k~chybě při zpracování HTTP požadavku, zavolá se automaticky výchozí middleware pro ošetření chyb. Pro potřeby tohoto projektu jsem implementoval middleware, který zajišťuje ošetření chyb a~jejich převedení na stavové HTTP kódy, které jsou důležité pro uživatele. Vytvořil jsem systém výjimek, které odpovídají stavovým kódům pro odpověď. Všechny tyto výjimky dědí ze třídy AppError. K~výjimce je možné přidat také textovou zprávu.
+Express.js má vestavěný mechanismus pro ošetření chyb. Pokud dojde k~chybě při zpracování HTTP požadavku, zavolá se automaticky výchozí middleware pro ošetření chyb. Pro potřeby tohoto projektu jsem implementoval middleware, který zajišťuje ošetření chyb a~jejich převedení na stavové HTTP kódy, které jsou důležité pro uživatele. Vytvořil jsem systém výjimek, které odpovídají stavovým kódům pro odpověď. Všechny tyto výjimky dědí ze třídy \texttt{AppError}. K~výjimce je možné přidat také textovou zprávu.
 
 Výjimky mohou reprezentovat různé stavy, kdy server požadavek nemůže správně zpracovat. Pro potřeby aplikace jsem využil tyto stavové kódy pro různé nežádoucí stavy. Jejich sémantiku jsem interpretoval podle dokumentace z~Mozilla Developer Network\cite{mdn-status}:
 \begin{itemize}
@@ -442,11 +442,11 @@ Výjimky mohou reprezentovat různé stavy, kdy server požadavek nemůže sprá
 	\item ConflictError(409): K~této výjimce dojde, pokud uživatel požaduje platnou akci, není však možné ji provést vzhledem k~aktuálnímu stavu databáze. Například pokud se pokouší vytvořit záznam v~databázi, který by porušoval unikátnost.
 \end{itemize}
 
-Pokud dojde k~vyvolání výjimky, přijme ji middleware pro obsluhu chyb, který ověří, jestli jde o~instanci třídy AppError a~pokud ano, vloží data z~výjimky do odpovědi. Pokud nejde o~instanci AppError, vytvoří se odpověď, která ukazuje, že jde o~neočekávanou chybu serveru.
+Pokud dojde k~vyvolání výjimky, přijme ji middleware pro obsluhu chyb, který ověří, jestli jde o~instanci třídy \texttt{AppError} a~pokud ano, vloží data z~výjimky do odpovědi. Pokud nejde o~instanci \texttt{AppError}, vytvoří se odpověď, která ukazuje, že jde o~neočekávanou chybu serveru.
 
 
 \paragraph{Middleware pro validaci požadavků}
-Každý HTTP požadavek může obsahovat data od uživatele. Před předání k~dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K~tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu (vizte zdrojový kód \ref{code:validator}).
+Každý HTTP požadavek může obsahovat data od uživatele. Před předáním k~dalšímu zpracování je nutné ověřit, že uživatel předal požadavek ve správném formátu. K~tomu slouží validátor, který ověří formát zvolené části požadavku podle zadaného schématu (vizte zdrojový kód \ref{code:validator}).
 
 \begin{kicode}{JavaScript}{code:validator}{Middleware pro validaci požadavků}
 export function requestValidator<T extends ZodType>(
@@ -465,9 +465,9 @@ export function requestValidator<T extends ZodType>(
 }
 \end{kicode}
 
-Validátor je implementován jako funkce vyššího řádu se dvěma parametry. První je zod schéma, které definuje žádaný formát objektu s~daty od uživatele. Druhý parametr je textový řetězec, který určuje, jak uživatel data předal. Data mohou být předána buď v~těle dotazu, jako součást url adresy, nebo jako HTTP parametry.
+Validátor je implementován jako funkce vyššího řádu se dvěma parametry. První je schéma, které definuje žádaný formát objektu s~daty od uživatele. Druhý parametr je textový řetězec, který určuje, jak uživatel data předal. Data mohou být předána buď v~těle dotazu, jako součást URL adresy, nebo jako HTTP parametry.
 
-Všechny tři možnosti jsou v~expressu reprezentovány jako objekt v~dotazu. Dotaz validátor přijímá v~parametru req. Pokud validace proběhne správně, middleware přetypuje dotaz na generický typ \texttt{ValidatedRequest<T>}, kde \texttt{T} je typ objektu validovaných dat. Typ \texttt{ValidatedRequest} obsahuje vlastnost \texttt{validated}, ve které jsou zvalidovaná data uložena. Díky tomu má již TypeScript typovou kontrolu nad uživatelskými daty a~je možné s~nimi bezpečně pracovat. Middleware v~tom případě volá funkci \texttt{next}, která reprezentuje další funkci, která má požadavek zpracovávat.
+Všechny tři možnosti jsou v~expressu reprezentovány jako objekt v~dotazu. Dotaz validátor přijímá v~parametru \texttt{req}. Pokud validace proběhne správně, middleware přetypuje dotaz na generický typ \texttt{ValidatedRequest<T>}, kde \texttt{T} je typ objektu validovaných dat. Typ \texttt{ValidatedRequest} obsahuje vlastnost \texttt{validated}, ve které jsou zvalidovaná data uložena. Díky tomu má již TypeScript typovou kontrolu nad uživatelskými daty a~je možné s~nimi bezpečně pracovat. Middleware v~tom případě volá funkci \texttt{next}, která reprezentuje další funkci, která má požadavek zpracovávat.
 
 Pokud validace selže (vznikne při ní výjimka), Je zavolána funkce \texttt{next} s~výjimkou \texttt{ValidationError}, čímž dojde k~předání požadavku systému pro ošetření výjimek.
 
@@ -485,7 +485,7 @@ Pro komunikaci mezi Node.js aplikací a~instancí Elasticsearch existuje knihovn
 Komunikace s~Elasticsearch probíhá prostřednictvím HTTP požadavků. Knihovna elasticsearch pouze tyto dotazy realizuje a~kontroluje jejich strukturu. Třída \texttt{ElasticAdapter} tak zajišťuje ošetření chyb, kontrolu typů a~také základní společné nastavení pro jednotlivé skupiny dotazů (např. vyhledávání, hromadné vkládání, vyhledávání s~agregací, ...).
 
 \subsubsection{Inicializace aplikace}
-Vstupním bodem pro start aplikace je soubor \texttt{index.ts} v~adresáři src tohoto modulu. Odtud se volá funkce \texttt{initializePostgres}. Tato funkce vytvoří v~databázi uživatele s~administrátorskými oprávněními, pokud v~databázi ještě žádný uživatel není. Login a~heslo uživatele může uživatel nastavit přes proměnné prostředí. Poté se spustí server, jehož konfigurace je uložena v~souboru \texttt{bootstrap.ts}.
+Vstupním bodem pro start aplikace je soubor \texttt{index.ts} v~adresáři \texttt{src} tohoto modulu. Odtud se volá funkce \texttt{initializePostgres}. Tato funkce vytvoří v~databázi uživatele s~administrátorskými oprávněními, pokud v~databázi ještě žádný uživatel není. Login a~heslo uživatele může uživatel nastavit přes proměnné prostředí v souboru \texttt{.env}. Jde o proměnné \texttt{APP\_ADMIN\_USERNAME} a \texttt{APP\_ADMIN\_PASSWORD}. Poté se spustí server, jehož konfigurace je uložena v~souboru \texttt{bootstrap.ts}.
 
 \subsubsection{Moduly}
 Aplikace je složena z~těchto modulů:
@@ -517,18 +517,18 @@ Stěžejní částí každého modulu je v~případě této aplikace takzvaná s
 \end{itemize}
 
 \subsection{Frontend}
-Tento balíček vytváří grafické uživatelské rozhraní nad HTTP API. Slouží k~prezentaci dat z~API a~k~jejich snadnější manipulaci.
+Tento balíček vytváří webové uživatelské rozhraní nad HTTP API. Slouží k~prezentaci dat z~API a~k~jejich snadnější manipulaci.
 
 \subsubsection{Progresivní webová aplikace}
-Technologie progresivních webových aplikací (dále PWA) umožňuje z~webové aplikace vytvořit aplikaci spustitelnou na různých platformách. Hlavním cílem pro tuto práci bylo vytvořit aplikaci, která bude pro uživatele snadněji dostupná, což je usnadněno možností provozovat aplikaci v~režimu, který je obdobný nativním mobilním aplikacím.
+Technologie progresivních webových aplikací (dále PWA) umožňuje z~webové aplikace vytvořit aplikaci spustitelnou na různých platformách. Hlavním cílem pro tuto práci bylo vytvořit aplikaci, která bude pro uživatele snadněji dostupná, což je usnadněno možností provozovat aplikaci v~režimu, který je obdobný nativním aplikacím.
 
 Konfiguraci PWA jsem realizoval prostřednictvím knihovny vite-plugin-pwa\cite{vite-plugin-pwa}. Tento plugin se nastavuje v~konfiguračním souboru pro Vite.
 
-Minimálními požadavky\cite{pwa-installation}, aby bylo možné PWA nainstalovat z~prohlížeče Google Chrome, je přítomnost následujících atributů v~konfiguračním objektu:
+Minimálními požadavky\cite{pwa-installation}, aby bylo možné PWA nainstalovat z~prohlížeče Google Chrome, je přítomnost následujících atributů v~souboru \texttt{manifest.json}, který je v mém případě automaticky generován z atributů konfiguračního objektu:
 \begin{itemize}
-	\item \texttt{name}, nebo \texttt{short\_name}: Používá se pro pojmenování aplikace po nainstalování.
+	\item \texttt{name} nebo \texttt{short\_name}: Používá se pro pojmenování aplikace po instalaci.
 	\item \texttt{icons}: Obsahuje pole cest k~ikonám spojeným s~aplikací. Pro instalaci jsou zapotřebí alespoň 2~ikonky čtvercového tvaru se stranami délky 192px, resp. 512px. Tyto ikonky jsou použity pro zástupce na ploše a~pro obrazovku, kdy se aplikace načítá po spuštění.
-	\item \texttt{display}, nebo \texttt{display\_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v~režimu, který vypadá jako prohlížeč, nebo se skrytými ovládacími prvky prohlížeče.
+	\item \texttt{display}, nebo \texttt{display\_override}: Tyto vlastnosti nastavují žádané zobrazení aplikace. Aplikace může být zobrazena v~režimu, který vypadá jako okno prohlížeče, nebo se skrytými ovládacími prvky prohlížeče.
 	\item \texttt{start\_url}: Označuje výchozí adresu aplikace. Tato stránka je načtena, když uživatel aplikaci otevře.
 	\item \texttt{prefer\_related\_applications}: Pokud existuje nativní aplikace, jejíž instalace je preferována před PWA, touto hodnotou lze toto chování nastavit. Je k~tomu vyžadován seznam preferovaných aplikací ve vlastnosti \texttt{related\_applications}.
 \end{itemize}
@@ -536,18 +536,18 @@ Minimálními požadavky\cite{pwa-installation}, aby bylo možné PWA nainstalov
 \subsubsection{Struktura balíčku}
 Balíček frontend je také rozdělen do modulů. Zde jsem se rozhodl pro méně striktní oddělení jednotlivých modulů, ale pokusil jsem se dodržet rozčlenění podle domény, které přibližně odpovídá rozdělení na straně backendu.
 
-Moduly zde představují logické seskupení funckionalit, které k~sobě patří podle domény, moduly však mohou importovat části z~jiných modulů. Pro uchování částí, které jsou velmi často často používány z~různých míst projektu jsem vytvořil složku shared. Zde je umístěn například HTTP klient, vytvořený pomocí knihovny Axios. Dále se zde nachází část s~konfigurací internacionalizace.
+Moduly zde představují logické seskupení funckionalit, které k~sobě patří podle domény, moduly však mohou importovat části z~jiných modulů. Pro uchování částí, které jsou velmi často používány z~různých míst projektu jsem vytvořil složku shared. Zde je umístěn například HTTP klient, vytvořený pomocí knihovny Axios. Dále se zde nachází část s~konfigurací internacionalizace.
 
 Vzhledem k~tomu, že nejdůležitější funkcí tohoto balíčku je zajistit uživatelské rozhraní pro komunikaci s~backendem, každý modul obsahuje vlastního HTTP klienta, který používá sdílenou nakonfigurovanou instanci Axios. Klienti jednotlivých modulů definují metody, které vytváří jasně definované rozhraní pro realizaci jednotlivých HTTP požadavků (např. přihlášení, načtení knih Bible, vložení záložky,...).
 
-Částí specifickou pro Vue.js je takzvaný store. Store slouží k~ukládání a~globálnímu sdílení stavu a~jeho mutaci (např. uložení informací o~uživatelském účtu, oprávnění uživatele, možnosti odhlášení, nebo přihlášení uživatele). V~případě tohoto projektu jsou informace, které ukládá sotre, často propojena s~daty v~databázi. Proto jsem často využíval přístup, kdy store tvoří rozhraní nad HTTP klientem. Při změně globálního stavu na frontendu tak zároveň posílá požadavek backendu.
+Částí specifickou pro Vue.js je takzvaný store. Store slouží k~ukládání a~globálnímu sdílení stavu a~jeho mutaci (např. uložení informací o~uživatelském účtu, oprávnění uživatele, možnosti odhlášení nebo přihlášení uživatele). V~případě tohoto projektu jsou informace, které ukládá sotre, často propojeny s~daty v~databázi. Proto jsem často využíval přístup, kdy store tvoří rozhraní nad HTTP klientem. Při změně globálního stavu na frontendu tak zároveň posílá požadavek backendu.
 
 Tento postup lze snadno demonstrovat například na modulu zajišťujícím autentizaci. Funkce \texttt{login}, umístěná v~souboru \texttt{authStore.ts} provádí pokus o~přihlášení uživatele. Přihlášení je silně závislé na validaci ze strany serveru. Metoda přijímá přihlašovací jméno a~heslo. Pošle serveru požadavek na přihlášení uživatele. Pokud požadavek proběhne úspěšně a~přihlašovací údaje jsou platné, načte funkce ze serveru podrobnosti o~uživateli a~store je uloží.
 
 Vue.js používá pro skládání uživatelského rozhraní takzvané komponenty. Komponenta je celek, který sdružuje HTLM kód, logiku, pro manipulaci s~HTML elementy a~CSS styl elementů komponenty. Při implementaci jsem nevyužil možnost vkládat CSS kód. Pro stylování jsem použil knihovnu Tailwind, která používá sadu předpřipravených stylů, které se elementům přiřazují pomocí HTML tříd.
 
 \subsection{Initializer}
-Initializer Zajišťuje iniciální nastavení databází po startu systému. Kontejner si udržuje informace o~požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro Elasticsearch vytvoří všechny dosud neexistující indexy.
+Initializer zajišťuje úvodní nastavení databází po startu systému. Kontejner si udržuje informace o~požadovaném stavu databází. Při startu vykoná migrace PostgreSQL databáze, které nebyly aplikovány. Pro Elasticsearch vytvoří všechny dosud neexistující indexy.
 
 
 \section{DevOps a~CI/CD}
@@ -555,7 +555,7 @@ V~této kapitole se budu věnovat popisu prvků z~oblasti DevOps a~CI/CD, které
 
 DevOps je filosofie, která je postavena na propojení procesů vývoje, nasazení a~provozu software s~důrazem na automatizaci.
 
-V~tomto projektu jsem se zaměřil především na CI/CD (continuous integration and continuous delivery), což je proces automatizace integrace provedených změn do projektu a~automatizované doručení změn zákazníkovi.
+V~tomto projektu jsem se zaměřil především na CI/CD (continuous integration and continuous delivery), což je proces automatizace integrace provedených změn do projektu a~automatizované doručení změn uživateli.
 
 Podle myšlenek DevOps jsem zautomatizoval proces sestavení projektu, vytvořil jsem automatizované testy a~výpočet pokrytí kódu těmito testy. Do projektu jsem integroval mechanismy pro ověření kvality kódu. Všechny tyto nástroje je možné spustit v~projektu pomocí jednoho příkazu. Dále jsem zajistil i~vytváření a~ukládání logů. Ve zbytku kapitoly se budu věnovat především CI/CD.
 
@@ -566,7 +566,7 @@ Základní částí CI/CD pipeline je kontrola kvality kódu. Ta sestává z~kon
 
 Všechny tyto části kontroly může uživatel spustit ručně v~lokálním vývojovém prostředí, nebo se spouštějí automaticky při každém přidání změn do vzdáleného GitHub repozitáře.
 
-Provedené změny lze do repozitáře přidat pomocí pushe (běžné přidání změn, které může provést každý, kdo má oprávnění vkládat změny do dané větve, neprobíhá zde žádný schvalovací proces). Po přidání změn dostane uživatel zpětnou vazbu, jestli kontrola proběhla úspěšně. Dvě hlavní větve (dev a~main) jsou však proti tomuto postupu chráněny. Pro přidání změn do těchto větví je potřeba otevřít takzvaný pull-request. Při tom vznikne žádost o~začlenění změn, kterou musí správce projektu potvrdit, aby mohla být přidána.
+Provedené změny lze do repozitáře přidat pomocí operace \emph{push} (běžné přidání změn, které může provést každý, kdo má oprávnění vkládat změny do dané větve, neprobíhá zde žádný schvalovací proces). Po přidání změn dostane uživatel zpětnou vazbu, jestli kontrola proběhla úspěšně. Dvě hlavní větve (dev a~main) jsou však proti tomuto postupu chráněny. Pro přidání změn do těchto větví je potřeba otevřít takzvaný pull-request. Při tom vznikne žádost o~začlenění změn, kterou musí správce projektu potvrdit, aby mohla být přidána.
 
 Proces schvalování pull-requestů je momentálně poněkud zdlouhavý a~ne zcela dobře využitý vzhledem k~tomu, že na projektu pracuji sám. Tak v~tuto chvíli pouze sám potvrzuji vlastní změny. Do budoucna však může být výhodný a~pro práci ve vícečlenném týmu je velmi důležitý.
 
@@ -604,7 +604,7 @@ Povolené typy větví jsou následující:
 
 Jednotlivé commity obsahují menší ucelené změny. Jeden commit by neměl obsahovat více změn, které spolu přímo nesouvisí (tematicky, nebo umístěním).
 
-Pojmenování commitu je vždy ve formátu \texttt{<typ>: <popis>}, kde \texttt{<popis>} stručně vysvětluje hlavní provedené změny v~rámci daného commitu. Dále zpráva ke commitu obsahuje i~podrobnější popis provedených změn.
+Pojmenování commitu je vždy ve formátu \texttt{<typ>: <popis>}, kde \texttt{<popis>} stručně vysvětluje hlavní provedené změny v~rámci daného commitu. Dále zpráva ke commitu obsahuje podrobnější popis provedených změn.
 
 Typy commitů jsou určeny pro budoucí implementaci automatického sémantického verzování. Usnadňují také orientaci ve změnách a~upřesňují technický význam commitů. Povolené typy jsou tyto:
 \begin{itemize}
@@ -616,12 +616,12 @@ Typy commitů jsou určeny pro budoucí implementaci automatického sémantické
 \end{itemize}
 
 \subsubsection{Štítky}
-GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \texttt{v0.1.0}) a~dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o~kandidáta na verzi (release candidate). Jednotliví kandidáti mají v~názvu pořadové číslo. Označení kandidáta na verzi může být např. \texttt{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k~otestování, že se všechny artefakty vytvořily správně a~jsou použitelné.
+GIT poskytuje také štítky, kterými lze označovat jednotlivé body ve stromu verzí. Tuto možnost jsem použil pro automatické vytvoření artefaktů projektu. Štítky se označují jednotlivé verze projektu, které budou vydány. Název štítku obsahuje identifikátor verze (např. \texttt{v0.1.0}) a~dále volitelně může název obsahovat část, která určuje, že verze není konečná, ale že jde o~kandidáta na verzi (\emph{release candidate}). Jednotliví kandidáti mají v~názvu pořadové číslo. Označení kandidáta na verzi může být např. \texttt{v0.1.0-rc1}. Kandidátů na verzi může být více. Tyto verze slouží k~otestování, že se všechny artefakty vytvořily správně a~jsou použitelné.
 
 \subsection{Sestavení kontejneru}
 Pro chod aplikace jsou potřeba celkem 3~kontejnery, které jsem vytvořil v~rámci tohoto projektu. V~této sekci se budu věnovat procesu sestavení obrazu kontejneru pomocí Dockeru. Proces je velmi podobný pro všechny kontejnery. Postup sestavení budu demonstrovat na backendu aplikace.
 
-Celý postup je uložen v~soubodu Dockerfile. Proces sestavení obrazu kontejneru je rozdělen do několika stupňů, z~nichž každý provádí část procesu. Tyto stupně jsou znovupoužitelné a~využívají se podle toho, jestli jde o~sestavení produkčního artefaktu, nebo jestli je sestavení prováděno pro účely vývoje a~testování.
+Celý postup je uložen v~soubodu \texttt{Dockerfile}. Proces sestavení obrazu kontejneru je rozdělen do několika stupňů, z~nichž každý provádí část procesu. Tyto stupně jsou znovupoužitelné a~využívají se podle toho, jestli jde o~sestavení produkčního artefaktu, nebo jestli je sestavení prováděno pro účely vývoje a~testování.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/dockerfile-stages.png}
@@ -629,23 +629,23 @@ Celý postup je uložen v~soubodu Dockerfile. Proces sestavení obrazu kontejner
 	\label{fig:dockerfile-stages}
 \end{figure}
 
-Dockerfile je tvořen celkem 5~stupni. Stupně a~jejich závislosti je možné vidět na obrázku \ref{fig:dockerfile-stages}. Stupně jsou rozvrženy tak, aby přehledně oddělovaly jednotlivé části procesu a~zároveň efektivněji využívaly cachování. Stupně build i~dev dědí ze stupně dependencies, což zajistí, že většina uloženého postupu zůstane uložena z~posledního sestavení, pokud zde nedojde ke změnám. Docker umí s~těmito změnami pracovat efektivně a~kroky, ve kterých nedošlo ke změně si ponechává v~cache.
+Dockerfile je tvořen celkem 5~stupni. Stupně a~jejich závislosti je možné vidět na obrázku \ref{fig:dockerfile-stages}. Stupně jsou rozvrženy tak, aby přehledně oddělovaly jednotlivé části procesu a~zároveň efektivněji využívaly mezipaměť. Stupně build i~dev dědí ze stupně dependencies, což zajistí, že většina uloženého postupu zůstane uložena z~posledního sestavení, pokud zde nedojde ke změnám. Docker umí s~těmito změnami pracovat efektivně a~kroky, ve kterých nedošlo ke změně si ponechává v~mezipaměti.
 
 Zde je popis jednotlivých stupňů:
 \begin{itemize}
-	\item \textbf{base:} Základní stupeň dědí z~oficiálního image pro node.js. Provádí konfiguraci a~instalaci pnpm pro správu balíčků.
+	\item \textbf{base:} Základní stupeň dědí z~oficiálního obrazu pro node.js. Provádí konfiguraci a~instalaci pnpm pro správu balíčků.
 	\item \textbf{dependencies:} Tento stupeň dědí ze stupně base. Provádí se zde kopírování konfiguračních souborů a~instalace závislostí pro vývojové prostředí a~kompilaci.
 	\item \textbf{build:} V~tomto stupni probíhá kopírování zdrojového kódu a~jeho kompilace.
 	\item \textbf{dev:} Zde se provádí spuštění vývojového serveru. Pro tuto variantu je vyžadováno mít pomocí Dockeru připojený souborový systém obsahující zdrojový kód.
-	\item \textbf{runtime:} V~tomto stupni probíhá instalace závislostí pro produkční běh a~nastavení Nginx serveru.
+	\item \textbf{runtime:} V~tomto stupni probíhá instalace závislostí pro produkční běh, kopírování vytvořených artefaktů a~nastavení Nginx serveru.
 \end{itemize}
 
-Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z~proměnných prostředí. Vite, který zajišťuje sestavení frontendu v~kombinaci s~Dockerem neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a~sestavení kontejneru a~ne z \texttt{.env} souboru, jak uživatel předpokládá. Pro kontejnerizaci je toto značný nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
+Specifickým prvkem sestavení obrazu pro frontend aplikace je vložení hodnot z~proměnných prostředí. Vite, který zajišťuje sestavení frontendu v~kombinaci s~Dockerem, neposkytuje možnost vkládat proměnné prostředí do kontejneru dynamicky. Proměnné jsou vyhodnoceny při sestavení aplikace. Jako důsledek této skutečnosti jsou proměnné do kontejneru vloženy při kompilaci a~sestavení kontejneru a~ne z \texttt{.env} souboru při spuštění aplikace, jak uživatel předpokládá. Pro kontejnerizaci je toto značný nedostatek, který omezuje šíření již postavených kontejnerů, což je hlavní myšlenkou, kterou má kontejnerizace zajišťovat.
 
 Tento problém jsem vyřešil pomocí shellového skriptu. Tento skript se spouští bezprostředně před startem samotného Nginx serveru, který zajišťuje poskytování souborů uživatelům. Vite při sestavení projektu vkládá konkrétní hodnoty na místa, kde se v~kódu odkazují vlastnosti proměnné \texttt{import.meta.env}. Ve svém projektu a~podle instrukcí poskytnutých v~repozitáři\cite{env-script}, který byl zdrojem použitého skriptu, jsem použil pro sestaví projektu zástupné řetězce. Tyto jsou skriptem následně vyhledány a~nahrazeny skutečnými hodnotami, které poskytne uživatel.
 
 \subsection{Logování}
-Uchování a~přístup k~logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a~zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě v~terminálu.
+Uchování a~přístup k~logům je zajištěn pomocí Docker compose. Pomocí tohoto nástroje je možné záznamy uchovávat, filtrovat je a~zobrazovat podle specifikovaného času, nebo konkrétních běžících kontejnerů. Toto je podstatně pohodlnější, než sledovat logy všech běžících služeb na jednom místě.
 
 \subsection{Spuštění projektu}
 Výsledné obrazy lze spustit pomocí příkazu \texttt{docker compose up} (na operačním systému Linux). K~úspěšnému spuštění pomocí Docker compose je potřeba konfigurační soubor \path{release/docker-compose.yaml} v~aktuálním adresáři. Po spuštění se automaticky stáhnou obrazy označené štítkem \texttt{latest} (aktuální verze).
@@ -685,7 +685,7 @@ Vytvoření uživatelského účtu lze provést prostřednictvím formuláře re
 Po registraci je uživatel přesměrován na obrazovku pro přihlášení. Přihlašovací formulář je velmi podobný formuláři pro registraci. Přihlášený uživatel může  např. vytvářet vlastní úryvky Bible, vést si poznámky k~biblickým textům nebo vytvářet záložky. Může také být členem skupin, ve kterých se zobrazují příspěvky správců skupiny. Pokud jsou mu přidělena administrátorská oprávnění, může mít přístup také ke správě překladů Bible, kalendáře nebo dalších skupin a~uživatelských účtů.
 
 \subsection{Čtečka Bible}
-Převážnou část obrazovky s~texty Bible vyplňuje samotný zobrazovaný text Bible. Důležitými ovládacími prvky jsou navigační šipky na začátku i~na konci textu. Pomocí těch je možné přepínat mezi zobrazenými kapitolami, případně přejít nahoru v~Biblické hierarchii (přepnutí na výběr kapitol, nebo knih).
+Převážnou část obrazovky s~texty Bible vyplňuje samotný zobrazovaný text Bible. Důležitými ovládacími prvky jsou navigační šipky na začátku i~na konci textu. Pomocí těch je možné přepínat mezi zobrazenými kapitolami, případně přejít nahoru v~Biblické hierarchii (přepnutí na výběr kapitol nebo knih).
 
 Hlavním ovládacím prvkem čtečky Bible je dolní lišta. V~pravém dolním rohu obsahuje tlačítko pro zobrazení nabídky, ve které je možné změnit překlad Bible, nebo přejít do seznamu záložek uživatele.
 
@@ -733,10 +733,10 @@ V~sekci pro správu uživatelů je možné vytvářet nové uživatele nebo již
 	\label{fig:role-modal}
 \end{figure}
 
-Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje tabulku, ve které jsou vypsány jednotlivé skupiny.
+Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje tabulku, ve které jsou vypsány jednotlivé skupiny spolu s~možností přiřadit k~nim nové uživatele.
 
 \begin{kiconclusions}
-	V~rámci této práce jsem vypracoval webovou aplikaci, která slouží k~zobrazení a~správě textů Bible a~žaltáře. Aplikace také umožňuje vytvářet úryvky z~textů Bible, dělat v~nich poznámky a~záložky. Aplikace obsahuje také sekci pro správu uživatelů a~skupin, které umožňují vytváření příspěvků a~jejich sdílení s~vybranými uživateli.
+	V~rámci této práce jsem vypracoval webovou aplikaci, která slouží k~zobrazení a~správě textů Bible a~žaltáře. Aplikace také umožňuje vytvářet úryvky z~textů Bible a~přidávat k textům poznámky a~záložky. Aplikace obsahuje také sekci pro správu uživatelů a~skupin, které umožňují vytváření příspěvků a~jejich sdílení s~vybranými uživateli.
 
 	Hlavním přínosem pro farnost bude možnost přistupovat centralizovaně k~těmto textům a~dále s~nimi pracovat. Pro společenství bude dále také výhodné, že různé překlady textů i~uživatelského rozhraní se dají spravovat velmi jednoduše, což v~původním řešení, které farnost používala, nebylo uspokojivě zajištěno. V~současnosti je žaltář ve farnosti velmi často využíván. Díky této aplikaci bude i~spolu s~texty Bible dostupný na jednom místě pro všechny farníky i~v~jejich preferovaném jazyce.
 
@@ -752,7 +752,7 @@ Sekce správy skupin je podobná sekci pro správu uživatelů. Také obsahuje t
 
 	During development I~focused on DevOps elements. I~integrated CI/CD pipeline, automated tests, container build and code quality checks into the project, which helps to make the process of development and release of new versions easier. It also simplifies deployment and updates of the application.
 
-	In the future I~would like to add more liturgical texts into the app. There is a~huge amount of Eastern catholic prayer texts. With respect to this fact I~tried to make the project modular. This will enable me to add more texts in future versions. Also I~will be able to add prayers, which change according to day in liturgical calendar. To add the texts, it is necessary to acquire their translations and convert them into the right format first. This is the main reason, why I~created only a~small set of texts for demonstration purposes. This set will grow over time.
+	In the future I~would like to add more liturgical texts into the app. There is a~huge amount of Eastern Catholic prayer texts. With respect to this fact I~tried to make the project modular. This will enable me to add more texts in future versions. Also I~will be able to add prayers, which change according to day in liturgical calendar. To add the texts, it is necessary to acquire their translations and convert them into the right format first. This is the main reason, why I~created only a~small set of texts for demonstration purposes. This set will grow over time.
 \end{kiconclusions}
 
 
