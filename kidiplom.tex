@@ -98,7 +98,7 @@
 %% práce). Jeden odstavec!
 \annotation{Text se zaměřuje na popis vývoje a~fungování webové aplikace, která obsahuje texty Bible a~žaltáře určené pro Řeckokatolickou farnost v~Olomouci. Zaměřuje se na analýzu požadavků, realizaci projektu a~blíže popisuje použité koncepty z~oblasti DevOps.}
 
-\annotation[english]{This text focuses on development and description of functions of web application with Bible and psalter texts. This application is intended for use by Easter catholic parish in Olomouc. It more closely describes a~process of requirement analysis, realization of the project and usage of DevOps concepts during the development process. }
+\annotation[english]{This text focuses on development and description of functions of web application with the Bible and Psalter texts. This application is intended for use by Eastern catholic parish in Olomouc. It more closely describes a~process of requirement analysis, realization of the project and usage of DevOps concepts during the development process. }
 
 %% Klíčová slova práce, včetně anglických. Oddělená (obvykle) středníkem.
 \keywords{webová aplikace; Bible; PWA; TypeScript; DevOps; CI/CD}
@@ -171,7 +171,7 @@ Významnými knihami jsou 4~evangelia, která popisují život Ježíše Krista 
 Další významnou knihou je kniha žalmů (takzvaný \textbf{žaltář}). Mezi východními křesťanskými církvemi se žaltář rozděluje do 20 částí, kterým se říká \textbf{kaftizmy}. Každá kaftizma obsahuje skupinu žalmů a~další přidružené texty modliteb. Jednotlivé žalmy a~kaftizmy jsou často používány jako samostatné modlitby.
 
 \subsection{Cíl práce}
-Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k~modlitebním textům a~textům Bible pro každodenní použití. Řeckokatolická farnost v~Olomouci, pro kterou bude tato aplikace určena, používá v~současné době systém, který neposkytuje dostatečný komfort pro správu obsahu z~pohledu administrátora. Systém v~současné podobě není dostatečně flexibilní, aby mohl být uspokojivě rozšířen.
+Cílem práce je vytvořit aplikaci, která bude uživatelům usnadňovat přístup k~modlitebním textům a~textům Bible pro každodenní použití. Řeckokatolická farnost v~Olomouci, pro kterou je tato aplikace určena, používá v~současné době systém, který neposkytuje dostatečný komfort pro správu obsahu z~pohledu administrátora. Systém v~současné podobě není dostatečně flexibilní, aby mohl být uspokojivě rozšířen o další texty a jejich překlady.
 
 \subsection{Cílová skupina}
 Primární cílovou skupinou této aplikace jsou členové Řeckokatolické farnosti v~Olomouci. Patří sem běžní farníci, lidé, kteří jsou různým způsobem zapojeni do chodu farnosti, a~duchovní. Farnost je v~současnosti vícenárodnostní a~v~posledních letech se značně
@@ -183,7 +183,7 @@ roku 2024. Každý člen společenství se během týdne modlí jednu část ža
 \subsection{Doména}
 Hlavní doménou projektu jsou modlitby a~církevní texty používané řeckokatolickou církví.
 
-Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti, existuje kalendář, který obsahuje i~biblické texty pro každý den v~roce. Každému dni v~roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Evangelia tvoří pro katolickou církev nejvýznamnější část Bible. Dále je každému dni také přiřazen úryvek z~jedné z~ostatních knih Nového zákona. Při slavnostních bohoslužbách se biblických textů předčítá větší množství.
+Pro Apoštolský exarchát České republiky, který je nadřazenou organizací olomoucké farnosti, existuje kalendář, který obsahuje i~biblické texty pro každý den v~roce. Každému dni v~roce jsou přiřazeny vybrané texty ze čtyř knih evangelií. Dále je každému dni také přiřazen úryvek z~jedné z~ostatních knih Nového zákona. Při slavnostních bohoslužbách se biblických textů předčítá větší množství.
 
 Biblické texty v~církevních obřadech jsou často vázány ke svátkům, které jsou buď pevně svázány s~datem, nebo jsou pohyblivé a~připadají každý rok na jiné datum.
 Mnoho textů je také svázáno s~konkrétním obřadem nebo událostí (např. křest, svěcení domu, ...).
@@ -195,7 +195,7 @@ Další částí je možnost vytváření skupin, které budou využity společe
 
 Mým dalším cílem je navrhnout aplikaci s~ohledem na rozšiřitelnost, což by umožnilo v~budoucnu přidávat další texty, které budou moci fungovat jako samostatné moduly aplikace. Textů je velké množství a~celá řada z~nich má mnoho složitých pravidel, podle kterých se skládají konkrétní texty pro specifický den, období nebo svátek.
 
-V~této práci zaměřuji i~na průzkum a~využití konceptů z~oblasti DevOps\footnote{DevOps je přístup k~vývoji projektu, který usiluje o~propojení procesu vývoje, nasazení a~provozu aplikace s~důrazem na automatizaci.} a~CI/CD (\emph{continuous integration and continuous delivery})\footnote{CI/CD je tachnika vývoje software, která klade důraz na průběžné přidávání změn do celku projektu, automatizovanou kontrolu kódu a~automatizaci sestavení projektu.}, které usnadní vývoj samotný. Jejich bližšímu popisu se budu věnovat dále v~textu. V~dlouhodobém měřítku tyto koncepty urychlí integraci i~samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a~správnosti, nasazení software a~sledování jeho stavu. I~za cenu větší náročnosti přípravy a~počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a~rychlost nasazení nových verzí a~také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i~v~jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a~vidět i~výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o~kvalitě provedených změn a~jejich kompatibilitě se zbytkem projektu.
+V~této práci se zaměřuji i~na průzkum a~využití konceptů z~oblasti DevOps\footnote{DevOps je přístup k~vývoji projektu, který usiluje o~propojení procesu vývoje, nasazení a~provozu aplikace s~důrazem na automatizaci.} a~CI/CD (\emph{continuous integration and continuous delivery})\footnote{CI/CD je tachnika vývoje software, která klade důraz na průběžné přidávání změn do celku projektu, automatizovanou kontrolu kódu a~automatizaci sestavení projektu.}, které usnadní vývoj samotný. Jejich bližšímu popisu se budu věnovat dále v~textu. V~dlouhodobém měřítku tyto koncepty urychlí vývoj i~samotné nasazení aplikace. Zaměřil jsem se na proces ověření kvality a~správnosti, nasazení software a~sledování jeho stavu. I~za cenu větší náročnosti přípravy a~počáteční konfigurace je pro mne výhodné získat značně větší spolehlivost a~rychlost nasazení nových verzí a~také do budoucna usnadnit údržbu potřebné infrastruktury. Díky této filosofii se mohu i~v~jednočlenném týmu, po nasazení infrastruktury, soustředit více na roli programátora bez nutnosti stále ručně udržovat vše potřebné pro chod projektu. Také začlenění nových přispěvatelů do projektu může být těmito koncepty značně usnadněno. Díky jednoduchému nastavení všech potřebných částí vývojového prostředí je jednodušší začít pracovat se zdrojovými kódy a~vidět i~výsledky změn velmi rychle. Díky automatizované kontrole kvality také dostává vývojář zpětnou vazbu o~kvalitě provedených změn a~jejich kompatibilitě se zbytkem projektu.
 
 \section{Podobné projekty}
 V~rámci této práce jsem hledal a~procházel i~další software zaměřený na práci s~texty Bible i~dalšími liturgickými texty. Aplikací s~tímto zaměřením existuje celá řada. Většina je však určena k~jiným účelům a~především pro osobní použití, ne pro použití ve farnosti samotné, případně v~jiném společenství. Podobné projekty bývají zaměřeny na samotné čtení a~studium biblických textů. Většina z~projektů má také uzavřený zdrojový kód a~proto je nelze upravit a~přizpůsobit pro specifické potřeby, nebo je již zastaralá a~dlouhodobě neudržovaná. Dále existuje software zaměřený na texty modliteb samotné. Ty však většinou obsahují pouze samotné modlitby, typicky zobrazované podle dne. Projekt, který vyvíjím v~rámci této práce, sdružuje a~implementuje více specifických požadavků, které ve většině případů nespadají do stejné domény. Pro případ chodu farnosti, nebo jiného společenství je však výhodné je sdružit do jednoho projektu. V~seznamu níže uvádím některé ze souvisejících projektů, se kterými jsem se dosud setkal.
@@ -299,7 +299,7 @@ PostgreSQL\cite{postgresql} je v~současnosti velmi oblíbenou volbou při výb�
 \subsubsection{Kysely}
 Kysely\cite{kysely} je knihovna, která zajišťuje vytváření dotazů a~spravuje připojení k~databázi. Je použitelná s~různými SQL databázovými systémy. Jednoduše se dá vužít i~pro připojení k~databázi PostgreSQL.
 
-Knihovnu Kysely jsem zvolil pro její jednoduchou integraci do projektu. Poskytuje také dobrou dokumentaci a~jednoduché objektové rozhraní pro vytváření dotazů. Pomocí typové kontroly TypeScriptu Kysely poskytuje i~kontrolu názvů tabulek, sloupců a~jejich typu, což značně usnadňuje vývoj.
+Knihovnu Kysely jsem zvolil pro její jednoduchou integraci do projektu. Poskytuje také kvalitní dokumentaci a~jednoduché objektové rozhraní pro vytváření dotazů. Pomocí typové kontroly TypeScriptu Kysely poskytuje i~kontrolu názvů tabulek, sloupců a~jejich typu, což značně usnadňuje vývoj.
 
 \subsubsection{Docker}
 Docker\cite{docker} je kontejnerizační nástroj, který umožňuje programátorovi vytvářet takzvané kontejnery, což jsou balíčky, které mohou sloužit k~distribuci aplikací.
@@ -324,7 +324,7 @@ Projekt je složen z~5~hlavních komponent, které zajišťují uchování dat a
 \end{figure}
 
 \subsection{Návrh databáze}
-Aplikace je určena především k~prezentaci uložených dat a~jejich správě. Proto pro mne byla volba vhodného nástroje důležitá. Pro potřeby projektu jsem se rozhodl využít dva nástroje pro různé účely.
+Aplikace je určena především k~prezentaci uložených dat a~jejich správě. Proto pro mne byla volba vhodného databázového systému důležitá. Pro potřeby projektu jsem se rozhodl využít dva systémy pro různé účely.
 \subsubsection{PostgeSQL}
 PostgreSQL databázi jsem využil jako primární úložiště dat, která bude aplikace uchovávat. Jsou zde uložena data o~uživatelích, skupinách, oprávněních, úryvcích biblických textů a~další. Důležitějším částem databáze se budu v~této části věnovat podrobněji.
 
@@ -350,9 +350,9 @@ Další část databáze tvoří tabulky pro ukládání metadat Bible (ukázka 
 
 Záložka představuje pojmenované místo v~Bibli. Záložky jsou uzpůsobeny k~přesouvání mezi verši a~předpokládá se, že název se nemění. S~jedním veršem může být v~jednu chvíli spojeno i~několik záložek.
 
-Ostatní metadata jsou vázána staticky ke konkrétním veršům a~není možné je přesunout k~jinému verši. V~tom případě dochází k~jejich odstranění a~opětovnému vytvoření. Ke každému místu a~autorovi smí v~danou chvíli patřit jen jeden záznam v~databázi. Proto, že poznámka i~zvýraznění jsou vázána ke konkrétnímu verši, jsou uloženy ve stejném záznamu, pokud mají stejné umístění.
+Ostatní metadata jsou vázána staticky ke konkrétním veršům a~není možné je přesunout k~jinému verši. V~tom případě dochází k~jejich odstranění a~opětovnému vytvoření. Ke každému místu a~autorovi smí v~danou chvíli patřit jen jeden záznam v~databázi. Proto, že poznámka i~zvýraznění jsou vázána ke konkrétnímu verši, jsou uloženy ve stejném záznamu, pokud mají stejné umístění a autora.
 
-Data jsou rozdělena do dvou tabulek. První z~nich obsahuje data o~záložkách. Záznam v~databázi obsahuje informaci o~poloze záložky v~textu, id autora a~název. Druhá tabulka obsahuje data o~poznámkách a~zvýrazněných verších. V~této tabulce je stejná část popisující autora a~umístění. Dále tabulka obsahuje možnost vložit kód barvy zvýraznění, nebo hodnotu NULL a~dále také volitelný text poznámky.
+Data jsou rozdělena do dvou tabulek. První z~nich obsahuje data o~záložkách. Záznam v~databázi obsahuje informaci o~poloze záložky v~textu, id autora a~název. Druhá tabulka obsahuje data o~poznámkách a~zvýrazněných verších. V~této tabulce je stejná část popisující autora a~umístění. Dále tabulka obsahuje pole pro kód barvy zvýraznění, nebo hodnotu NULL a~dále také volitelný text poznámky.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{images/diagrams/db-user-metadata.png}
@@ -368,7 +368,7 @@ Jde v~první řadě o~texty Bible, které jsou rozděleny do veršů. S~pomocí 
 \paragraph{Texty Bible}
 Uložení textů Bible se budu věnovat podrobněji. Strukturu indexu ukazuje zdrojový kód \ref{code:bible-index}.
 
-V~databázi jsou verše reprezentovány jako jednotlivé verše. Hierarchickou strukturu kvůli lepší indexaci ukládám po jednotlivých verších s~jejich přesným umístěním. Záznam tak obsahuje kód překladu, ke kterému patří, číslo knihy, kapitoly a~verše. Dále obsahuje samotný text, který se indexuje a~vlastnost \texttt{is\_header}, která určuje, jestli se jedná o~nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i~v~databázi.
+V~databázi jsou texty uloženypo jednotlivých verších. Hierarchickou strukturu kvůli efektivnější indexaci ukládám po jednotlivých verších s~jejich přesným umístěním. Záznam tak obsahuje kód překladu, ke kterému patří, číslo knihy, kapitoly a~verše. Dále obsahuje samotný text, který se indexuje a~vlastnost \texttt{is\_header}, která určuje, jestli se jedná o~nadpis sekce. Některé překlady tuto možnost obsahují, proto je přítomna i~v~databázi.
 
 \begin{kicode}{JavaScript}{code:bible-index}{Index Bible}
 	{
